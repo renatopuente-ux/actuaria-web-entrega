@@ -1,0 +1,1300 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Entrega técnica actuaria.com</title>
+<meta name="description" content="Cómo está construida actuaria.com en Webflow: infraestructura, dominio, cuentas, medición, formularios, código propio y scripts.">
+<link rel="icon" type="image/png" href="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a9883c0a48926ccd2c2e1f4_Light.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<style>
+  :root {
+    --navy: #151f47;
+    --indigo: #4c64d9;
+    --blue: #3061aa;
+    --orange: #df5e2d;
+    --orange-soft: #ffbba1;
+    --bg: #f3f6fc;
+    --box: #e8ecf4;
+    --ink: #151f47;
+    --ink-2: rgba(21, 31, 71, .78);
+    --ink-3: rgba(21, 31, 71, .6);
+    --line: rgba(21, 31, 71, .1);
+    --ok: #1b5e20;   --ok-bg: rgba(76, 175, 80, .14);
+    --warn: #663c00; --warn-bg: rgba(255, 179, 0, .18);
+    --bad: #5f2120;  --bad-bg: rgba(229, 57, 53, .12);
+    --info: #2f5fcc; --info-bg: rgba(76, 100, 217, .12);
+    --neu: 8px 8px 20px rgba(15, 23, 42, .09), -8px -8px 18px rgba(255, 255, 255, .95);
+    --neu-sm: 4px 4px 10px rgba(15, 23, 42, .08), -4px -4px 10px rgba(255, 255, 255, .95);
+    --neu-in: inset 3px 3px 7px rgba(15, 23, 42, .08), inset -3px -3px 7px rgba(255, 255, 255, .9);
+    --radius: 22px;
+    --mono: ui-monospace, "Cascadia Code", Consolas, "SFMono-Regular", Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: Nunito, system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--blue); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { color: var(--indigo); }
+  code {
+    font-family: var(--mono);
+    font-size: .86em;
+    background: rgba(21, 31, 71, .06);
+    border-radius: 6px;
+    padding: .1em .4em;
+    overflow-wrap: anywhere;
+  }
+  h1, h2, h3, h4 { line-height: 1.2; margin: 0; color: var(--navy); }
+  p { margin: 0 0 12px; }
+  ul, ol { margin: 0 0 12px; padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  strong { font-weight: 800; }
+
+  /* Layout */
+  .shell { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+  .grid { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 40px; align-items: start; }
+
+  /* Header */
+  .hero { padding: 40px 0 28px; }
+  .hero_top { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 36px; }
+  .hero_logo { height: 34px; width: auto; display: block; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px; border-radius: 999px;
+    background: var(--box); box-shadow: var(--neu-sm);
+    font-size: 13px; font-weight: 800; letter-spacing: .02em; color: var(--navy);
+  }
+  .chip i { color: var(--orange); }
+  .hero h1 { font-size: clamp(32px, 5vw, 54px); font-weight: 900; letter-spacing: -.02em; max-width: 880px; }
+  .hero h1 span { color: var(--indigo); }
+  .hero_lead { font-size: 19px; color: var(--ink-2); max-width: 800px; margin: 18px 0 22px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 10px 22px; font-size: 14px; color: var(--ink-3); font-weight: 700; }
+  .meta i { color: var(--indigo); margin-right: 6px; }
+
+  .stats { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; margin-top: 30px; }
+  .stat { background: var(--box); border-radius: 18px; box-shadow: var(--neu); padding: 16px 16px 14px; }
+  .stat b { display: block; font-size: 30px; font-weight: 900; line-height: 1.05; color: var(--navy); }
+  .stat span { display: block; font-size: 13px; color: var(--ink-2); font-weight: 700; margin-top: 4px; }
+
+  /* TOC */
+  .toc { position: sticky; top: 24px; max-height: calc(100vh - 48px); overflow: auto; padding: 18px 14px; background: var(--box); border-radius: var(--radius); box-shadow: var(--neu); }
+  .toc_title { font-size: 12px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); margin: 0 8px 10px; }
+  .toc ol { list-style: none; margin: 0; padding: 0; counter-reset: toc; }
+  .toc li { margin: 0; counter-increment: toc; }
+  .toc a {
+    display: flex; gap: 10px; align-items: baseline;
+    padding: 6px 8px; border-radius: 10px;
+    font-size: 14px; font-weight: 700; color: var(--ink-2); text-decoration: none;
+  }
+  .toc a::before { content: counter(toc, decimal-leading-zero); font-size: 11px; font-weight: 900; color: var(--ink-3); min-width: 18px; }
+  .toc a:hover { background: rgba(255, 255, 255, .7); color: var(--navy); }
+  .toc a.is-active { background: #fff; color: var(--navy); box-shadow: var(--neu-sm); }
+  .toc a.is-active::before { color: var(--orange); }
+  .toc_mobile { display: none; }
+
+  /* Sections */
+  main { min-width: 0; padding-bottom: 80px; }
+  .sec { background: var(--box); border-radius: var(--radius); box-shadow: var(--neu); padding: 32px 34px; margin-bottom: 28px; scroll-margin-top: 24px; }
+  .sec_head { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+  .sec_icon {
+    flex: none; width: 46px; height: 46px; border-radius: 14px;
+    display: grid; place-items: center;
+    background: var(--bg); box-shadow: var(--neu-sm);
+    color: var(--indigo); font-size: 19px;
+  }
+  .sec h2 { font-size: 27px; font-weight: 900; letter-spacing: -.01em; }
+  .sec_kicker { display: block; font-size: 12px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; color: var(--orange); margin-bottom: 2px; }
+  .sec h3 { font-size: 19px; font-weight: 800; margin: 26px 0 10px; }
+  .sec h3:first-of-type { margin-top: 8px; }
+  .sec > p, .sec > ul, .sec > ol { color: var(--ink-2); }
+  .lead { font-size: 17px; color: var(--ink-2); }
+
+  /* Cards */
+  .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 14px 0 6px; }
+  .cards.is-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .card { background: var(--bg); border-radius: 18px; box-shadow: var(--neu-sm); padding: 18px 20px; min-width: 0; }
+  .card h4 { font-size: 16px; font-weight: 800; margin-bottom: 8px; display: flex; gap: 10px; align-items: center; }
+  .card h4 i { color: var(--indigo); width: 18px; text-align: center; }
+  .card p, .card li { font-size: 15px; color: var(--ink-2); }
+  .card p:last-child, .card ul:last-child { margin-bottom: 0; }
+
+  /* Rules */
+  .rules { list-style: none; padding: 0; margin: 14px 0 0; display: grid; gap: 12px; }
+  .rules li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; align-items: start; margin: 0; padding: 14px 16px; background: var(--bg); border-radius: 16px; box-shadow: var(--neu-sm); color: var(--ink-2); font-size: 15px; }
+  .rules b.n { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--navy); color: #fff; font-size: 15px; font-weight: 900; }
+  .rules strong { color: var(--navy); }
+
+  /* Callouts */
+  .note { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 12px; padding: 14px 18px; border-radius: 16px; margin: 16px 0; font-size: 15px; }
+  .note i { margin-top: 4px; }
+  .note p:last-child { margin-bottom: 0; }
+  .note.is-info { background: var(--info-bg); color: #1d3a80; }
+  .note.is-info i { color: var(--info); }
+  .note.is-warn { background: var(--warn-bg); color: var(--warn); }
+  .note.is-bad { background: var(--bad-bg); color: var(--bad); }
+  .note.is-ok { background: var(--ok-bg); color: var(--ok); }
+  .note strong { color: inherit; }
+
+  /* Tables */
+  .tabla { overflow-x: auto; margin: 12px 0 8px; border-radius: 16px; background: var(--bg); box-shadow: var(--neu-in); }
+  table { border-collapse: collapse; width: 100%; font-size: 14.5px; }
+  th, td { text-align: left; vertical-align: top; padding: 11px 14px; border-bottom: 1px solid var(--line); }
+  th { font-size: 12px; font-weight: 900; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-3); background: rgba(255, 255, 255, .55); white-space: nowrap; }
+  tr:last-child td { border-bottom: 0; }
+  td { color: var(--ink-2); }
+  td:first-child { color: var(--navy); font-weight: 700; }
+  /* IDs stay whole on wide screens; only cells marked .wrap (long paths) may break anywhere. */
+  td code { white-space: nowrap; overflow-wrap: normal; }
+  td.wrap, td.wrap code { white-space: normal; overflow-wrap: anywhere; }
+  .tabla.is-wide table { min-width: 760px; }
+
+  /* Tags */
+  .tag { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 12px; font-weight: 800; white-space: nowrap; }
+  .tag.ok { background: var(--ok-bg); color: var(--ok); }
+  .tag.warn { background: var(--warn-bg); color: var(--warn); }
+  .tag.bad { background: var(--bad-bg); color: var(--bad); }
+  .tag.info { background: var(--info-bg); color: var(--info); }
+  .tag.mute { background: rgba(21, 31, 71, .07); color: var(--ink-2); }
+
+  /* Architecture diagram */
+  .arq { display: grid; gap: 14px; margin: 18px 0 8px; }
+  .arq_row { display: flex; align-items: stretch; gap: 10px; }
+  .arq_node { flex: 1 1 0; min-width: 0; background: var(--bg); border-radius: 16px; box-shadow: var(--neu-sm); padding: 14px 16px; }
+  .arq_node b { display: flex; align-items: center; gap: 9px; font-size: 15px; font-weight: 800; color: var(--navy); }
+  .arq_node b i { color: var(--indigo); }
+  .arq_node span { display: block; font-size: 13.5px; color: var(--ink-2); margin-top: 4px; line-height: 1.45; }
+  .arq_node.is-core { background: var(--navy); }
+  .arq_node.is-core b, .arq_node.is-core b i { color: #fff; }
+  .arq_node.is-core span { color: rgba(255, 255, 255, .82); }
+  .arq_arrow { flex: none; align-self: center; color: var(--orange); font-size: 18px; }
+  .arq_down { text-align: center; color: var(--orange); font-size: 18px; line-height: 1; }
+  .arq_label { font-size: 12px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); text-align: center; }
+  .arq_branches { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+
+  /* Steps */
+  .steps { counter-reset: st; list-style: none; padding: 0; }
+  .steps li { counter-increment: st; position: relative; padding-left: 40px; margin-bottom: 12px; color: var(--ink-2); }
+  .steps li::before { content: counter(st); position: absolute; left: 0; top: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--indigo); color: #fff; font-size: 13px; font-weight: 900; display: grid; place-items: center; }
+
+  pre { margin: 12px 0; padding: 14px 16px; border-radius: 14px; background: var(--navy); color: #e7ecff; font-family: var(--mono); font-size: 13px; line-height: 1.55; overflow-x: auto; }
+  pre code { background: none; padding: 0; color: inherit; font-size: inherit; }
+
+  footer.pie { padding: 10px 0 48px; color: var(--ink-3); font-size: 14px; text-align: center; }
+
+  /* Section icon tints */
+  .sec_icon.is-orange { color: var(--orange); }
+  .sec_icon.is-blue { color: var(--blue); }
+  .sec_icon.is-navy { color: var(--navy); }
+
+  /* Charts */
+  .charts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 16px 0 8px; }
+  .chart { background: var(--bg); border-radius: 18px; box-shadow: var(--neu-sm); padding: 20px 22px; margin: 16px 0 8px; min-width: 0; }
+  .charts .chart { margin: 0; }
+  .chart_title { display: flex; align-items: center; gap: 9px; font-size: 15px; font-weight: 800; color: var(--navy); margin: 0 0 14px; }
+  .chart_title i { color: var(--indigo); }
+  .chart_note { font-size: 13px; color: var(--ink-3); margin: 12px 0 0; }
+  .bars { display: grid; gap: 10px; }
+  .bar { display: grid; grid-template-columns: minmax(0, 200px) minmax(0, 1fr) 64px; gap: 12px; align-items: center; font-size: 14px; }
+  .bar_label { color: var(--ink-2); font-weight: 700; }
+  .bar_track { height: 14px; border-radius: 999px; background: rgba(21, 31, 71, .07); box-shadow: var(--neu-in); overflow: hidden; }
+  .bar_fill { display: block; height: 100%; width: var(--w); border-radius: 999px; background: var(--c, var(--indigo)); transform-origin: left center; }
+  .bar_value { font-weight: 900; color: var(--navy); text-align: right; font-variant-numeric: tabular-nums; }
+  .js .chart .bar_fill, .js .chart .stack_seg { transform: scaleX(0); transition: transform 1s cubic-bezier(.2, .7, .2, 1); }
+  .js .chart .stack_seg { transform-origin: left center; }
+  .js .chart.is-in .bar_fill, .js .chart.is-in .stack_seg { transform: scaleX(1); }
+  .stack { display: flex; height: 34px; border-radius: 12px; overflow: hidden; background: rgba(21, 31, 71, .06); box-shadow: var(--neu-in); }
+  .stack_seg { flex: 0 1 var(--w); min-width: 5px; background: var(--c); display: grid; place-items: center; color: #fff; font-size: 12.5px; font-weight: 900; }
+  .legend { list-style: none; padding: 0; margin: 12px 0 0; display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 13.5px; color: var(--ink-2); }
+  .legend li { display: flex; align-items: center; gap: 8px; margin: 0; }
+  .legend .sw { width: 12px; height: 12px; border-radius: 4px; background: var(--c); flex: none; }
+  .legend b { color: var(--navy); }
+  .donut_wrap { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+  .donut { width: 150px; height: 150px; flex: none; }
+  .donut text { font-family: Nunito, sans-serif; }
+  .donut_wrap .legend { flex-direction: column; margin: 0; }
+
+  /* Timeline */
+  .timeline { list-style: none; margin: 16px 0 8px; padding: 0 0 0 30px; position: relative; }
+  .timeline::before { content: ""; position: absolute; left: 10px; top: 10px; bottom: 10px; width: 3px; border-radius: 3px; background: linear-gradient(var(--indigo), var(--orange)); }
+  .timeline li { position: relative; margin: 0 0 12px; padding: 12px 16px; background: var(--bg); border-radius: 14px; box-shadow: var(--neu-sm); color: var(--ink-2); font-size: 15px; }
+  .timeline li::before { content: ""; position: absolute; left: -26px; top: 15px; width: 14px; height: 14px; border-radius: 50%; background: var(--c, var(--indigo)); box-shadow: 0 0 0 4px var(--box); }
+  .timeline time { display: block; font-size: 12px; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; color: var(--orange); }
+  .timeline b { color: var(--navy); }
+  .timeline li.is-key { background: var(--navy); color: rgba(255, 255, 255, .85); }
+  .timeline li.is-key b { color: #fff; }
+  .timeline li.is-key time { color: var(--orange-soft); }
+
+  /* Flows */
+  .lane_title { display: flex; align-items: center; gap: 9px; font-size: 15px; font-weight: 800; color: var(--navy); margin: 18px 0 10px; }
+  .lane_title i { color: var(--orange); }
+  .chain { display: flex; align-items: stretch; gap: 8px; margin: 0 0 8px; }
+  .chain_node { flex: 1 1 0; min-width: 0; background: var(--bg); border-radius: 14px; box-shadow: var(--neu-sm); padding: 12px 14px; font-size: 13.5px; line-height: 1.45; color: var(--ink-2); }
+  .chain_node b { display: flex; align-items: center; gap: 8px; font-size: 14.5px; color: var(--navy); margin-bottom: 4px; }
+  .chain_node b i { color: var(--c, var(--indigo)); }
+  .chain_node.is-core { background: var(--navy); color: rgba(255, 255, 255, .82); }
+  .chain_node.is-core b, .chain_node.is-core b i { color: #fff; }
+  .chain_node.is-wide { flex-grow: 1.5; }
+  .chain_arrow { flex: none; align-self: center; color: var(--orange); font-size: 16px; }
+  .chain_group { flex: 1.5 1 0; min-width: 0; display: grid; gap: 8px; }
+  .chain_group .chain_node { padding: 9px 12px; }
+
+  /* DNS before / after */
+  .compare { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 16px 0 8px; }
+  .compare_card { background: var(--bg); border-radius: 18px; box-shadow: var(--neu-sm); padding: 18px 20px; min-width: 0; }
+  .compare_card.is-now { box-shadow: var(--neu-sm), inset 0 0 0 2px rgba(76, 100, 217, .35); }
+  .dns_row { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 12px 0 0; font-size: 14px; color: var(--ink-2); }
+  .dns_row i { color: var(--orange); font-size: 13px; }
+  .dns_chip { display: inline-flex; align-items: center; gap: 7px; padding: 5px 11px; border-radius: 10px; background: var(--box); box-shadow: var(--neu-sm); font-weight: 800; color: var(--navy); font-size: 13.5px; }
+  .dns_chip i { color: var(--indigo); }
+  .dns_chip.is-off { color: var(--ink-3); box-shadow: none; background: rgba(21, 31, 71, .05); text-decoration: line-through; }
+
+  /* Dependencies per page */
+  .deps { margin: 16px 0 8px; background: var(--bg); border-radius: 18px; box-shadow: var(--neu-sm); padding: 6px 20px; }
+  .deps_row { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 12px; align-items: center; padding: 11px 0; border-bottom: 1px solid var(--line); }
+  .deps_row:last-child { border-bottom: 0; }
+  .deps_page { font-weight: 800; color: var(--navy); font-size: 14.5px; }
+  .pills { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; font-size: 12.5px; font-weight: 800; line-height: 1.35; max-width: 100%; }
+  .pill.gh { background: var(--navy); color: #fff; }
+  .pill.wf { background: rgba(76, 100, 217, .14); color: var(--info); }
+  .pill.ext { background: rgba(223, 94, 45, .14); color: #8a3413; }
+  .pill.g { background: rgba(48, 97, 170, .14); color: #1d3a80; }
+  .legend .pill { font-size: 12px; }
+
+  @media (max-width: 860px) {
+    .charts, .compare { grid-template-columns: minmax(0, 1fr); }
+    .chain { flex-direction: column; }
+    .chain_arrow { transform: rotate(90deg); }
+    .deps_row { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  }
+  @media (max-width: 640px) {
+    .chart { padding: 16px; }
+    .bar { grid-template-columns: minmax(0, 1fr) 52px; gap: 4px 10px; }
+    .bar_label { grid-column: 1 / -1; }
+    .deps { padding: 4px 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .js .chart .bar_fill, .js .chart .stack_seg { transition: none; transform: none; }
+  }
+
+  @media (max-width: 1100px) {
+    .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .arq_branches { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 1180px) {
+    .grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
+    .toc { display: none; }
+    .toc_mobile { display: block; margin-bottom: 24px; background: var(--box); border-radius: 18px; box-shadow: var(--neu); }
+    .toc_mobile summary { cursor: pointer; padding: 14px 18px; font-weight: 800; color: var(--navy); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    .toc_mobile summary::-webkit-details-marker { display: none; }
+    .toc_mobile summary i { color: var(--indigo); transition: transform .2s; }
+    .toc_mobile[open] summary i { transform: rotate(180deg); }
+    .toc_mobile ol { margin: 0; padding: 0 18px 14px 40px; }
+    .toc_mobile a { font-weight: 700; text-decoration: none; color: var(--ink-2); }
+    .cards.is-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 640px) {
+    .shell { padding: 0 16px; }
+    .hero { padding-top: 24px; }
+    .hero_lead { font-size: 17px; }
+    .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .stat b { font-size: 26px; }
+    .sec { padding: 22px 18px; border-radius: 18px; }
+    .sec h2 { font-size: 23px; }
+    .sec_icon { width: 40px; height: 40px; font-size: 17px; }
+    .arq_row { flex-direction: column; }
+    .arq_arrow { transform: rotate(90deg); }
+    .arq_branches { grid-template-columns: minmax(0, 1fr); }
+    th, td { padding: 10px 12px; }
+  }
+  /* On tablets and phones, tables labelled by the script below turn into stacked cards: one block per
+     row, each cell with its column name above it. Without JS they keep the horizontal scroll. */
+  @media (max-width: 860px) {
+    .cards, .cards.is-3 { grid-template-columns: minmax(0, 1fr); }
+    .tabla.is-stack { overflow: visible; }
+    .tabla.is-stack table { min-width: 0; }
+    .tabla.is-stack thead { display: none; }
+    .tabla.is-stack tbody, .tabla.is-stack tr, .tabla.is-stack td { display: block; }
+    .tabla.is-stack tr { padding: 12px 14px; border-bottom: 1px solid var(--line); }
+    .tabla.is-stack tr:last-child { border-bottom: 0; }
+    .tabla.is-stack td { border: 0; padding: 3px 0; }
+    .tabla.is-stack td code { white-space: normal; overflow-wrap: anywhere; }
+    .tabla.is-stack td:first-child { font-size: 15.5px; padding-bottom: 6px; }
+    .tabla.is-stack td[data-label]:not(:first-child)::before {
+      content: attr(data-label);
+      display: block;
+      font-size: 11px; font-weight: 900; letter-spacing: .05em; text-transform: uppercase;
+      color: var(--ink-3);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  @media print {
+    body { background: #fff; }
+    .toc, .toc_mobile { display: none; }
+    .grid { grid-template-columns: 1fr; }
+    .sec, .stat, .card, .rules li, .arq_node { box-shadow: none; border: 1px solid var(--line); }
+    .sec { break-inside: avoid-page; }
+    .js .chart .bar_fill, .js .chart .stack_seg { transform: none; transition: none; }
+  }
+</style>
+<script>document.documentElement.className += ' js';</script>
+</head>
+<body>
+
+<header class="hero shell">
+  <div class="hero_top">
+    <img class="hero_logo" src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a70bbec17f7fc765c2ea5d9_logo-actuaria.svg" alt="Actuaria Consultores">
+    <span class="chip"><i class="fa-solid fa-file-shield" aria-hidden="true"></i>Documento de entrega · v1.0</span>
+  </div>
+  <h1>Cómo está construida <span>actuaria.com</span></h1>
+  <p class="hero_lead">Todo lo que necesitas para entender, mantener y cambiar el sitio sin romperlo: infraestructura, dominio, cuentas, medición, formularios, código propio y scripts. Refleja el estado del 2 de octubre de 2026, día del lanzamiento en Webflow.</p>
+  <div class="meta">
+    <span><i class="fa-solid fa-user-gear" aria-hidden="true"></i>Responsable: Área de Producto · Renato Puente</span>
+    <span><i class="fa-solid fa-calendar-check" aria-hidden="true"></i>Última revisión: 2 oct 2026</span>
+    <span><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Estado: en producción</span>
+  </div>
+  <div class="stats" aria-label="Cifras del sitio">
+    <div class="stat"><b>24</b><span>páginas en Webflow</span></div>
+    <div class="stat"><b>274</b><span>artículos del blog</span></div>
+    <div class="stat"><b>37</b><span>personas en el CMS</span></div>
+    <div class="stat"><b>317</b><span>redirecciones 301</span></div>
+    <div class="stat"><b>291</b><span>URLs en el sitemap</span></div>
+    <div class="stat"><b>4</b><span>repos de GitHub Pages en uso</span></div>
+  </div>
+</header>
+
+<div class="shell grid">
+  <nav class="toc" aria-label="Contenido">
+    <p class="toc_title">Contenido</p>
+    <ol id="toc-list">
+      <li><a href="#resumen">Resumen en un minuto</a></li>
+      <li><a href="#arquitectura">Arquitectura</a></li>
+      <li><a href="#cuentas">Cuentas y accesos</a></li>
+      <li><a href="#dominio">Dominio y DNS</a></li>
+      <li><a href="#webflow">Sitio en Webflow</a></li>
+      <li><a href="#paginas">Páginas</a></li>
+      <li><a href="#cms">CMS</a></li>
+      <li><a href="#codigo">Código propio</a></li>
+      <li><a href="#github">GitHub</a></li>
+      <li><a href="#medicion">Medición</a></li>
+      <li><a href="#formularios">Formularios</a></li>
+      <li><a href="#seo">SEO e indexación</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#herramientas">Herramientas locales</a></li>
+      <li><a href="#mantenimiento">Mantenimiento</a></li>
+      <li><a href="#pendientes">Pendientes</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <details class="toc_mobile">
+      <summary>Contenido <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+      <ol id="toc-mobile-list"></ol>
+    </details>
+
+    <div class="note is-info">
+      <i class="fa-solid fa-lock" aria-hidden="true"></i>
+      <div><p><strong>Este documento es público a propósito</strong>, para compartirlo con un enlace. No contiene contraseñas, tokens, URLs privadas de webhooks ni correos personales, y no aparece en buscadores. Los identificadores que sí verás (GTM, GA4, Clarity, Ads) ya son visibles en el código de cualquier página del sitio. Los accesos se piden al responsable de cada cuenta (sección <a href="#cuentas">Cuentas y accesos</a>).</p></div>
+    </div>
+
+    <!-- 01 -->
+    <section class="sec" id="resumen">
+      <div class="sec_head">
+        <div class="sec_icon is-orange"><i class="fa-solid fa-bolt" aria-hidden="true"></i></div>
+        <div><span class="sec_kicker">Para todos</span><h2>Resumen en un minuto</h2></div>
+      </div>
+      <p class="lead">actuaria.com dejó WordPress (Elementor, alojado en SiteGround) y ahora vive en <strong>Webflow</strong>, que reúne en un solo lugar el diseño, el CMS, el hosting y la red de distribución (CDN). El dominio sigue registrado y con su zona DNS en SiteGround; solo cambiaron los dos registros que apuntan la web a Webflow.</p>
+      <div class="cards">
+        <div class="card">
+          <h4><i class="fa-solid fa-layer-group" aria-hidden="true"></i>Qué se construyó</h4>
+          <p>24 páginas (home, nosotros, 4 soluciones, landing de estudio actuarial, calculadoras, blog, contacto, brandbook, landings ODS y páginas legales), un blog con 274 artículos migrados y un directorio de equipo administrable desde el CMS.</p>
+        </div>
+        <div class="card">
+          <h4><i class="fa-solid fa-server" aria-hidden="true"></i>Dónde vive</h4>
+          <p>Webflow (sitio <code>actuaweb</code>) publica en <code>actuaria.com</code>, <code>www.actuaria.com</code> y el staging <code>actuaweb.webflow.io</code>. Cuatro repos de GitHub Pages sirven archivos de apoyo, y las calculadoras vienen de shinyapps.io.</p>
+        </div>
+        <div class="card">
+          <h4><i class="fa-solid fa-chart-line" aria-hidden="true"></i>Qué se mide</h4>
+          <p>Todo pasa por un solo contenedor de Google Tag Manager de Actuaria (<code>GTM-WVB8ND3W</code>): GA4, conversiones de Google Ads (formulario, WhatsApp y llamada) y Microsoft Clarity.</p>
+        </div>
+        <div class="card">
+          <h4><i class="fa-solid fa-envelope-open-text" aria-hidden="true"></i>A dónde llegan los formularios</h4>
+          <p>El formulario principal envía los leads a Salesforce por un webhook y lleva a <code>/gracias</code>. Las postulaciones de empleo llegan por correo mediante Google Apps Script.</p>
+        </div>
+      </div>
+      <h3>Cinco reglas para no romper nada</h3>
+      <ol class="rules">
+        <li><b class="n">1</b><div><strong>Publica siempre en los tres dominios</strong> (actuaria.com, www y staging) y comprueba el cambio en vivo abriendo la página con <code>?nc=1</code> al final, que salta la caché.</div></li>
+        <li><b class="n">2</b><div><strong>No toques el webhook del formulario principal</strong>, ni los nombres de sus campos, ni los tokens de API de Webflow: de eso depende que los leads lleguen a Salesforce.</div></li>
+        <li><b class="n">3</b><div><strong>No canceles SiteGround.</strong> Ahí están la zona DNS del dominio, unos 20 subdominios que siguen en uso y el WordPress de respaldo para volver atrás.</div></li>
+        <li><b class="n">4</b><div><strong>Un solo contenedor de GTM y un solo proyecto de Clarity por página.</strong> Clarity graba solo el primer proyecto que carga; un segundo contenedor duplica las conversiones.</div></li>
+        <li><b class="n">5</b><div><strong>Antes de agregar un script a todo el sitio</strong>, prueba las páginas con piezas nativas de Webflow: pestañas de las calculadoras, sliders, formularios y menús. Un script global ya rompió una vez las pestañas.</div></li>
+      </ol>
+    </section>
+
+    <!-- 02 -->
+    <section class="sec" id="arquitectura">
+      <div class="sec_head">
+        <div class="sec_icon"><i class="fa-solid fa-sitemap" aria-hidden="true"></i></div>
+        <div><span class="sec_kicker">Visión general</span><h2>Arquitectura</h2></div>
+      </div>
+      <p>El recorrido de una visita, de izquierda a derecha, y los servicios que la página llama una vez cargada.</p>
+      <div class="arq" role="img" aria-label="Diagrama: el visitante resuelve el dominio en el DNS de SiteGround, que apunta a Webflow. La página carga archivos del CDN de Webflow y de GitHub Pages, la medición por Google Tag Manager, servicios embebidos, y envía formularios a Salesforce y Apps Script.">
+        <div class="arq_row">
+          <div class="arq_node"><b><i class="fa-solid fa-user" aria-hidden="true"></i>Visitante</b><span>Escribe actuaria.com o llega desde Google, Ads o redes.</span></div>
+          <div class="arq_arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+          <div class="arq_node"><b><i class="fa-solid fa-globe" aria-hidden="true"></i>DNS en SiteGround</b><span>Registro A de <code>actuaria.com</code> y CNAME de <code>www</code> hacia Webflow.</span></div>
+          <div class="arq_arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+          <div class="arq_node is-core"><b><i class="fa-solid fa-cube" aria-hidden="true"></i>Webflow</b><span>Hosting, CDN, CMS, formularios, redirecciones 301 y certificado SSL.</span></div>
+        </div>
+        <div class="arq_down"><i class="fa-solid fa-arrow-down" aria-hidden="true"></i></div>
+        <p class="arq_label">Desde la página</p>
+        <div class="arq_branches">
+          <div class="arq_node"><b><i class="fa-solid fa-photo-film" aria-hidden="true"></i>CDN de Webflow</b><span>Imágenes, PDF, CSS, fuentes (Nunito y Font Awesome 6) y los scripts registrados del blog y de los videos.</span></div>
+          <div class="arq_node"><b><i class="fa-brands fa-github" aria-hidden="true"></i>GitHub Pages</b><span>Visor de PDF propio en todo el sitio, Swiper 14.2.0 y un slider en el home, y el PDF del brandbook.</span></div>
+          <div class="arq_node"><b><i class="fa-solid fa-tags" aria-hidden="true"></i>Tag Manager</b><span><code>GTM-WVB8ND3W</code> carga GA4, Google Ads y Clarity. Solo en actuaria.com, no en staging.</span></div>
+          <div class="arq_node"><b><i class="fa-solid fa-paper-plane" aria-hidden="true"></i>Salesforce</b><span>Recibe los leads del formulario principal por un webhook que dispara Webflow.</span></div>
+          <div class="arq_node"><b><i class="fa-brands fa-google" aria-hidden="true"></i>Google Apps Script</b><span>Lee las postulaciones de empleo cada minuto y envía los correos.</span></div>
+          <div class="arq_node"><b><i class="fa-solid fa-window-restore" aria-hidden="true"></i>Servicios embebidos</b><span>shinyapps.io (las 12 calculadoras), Power BI (ODS 5) y Google Maps (contacto).</span></div>
+        </div>
+      </div>
+
+      <h3>Qué carga cada página</h3>
+      <p>Los servicios externos de cada página, con un color según de dónde viene cada uno. Si uno de esos orígenes falla, aquí ves qué páginas se afectan.</p>
+      <ul class="legend" aria-label="Leyenda de orígenes">
+        <li><span class="pill gh"><i class="fa-brands fa-github" aria-hidden="true"></i>GitHub Pages</span></li>
+        <li><span class="pill wf"><i class="fa-solid fa-cube" aria-hidden="true"></i>CDN de Webflow</span></li>
+        <li><span class="pill g"><i class="fa-solid fa-plug" aria-hidden="true"></i>Google y Salesforce</span></li>
+        <li><span class="pill ext"><i class="fa-solid fa-window-restore" aria-hidden="true"></i>Embebido de terceros</span></li>
+      </ul>
+      <div class="deps">
+        <div class="deps_row"><span class="deps_page">Todas las páginas</span><span class="pills"><span class="pill g">Tag Manager</span><span class="pill gh">Visor de PDF</span><span class="pill wf">Scripts del sitio: menú, anclas, testimonios, validación</span></span></div>
+        <div class="deps_row"><span class="deps_page">Inicio</span><span class="pills"><span class="pill gh">Swiper 14.2.0</span><span class="pill gh">Slider</span><span class="pill g">Formulario → Salesforce</span></span></div>
+        <div class="deps_row"><span class="deps_page">4 soluciones</span><span class="pills"><span class="pill wf">Videos puente</span><span class="pill wf">Equipo holográfico</span><span class="pill g">Formulario → Salesforce</span></span></div>
+        <div class="deps_row"><span class="deps_page">Estudio actuarial</span><span class="pills"><span class="pill wf">Equipo holográfico</span><span class="pill g">Formulario → Salesforce</span></span></div>
+        <div class="deps_row"><span class="deps_page">Nosotros</span><span class="pills"><span class="pill wf">CMS Equipos</span><span class="pill g">Postulaciones → Apps Script</span></span></div>
+        <div class="deps_row"><span class="deps_page">Calculadoras</span><span class="pills"><span class="pill ext">12 apps de shinyapps.io</span></span></div>
+        <div class="deps_row"><span class="deps_page">Blog</span><span class="pills"><span class="pill wf">RadarHubBase</span><span class="pill wf">RadarHubUi</span></span></div>
+        <div class="deps_row"><span class="deps_page">Artículos (/post)</span><span class="pills"><span class="pill wf">BlogArticuloUi</span><span class="pill wf">BlogArticuloExtras</span><span class="pill g">Formulario → Salesforce</span></span></div>
+        <div class="deps_row"><span class="deps_page">Contacto</span><span class="pills"><span class="pill ext">Google Maps (2 oficinas)</span><span class="pill g">Formulario → Salesforce</span></span></div>
+        <div class="deps_row"><span class="deps_page">Brandbook</span><span class="pills"><span class="pill gh">PDF del brandbook (33 MB)</span></span></div>
+        <div class="deps_row"><span class="deps_page">ODS 5</span><span class="pills"><span class="pill ext">Tablero de Power BI</span></span></div>
+      </div>
+    </section>
+
+    <!-- 03 -->
+    <section class="sec" id="cuentas">
+      <div class="sec_head">
+        <div class="sec_icon is-orange"><i class="fa-solid fa-key" aria-hidden="true"></i></div>
+        <div><span class="sec_kicker">Quién administra qué</span><h2>Cuentas y accesos</h2></div>
+      </div>
+      <p>Cada servicio del que depende el sitio, qué guarda y quién lo administra. Para pedir acceso, escribe al Área de Producto. Nadie comparte contraseñas por chat ni por correo: cada persona recibe su propio usuario con el rol mínimo que necesita.</p>
+      <div class="tabla is-wide">
+        <table>
+          <thead><tr><th>Servicio</th><th>Para qué</th><th>Identificador</th><th>Administra</th></tr></thead>
+          <tbody>
+            <tr><td>Webflow</td><td>Diseño, CMS, hosting, formularios, redirecciones y SSL</td><td>Sitio “Actuaria” (<code>actuaweb</code>)</td><td>Área de Producto</td></tr>
+            <tr><td>SiteGround</td><td>Zona DNS de actuaria.com, subdominios, correo (registros) y el WordPress de respaldo</td><td><code>ns1/ns2.siteground.net</code></td><td>Titular de la cuenta (inicia sesión en persona: el acceso rechaza navegadores automatizados)</td></tr>
+            <tr><td>GitHub</td><td>4 repos que el sitio carga y este documento</td><td>Cuenta <code>renatopuente-ux</code></td><td>Área de Producto</td></tr>
+            <tr><td>Google Tag Manager</td><td>Etiquetas de medición y conversiones</td><td><code>GTM-WVB8ND3W</code></td><td>Área de Producto · PMV publica</td></tr>
+            <tr><td>Google Analytics 4</td><td>Analítica del sitio</td><td><code>G-PG79TRGV7Z</code></td><td>Área de Producto · PMV edita</td></tr>
+            <tr><td>Microsoft Clarity</td><td>Grabaciones de sesión y mapas de calor</td><td><code>o0nej6oe00</code></td><td>Área de Producto · PMV miembro</td></tr>
+            <tr><td>Google Ads</td><td>Campañas y sus conversiones</td><td><code>AW-16714364489</code> · <code>AW-18328490443</code></td><td>PMV o el dueño de la cuenta. Actuaria aún no tiene acceso.</td></tr>
+            <tr><td>Search Console</td><td>Indexación y búsquedas orgánicas</td><td><code>https://actuaria.com/</code></td><td>Área de Producto</td></tr>
+            <tr><td>Google Apps Script</td><td>Correos de las postulaciones de empleo</td><td>Proyecto “Postulaciones actuaweb” v3.2</td><td>Área de Producto</td></tr>
+            <tr><td>Salesforce</td><td>Recibe los leads del formulario principal</td><td>Webhook en Webflow → Apps &amp; integrations</td><td>Área de Producto configuró el webhook · equipo comercial usa los leads</td></tr>
+            <tr><td>shinyapps.io</td><td>Las 12 calculadoras, cargadas como iframes</td><td>Cuenta <code>actuariaconsultores</code></td><td><span class="tag warn">Por confirmar</span></td></tr>
+            <tr><td>Power BI</td><td>Tablero de la landing ODS 5</td><td>Informe publicado en la web</td><td><span class="tag warn">Por confirmar</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 04 -->
+    <section class="sec" id="dominio">
+      <div class="sec_head">
+        <div class="sec_icon is-blue"><i class="fa-solid fa-globe" aria-hidden="true"></i></div>
+        <div><span class="sec_kicker">Infraestructura</span><h2>Dominio y DNS</h2></div>
+      </div>
+      <p>La zona DNS de actuaria.com sigue en SiteGround. Para lanzar la web en Webflow solo se cambiaron estos registros; todo lo demás de la zona (212 filas antes y después) quedó igual.</p>
+      <div class="compare">
+        <div class="compare_card">
+          <span class="tag mute">Antes · hasta el 1 oct 2026</span>
+          <div class="dns_row"><span class="dns_chip"><i class="fa-solid fa-globe" aria-hidden="true"></i>actuaria.com</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i><span class="dns_chip"><i class="fa-brands fa-wordpress" aria-hidden="true"></i>WordPress en SiteGround</span></div>
+          <div class="dns_row"><span class="dns_chip is-off">www.actuaria.com</span><span>no existía</span></div>
+        </div>
+        <div class="compare_card is-now">
+          <span class="tag ok">Ahora · desde el 2 oct 2026</span>
+          <div class="dns_row"><span class="dns_chip"><i class="fa-solid fa-globe" aria-hidden="true"></i>actuaria.com</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i><span class="dns_chip"><i class="fa-solid fa-cube" aria-hidden="true"></i>Webflow</span></div>
+          <div class="dns_row"><span class="dns_chip"><i class="fa-solid fa-globe" aria-hidden="true"></i>www</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i><span class="dns_chip"><i class="fa-solid fa-cube" aria-hidden="true"></i>Webflow</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i><span>301 a actuaria.com</span></div>
+        </div>
+      </div>
+      <div class="tabla is-wide">
+        <table>
+          <thead><tr><th>Registro</th><th>Valor</th><th>Para qué</th></tr></thead>
+          <tbody>
+            <tr><td><code>A</code> actuaria.com</td><td><code>198.202.211.1</code></td><td>Apunta el dominio raíz a Webflow. Antes iba al servidor de WordPress.</td></tr>
+            <tr><td><code>CNAME</code> www</td><td><code>cdn.webflow.com</code></td><td>Registro nuevo (antes www no existía). Webflow lo redirige con 301 a actuaria.com, conservando ruta y parámetros.</td></tr>
+            <tr><td><code>TXT</code> _webflow</td><td>Verificación de Webflow</td><td>Sin cambios. No borrarlo.</td></tr>
+            <tr><td>TTL</td><td>5 minutos</td><td>Bajado para el corte (antes 24 h). Subirlo a 1 h cuando pasen 24 a 48 h estables.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Lo que no se tocó</h3>
+      <ul>
+        <li>El correo de Google Workspace: registros MX, SPF, DKIM y DMARC.</li>
+        <li>Los subdominios de las aplicaciones, como <code>plus.actuaria.com</code> y <code>portal</code>, que viven en Firebase.</li>
+        <li>Unos 20 subdominios alojados en SiteGround, entre ellos landings y herramientas antiguas.</li>
+      </ul>
+      <div class="note is-bad">
+        <i class="fa-solid fa-ban" aria-hidden="true"></i>
+        <div><p><strong>No cancelar SiteGround.</strong> Ahí viven la zona DNS, esos subdominios y el WordPress de respaldo, apagado pero recuperable.</p></div>
+      </div>
+      <h3>Cronología del proyecto</h3>
+      <ol class="timeline">
+        <li><time datetime="2026-01-14">14 ene 2026</time><b>Se crea el sitio en Webflow</b> con el nombre corto <code>actuaweb</code>.</li>
+        <li style="--c: var(--blue)"><time datetime="2026-06-11">11 jun 2026</time><b>Colección Blog Posts</b> y plantilla de artículos.</li>
+        <li style="--c: var(--blue)"><time datetime="2026-08-25">25–26 ago 2026</time><b>Colección Equipos</b> y las páginas de las 4 soluciones.</li>
+        <li><time datetime="2026-09-01">1 sep 2026</time><b>Hub del blog</b> con sus scripts de búsqueda, filtros y artículo.</li>
+        <li style="--c: var(--orange)"><time datetime="2026-09-17">17 sep 2026</time><b>Primera conexión del dominio</b> y 287 redirecciones. Al día siguiente se volvió a WordPress para terminar contenidos.</li>
+        <li><time datetime="2026-09-29">29 sep 2026</time><b>Visor de PDF propio</b> en todo el sitio, en reemplazo de DearFlip.</li>
+        <li class="is-key" style="--c: var(--orange)"><time datetime="2026-10-02T03:45Z">2 oct 2026 · 03:45 UTC</time><b>Corte definitivo a Webflow</b> (22:45 del 1 de octubre en Ecuador). Google, Cloudflare y Quad9 resolvieron la IP nueva en minutos. Ese mismo día: 317 redirecciones y la medición en cuentas propias.</li>
+      </ol>
+      <h3>Plan de reversa</h3>
+      <p>Solo ante una falla grave de Webflow. Con el TTL de 5 minutos, la mayoría de las visitas vuelve en 5 a 10 minutos.</p>
+      <ol class="steps">
+        <li>En SiteGround, volver el registro <code>A</code> de la raíz a la IP del servidor de WordPress (está en las notas internas del lanzamiento).</li>
+        <li>Cambiar el <code>CNAME</code> de www para que apunte a <code>actuaria.com</code>. Si se borra, www deja de existir.</li>
+        <li>No tocar el TXT <code>_webflow</code> ni los dominios dentro de Webflow, para poder volver sin repetir la verificación.</li>
+      </ol>
+      <p>Respaldo completo de WordPress: archivo <code>.wpress</code> de 3,9 GB del 15 sep 2026 (base de datos, temas, plugins y medios), más los respaldos automáticos de SiteGround. Se restaura con All-in-One WP Migration y su extensión Unlimited, o desde el panel de SiteGround.</p>
+    </section>
+
+    <!-- 05 -->
+    <section class="sec" id="webflow">
+      <div class="sec_head">
+        <div class="sec_icon is-navy"><i class="fa-solid fa-cube" aria-hidden="true"></i></div>
+        <div><span class="sec_kicker">Plataforma</span><h2>Sitio en Webflow</h2></div>
+      </div>
+      <div class="tabla">
+        <table>
+          <tbody>
+            <tr><td>Nombre del sitio</td><td>Actuaria · nombre corto <code>actuaweb</code></td></tr>
+            <tr><td>ID del sitio</td><td><code>6967c96e0fba2ea4f94d3c69</code></td></tr>
+            <tr><td>Dominios</td><td><code>actuaria.com</code> (ID <code>6aac9233f3cf6aacb923caec</code>) · <code>www.actuaria.com</code> (ID <code>6aac9234f3cf6aacb923cafb</code>)</td></tr>
+            <tr><td>Staging</td><td><a href="https://actuaweb.webflow.io" rel="noopener">actuaweb.webflow.io</a>, sin medición para no mezclar visitas de prueba</td></tr>
+            <tr><td>Idioma y zona</td><td>Español (Ecuador) <code>es-EC</code>, sin idiomas secundarios · America/Guayaquil</td></tr>
+            <tr><td>Creado</td><td>14 de enero de 2026 · lanzado en actuaria.com el 2 de octubre de 2026</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Cómo está armado</h3>
+      <ul>
+        <li><strong>Plan de sitio pago, no Enterprise.</strong> Por eso las redirecciones, el robots.txt y el llms.txt se manejan desde el panel; sus API son solo para Enterprise.</li>
+        <li><strong>Clases con Finsweet Client-First</strong> más variables de Webflow para colores y tamaños.</li>
+        <li><strong>Lenguaje visual:</strong> neumorfismo sobre superficie clara (<code>#f3f6fc</code>), vidrio (glass) y bento. Navy <code>#151f47</code>, índigo <code>#4c64d9</code> y naranja <code>#df5e2d</code>. Tipografía Nunito.</li>
+        <li><strong>Iconos:</strong> Font Awesome 6 subido al sitio como fuente propia (4 familias, sin CDN). Se usa el glifo como texto con su <code>font-family</code>; nunca emojis.</li>
+        <li><strong>Referencia interna:</strong> <a href="https://actuaria.com/recursos/design-system" rel="noopener">/recursos/design-system</a> reúne los componentes del sistema visual.</li>
+        <li><strong>Caché:</strong> Webflow sirve el sitio con Cloudflare. Después de publicar, verifica con <code>?nc=</code> al final de la URL.</li>
+      </ul>
+      <h3>Componentes compartidos</h3>
+      <p>Si cambias un componente, cambia en todas las páginas que lo usan.</p>
+      <div class="tabla">
+        <table>
+          <thead><tr><th>Componente</th><th>Dónde aparece</th></tr></thead>
+          <tbody>
+            <tr><td>Navbar Main</td><td>Todas las páginas (variante interior en las internas)</td></tr>
+            <tr><td>Footer</td><td>Todas las páginas: 6 PDF de Transparencia, 5 de Gobierno Corporativo y enlaces legales</td></tr>
+            <tr><td>Form_Section</td><td>Formulario principal: Home, Contacto, 4 soluciones, Estudio actuarial y plantilla de post</td></tr>
+            <tr><td>Testimonios carrusel</td><td>Home, 4 soluciones y Estudio actuarial</td></tr>
+            <tr><td>WhatsApp flotante</td><td>15 páginas, visible desde 992 px</td></tr>
+            <tr><td>Barra móvil de contacto</td><td>15 páginas: teléfono, correo y WhatsApp fijos abajo, por debajo de 992 px</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Las secciones de equipo, productos, proceso y preguntas frecuentes de las soluciones <strong>no</strong> son componentes: están copiadas en cada página y se editan una por una.</p>
+    </section>
+
+    <!-- 06 -->
+    <section class="sec" id="paginas">
+      <div class="sec_head">
+        <div class="sec_icon"><i class="fa-solid fa-file-lines" aria-hidden="true"></i></div>
+        <div><span class="sec_kicker">Inventario</span><h2>Páginas</h2></div>
+      </div>
+      <p>Las 24 páginas del sitio en Webflow. La columna “Código propio” indica si la página tiene CSS o JavaScript añadido por nosotros (detalle en <a href="#codigo">Código propio</a>).</p>
+      <div class="tabla is-wide">
+        <table>
+          <thead><tr><th>Página</th><th>Ruta</th><th>Para qué</th><th>Código propio</th></tr></thead>
+          <tbody>
+            <tr><td>Inicio</td><td><code>/</code></td><td>Portada: soluciones, cifras, credenciales, testimonios, blog y formulario</td><td><span class="tag info">Sí</span></td></tr>
+            <tr><td>Nosotros</td><td><code>/nosotros</code></td><td>Historia, propósito, visión y valores, equipo, directorio, responsabilidad social y postulaciones</td><td><span class="tag info">Sí</span></td></tr>
+            <tr><td>Beneficios Laborales</td><td><code>/beneficios-laborales</code></td><td>Vertical de beneficios laborales y actuariales</td><td><span class="tag info">Videos</span></td></tr>
+            <tr><td>Seguros y Medicina</td><td><code>/seguros-y-medicina</code></td><td>Vertical de seguros y medicina prepagada</td><td><span class="tag info">Videos</span></td></tr>
+            <tr><td>Análisis de Datos</td><td><code>/analisis-de-datos</code></td><td>Vertical de analítica de datos para negocios</td><td><span class="tag info">Videos</span></td></tr>
+            <tr><td>Riesgos y Finanzas</td><td><code>/riesgos-y-finanzas</code></td><td>Vertical de riesgo y finanzas corporativas</td><td><span class="tag info">Videos</span></td></tr>
+            <tr><td>Estudio Actuarial</td><td class="wrap"><code>/estudio-actuarial-jubilacion-patronal</code></td><td>Landing del estudio de jubilación patronal (NIC 19), destino de campañas de Ads</td><td><span class="tag mute">No</span></td></tr>
+            <tr><td>Calculadoras</td><td class="wrap"><code>/12-calculadoras-especializadas</code></td><td>Menú de entrada y 12 calculadoras (iframes de shinyapps.io) en dos grupos de pestañas</td><td><span class="tag info">Sí</span></td></tr>
+            <tr><td>Coeficientes JP-AM99</td><td><code>/coeficientes-jp-am99</code></td><td>Tablas anuales 2016–2025 con visor y descarga</td><td><span class="tag info">Sí</span></td></tr>
+            <tr><td>Blog</td><td><code>/blog</code></td><td>Hub “Radar Actuarial”: búsqueda, filtros por categoría y “Cargar más”</td><td><span class="tag info">Sí</span></td></tr>
+            <tr><td>Plantilla de post</td><td><code>/post/&lt;slug&gt;</code></td><td>Plantilla de los 274 artículos</td><td><span class="tag info">Sí</span></td></tr>
+            <tr><td>Plantilla de equipo</td><td><code>/equipo/&lt;slug&gt;</code></td><td>Ficha individual de cada persona; fuera de Google hasta tener contenido</td><td><span class="tag info">Sí</span></td></tr>
+            <tr><td>Contacto</td><td><code>/contacto</code></td><td>Canales, formulario y mapas de las oficinas de Quito y Guayaquil</td><td><span class="tag info">Sí</span></td></tr>
+            <tr><td>Gracias</td><td><code>/gracias</code></td><td>Confirmación del formulario principal; su vista es la conversión de lead</td><td><span class="tag info">Sí</span></td></tr>
+            <tr><td>Brandbook</td><td><code>/brandbook</code></td><td>Brandbook v22 en visor y descarga en PDF</td><td><span class="tag mute">No</span></td></tr>
+            <tr><td>Seguridad de la Información</td><td class="wrap"><code>/seguridad-de-la-informacion</code></td><td>ISO 27001, ISO 9001, DLP y SOC</td><td><span class="tag mute">No</span></td></tr>
+            <tr><td>Plan de Recompensas Actuacont</td><td><code>/beneficios-ccppe</code></td><td>Alianza con el CCPPE y formulario de registro</td><td><span class="tag info">Sí</span></td></tr>
+            <tr><td>ODS 4 · Emprendedores</td><td class="wrap"><code>/landing-ods4-capacitacionesfinancierasparaemprendedores</code></td><td>Curso gratuito de finanzas para emprendedores (Actuaria Academy)</td><td><span class="tag mute">No</span></td></tr>
+            <tr><td>ODS 4 · Finanzas Personales</td><td class="wrap"><code>/landing-ods4-capacitacionesfinancieraspersonales</code></td><td>Curso gratuito de finanzas personales</td><td><span class="tag mute">No</span></td></tr>
+            <tr><td>ODS 5 · Equidad</td><td><code>/ods5-appporlaequidad</code></td><td>Participación laboral femenina, con tablero de Power BI</td><td><span class="tag mute">No</span></td></tr>
+            <tr><td>ODS 15 · NFTree</td><td><code>/ods15-nftree</code></td><td>Compensación de la huella de carbono con Fundación Futuro</td><td><span class="tag mute">No</span></td></tr>
+            <tr><td>Página no encontrada</td><td><code>/404</code></td><td>Error 404 propio en español</td><td><span class="tag mute">No</span></td></tr>
+            <tr><td>Design System</td><td><code>/recursos/design-system</code></td><td>Referencia interna de componentes</td><td><span class="tag info">Sí</span></td></tr>
+            <tr><td>Soluciones</td><td><span class="tag warn">Borrador</span></td><td>Página de pruebas sin publicar (contiene el formulario “Test Salesforce”)</td><td><span class="tag mute">No</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 07 -->
+    <section class="sec" id="cms">
+      <div class="sec_head">
+        <div class="sec_icon is-blue"><i class="fa-solid fa-database" aria-hidden="true"></i></div>
+        <div><span class="sec_kicker">Contenido administrable</span><h2>CMS</h2></div>
+      </div>
+      <p>Dos colecciones. Todo lo demás es contenido fijo en el Designer de Webflow.</p>
+      <div class="cards">
+        <div class="card">
+          <h4><i class="fa-solid fa-newspaper" aria-hidden="true"></i>Blog Posts · <code>/post/&lt;slug&gt;</code></h4>
+          <p><strong>274 artículos.</strong> Alimenta el hub <code>/blog</code> (Radar Actuarial), los carruseles del home y la plantilla de cada artículo.</p>
+          <ul>
+            <li><code>name</code>, <code>slug</code>, <code>post-body</code> (texto enriquecido), <code>post-summary</code> (gancho)</li>
+            <li><code>categoria</code> (5 opciones): Beneficios Laborales y Actuariales · Seguros y Medicina Prepagada · Análisis de Datos para Negocios · Riesgo y Finanzas Corporativas · Actuanews</li>
+            <li><code>main-image</code>, <code>thumbnail-image</code>, <code>gif</code> (portada animada), <code>featured</code></li>
+            <li><code>fecha-de-publicacion</code>, <code>tags</code>, <code>autor</code>, <code>url-original</code> (la URL que tenía en WordPress)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><i class="fa-solid fa-people-group" aria-hidden="true"></i>Equipos · <code>/equipo/&lt;slug&gt;</code></h4>
+          <p><strong>37 personas.</strong> Alimenta el equipo de Nosotros (dos listas filtradas por grupo) y la sección de equipo de las páginas de soluciones.</p>
+          <ul>
+            <li><code>name</code>, <code>slug</code>, <code>cargo</code>, <code>foto-de-perfil</code>, <code>foto-main</code></li>
+            <li><code>grupo</code>: Liderazgo o Heads de área · <code>orden</code> dentro del grupo</li>
+            <li><code>trayectoria</code>: reverso de la tarjeta de Liderazgo, 4 o 5 viñetas (unos 380 caracteres)</li>
+            <li><code>linkedin</code>: si queda vacío, el botón “Ver LinkedIn” se oculta solo</li>
+          </ul>
+          <p>La ficha individual <code>/equipo/&lt;slug&gt;</code> está fuera de Google (noindex) hasta que tenga contenido propio.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 -->
+    <section class="sec" id="codigo">
+      <div class="sec_head">
+        <div class="sec_icon is-navy"><i class="fa-solid fa-code" aria-hidden="true"></i></div>
+        <div><span class="sec_kicker">Lo que no es Webflow estándar</span><h2>Código propio</h2></div>
+      </div>
+      <p>El código añadido vive en cinco lugares. Cada bloque empieza con un comentario que explica qué hace, por qué y desde cuándo, así que el propio Webflow sirve de documentación.</p>
+      <div class="cards is-3">
+        <div class="card"><h4><i class="fa-solid fa-globe" aria-hidden="true"></i>Sitio: head y pie</h4><p>Ajustes del sitio → Código personalizado. Corre en las 24 páginas.</p></div>
+        <div class="card"><h4><i class="fa-solid fa-file-code" aria-hidden="true"></i>Página: head y pie</h4><p>Ajustes de cada página → Código personalizado. Solo esa página.</p></div>
+        <div class="card"><h4><i class="fa-solid fa-puzzle-piece" aria-hidden="true"></i>Scripts registrados</h4><p>Archivos JS versionados, alojados en el CDN de Webflow o en GitHub Pages, aplicados al sitio o a una página.</p></div>
+        <div class="card"><h4><i class="fa-solid fa-square-code" aria-hidden="true"></i>Embeds en el diseño</h4><p>Elementos HtmlEmbed dentro de la página: ilustraciones SVG, el radar animado del blog.</p></div>
+        <div class="card"><h4><i class="fa-solid fa-palette" aria-hidden="true"></i>CSS en cabeceras</h4><p>Propiedades que el panel de Webflow no tiene (3D, <code>backdrop-filter</code>, selectores anidados).</p></div>
+      </div>
+
+      <div class="chart">
+        <p class="chart_title"><i class="fa-solid fa-chart-bar" aria-hidden="true"></i>Dónde se concentra el código propio (KB)</p>
+        <div class="bars">
+          <div class="bar" style="--w:100%;--c:var(--navy)"><span class="bar_label">Pie del sitio</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">21,6</span></div>
+          <div class="bar" style="--w:67.1%"><span class="bar_label">Pie de Nosotros</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">14,5</span></div>
+          <div class="bar" style="--w:57.4%"><span class="bar_label">Pie de Inicio</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">12,4</span></div>
+          <div class="bar" style="--w:43.1%;--c:var(--navy)"><span class="bar_label">Head del sitio</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">9,3</span></div>
+          <div class="bar" style="--w:22.2%"><span class="bar_label">Head de Calculadoras</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">4,8</span></div>
+          <div class="bar" style="--w:21.8%"><span class="bar_label">Head de Inicio</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">4,7</span></div>
+          <div class="bar" style="--w:18.5%"><span class="bar_label">Head de Nosotros</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">4,0</span></div>
+          <div class="bar" style="--w:14.4%"><span class="bar_label">Head de Contacto</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">3,1</span></div>
+          <div class="bar" style="--w:6.9%"><span class="bar_label">Head de plantilla de post</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">1,5</span></div>
+          <div class="bar" style="--w:5.1%"><span class="bar_label">Pie de Design System</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">1,1</span></div>
+          <div class="bar" style="--w:3.2%"><span class="bar_label">Head del blog</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">0,7</span></div>
+        </div>
+        <ul class="legend">
+          <li><span class="sw" style="--c:var(--navy)"></span><span><b>Nivel sitio</b> · 30,9 KB, corre en todas las páginas</span></li>
+          <li><span class="sw" style="--c:var(--indigo)"></span><span><b>Nivel página</b> · unos 48 KB repartidos en 11 páginas</span></li>
+        </ul>
+        <p class="chart_note">No incluye los scripts registrados ni los embeds. Bloques de menos de 0,5 KB (Coeficientes, CCPPE, Gracias, plantilla de equipo) omitidos.</p>
+      </div>
+
+      <h3>Head del sitio · 9,3 KB · 6 bloques</h3>
+      <div class="tabla">
+        <table>
+          <thead><tr><th>Bloque</th><th>Qué hace</th></tr></thead>
+          <tbody>
+            <tr><td>Medición</td><td class="wrap">Carga <code>GTM-WVB8ND3W</code> solo si el dominio es actuaria.com (en staging no) y la verificación de Search Console. Fuente: <code>lanzamiento-dominio/medicion-cabecera.html</code>.</td></tr>
+            <tr><td>Dropdowns del menú</td><td>Apertura suave de los desplegables del navbar (los nativos abren de golpe).</td></tr>
+            <tr><td>Marquee de credenciales</td><td>CSS de la franja de certificaciones en bucle, para que funcione en todas las páginas donde aparece.</td></tr>
+            <tr><td>Testimonios con flechas</td><td>CSS de la fila de testimonios a todo el ancho con marcos de vidrio, que avanza con flechas.</td></tr>
+            <tr><td>Anclas del home</td><td>Margen para el menú fijo en <code>#soluciones</code> y <code>#form</code>.</td></tr>
+            <tr><td>“Ver LinkedIn”</td><td>Oculta el botón cuando la persona no tiene LinkedIn cargado en el CMS (Webflow publica <code>href="#"</code>).</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Pie del sitio · 21,6 KB · 5 bloques + 1 script registrado</h3>
+      <div class="tabla">
+        <table>
+          <thead><tr><th>Bloque</th><th>Qué hace</th></tr></thead>
+          <tbody>
+            <tr><td>Marquee de credenciales</td><td>Clona la pista para el bucle infinito donde el diseño tiene una sola pista (páginas de soluciones).</td></tr>
+            <tr><td>Testimonios con flechas</td><td>Agrega anterior/siguiente debajo de cada componente “Testimonios carrusel” y avanza de a una tarjeta, en bucle.</td></tr>
+            <tr><td>Anclas internas</td><td>Descuenta la altura del menú fijo (124 px) al saltar a un ancla. Excluye las piezas nativas de Webflow (pestañas, sliders) para no romperlas.</td></tr>
+            <tr><td>Validación en español</td><td>Los avisos de “campo obligatorio” o “correo inválido” salen en español aunque el navegador esté en otro idioma.</td></tr>
+            <tr><td>Equipo holográfico</td><td>Tarjeta 3D con brillo al pasar el mouse en la sección de equipo de las 5 páginas de soluciones.</td></tr>
+            <tr><td>ActuariaFlipbook 1.0.1</td><td class="wrap">Script registrado desde GitHub Pages, con hash de integridad (SRI). Abre cualquier enlace a un <code>.pdf</code> en el visor propio con efecto de libro, en vez de descargarlo.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Código por página</h3>
+      <div class="tabla is-wide">
+        <table>
+          <thead><tr><th>Página</th><th>Dónde</th><th>Qué hace</th></tr></thead>
+          <tbody>
+            <tr><td>Inicio</td><td>head 4,7 KB</td><td>CSS de Swiper (desde GitHub Pages), carruseles de logos de clientes (48 s por vuelta), marquee de credenciales y alineación de las 4 tarjetas de soluciones.</td></tr>
+            <tr><td>Inicio</td><td>pie 12,4 KB</td><td>Swiper y el slider de Weblocks (GitHub Pages) para los carruseles del blog; contador “en vivo” de estudios actuariales tipo odómetro; conteo hasta +6.500 clientes; H1 del hero con efecto de escritura en bucle.</td></tr>
+            <tr><td>Nosotros</td><td>head 4,0 KB</td><td>Tarjetas que giran del equipo de Liderazgo (con la “Trayectoria” del CMS al reverso), tipografía del cierre, tarjetas de Propósito, Visión y Valores con vidrio y puntos, y vidrio en “Impulsa tu carrera”.</td></tr>
+            <tr><td>Nosotros</td><td>pie 14,5 KB</td><td>Tarjeta holográfica de “Heads de área” y los íconos con entrada en escena de “Nuestra historia”.</td></tr>
+            <tr><td>Contacto</td><td>head 3,1 KB</td><td>Ajustes de la instancia del componente de formulario y la textura de fondo (el body de esta página no tiene la clase que la pone).</td></tr>
+            <tr><td>Calculadoras</td><td>head 4,8 KB</td><td>Textura de fondo y el menú de entrada con dos tarjetas que llevan con scroll suave a <code>#beneficios-post-empleo</code> y <code>#ahorros-impuestos</code>.</td></tr>
+            <tr><td>Blog</td><td>head 0,7 KB + embed</td><td>Textura de fondo, ajuste del chip y el radar animado junto al título (HtmlEmbed, navy y naranja, quieto con “reducir movimiento”).</td></tr>
+            <tr><td>Plantilla de post</td><td>head 1,5 KB</td><td>Textura de fondo y estilos del texto enriquecido que el panel no expone.</td></tr>
+            <tr><td>Coeficientes JP-AM99</td><td>head 0,3 KB + embed</td><td>Textura de fondo y el selector de año (HtmlEmbed) que abre cada tabla en el visor o la descarga. La lista de PDF está en el propio embed (<code>COEF_PDFS</code>).</td></tr>
+            <tr><td>Nosotros</td><td>embed</td><td>Desplegable de “Área de interés” del formulario de postulaciones.</td></tr>
+            <tr><td>Beneficios CCPPE</td><td>pie 0,3 KB</td><td>Textos de ayuda (placeholders) del formulario Registro Actuacont.</td></tr>
+            <tr><td>Gracias · Plantilla de equipo</td><td>head 0,2–0,3 KB</td><td><code>noindex</code>: fuera de Google.</td></tr>
+            <tr><td>Design System</td><td>pie 1,1 KB</td><td>Resalta en el menú lateral la sección que estás viendo.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Scripts registrados</h3>
+      <p>Webflow guarda cada versión; la que corre es la aplicada. Las versiones anteriores quedan registradas sin uso.</p>
+      <div class="tabla is-wide">
+        <table>
+          <thead><tr><th>Script</th><th>Versión</th><th>Alojado en</th><th>Dónde corre</th><th>Qué hace</th></tr></thead>
+          <tbody>
+            <tr><td>ActuariaFlipbook</td><td>1.0.1</td><td>GitHub Pages, con SRI</td><td>Todo el sitio</td><td>Visor de PDF. Carga bajo demanda PDF.js 4.10.38 y StPageFlip 2.0.7, verificadas con SHA-384.</td></tr>
+            <tr><td>RadarHubBase</td><td>1.0.1</td><td>CDN de Webflow</td><td><code>/blog</code></td><td>Normaliza textos y arma el enlace <code>/post/&lt;slug&gt;</code> de cada tarjeta.</td></tr>
+            <tr><td>RadarHubUi</td><td>1.0.1</td><td>CDN de Webflow</td><td><code>/blog</code></td><td>Búsqueda que ignora tildes, filtros por categoría, “Cargar más” de 12 en 12, contador y datos estructurados de Blog.</td></tr>
+            <tr><td>BlogArticuloUi</td><td>1.0.2</td><td>CDN de Webflow</td><td><code>/post/*</code></td><td>Chip de categoría, fechas en español, tiempo de lectura e índice armado con los H2.</td></tr>
+            <tr><td>BlogArticuloExtras</td><td>1.0.3</td><td>CDN de Webflow</td><td><code>/post/*</code></td><td>Enlaces de “Sigue leyendo” y datos estructurados de Article.</td></tr>
+            <tr><td>bridgevideos</td><td>1.0.1</td><td>CDN de Webflow</td><td>4 soluciones</td><td>Videos de las tarjetas que llevan a otra solución: carga diferida, reproducción solo cuando se ven, y vuelve a poner <code>loop</code> y <code>muted</code>, que Webflow quita al publicar.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Las fuentes de cada script y bloque están en el workspace del Área de Producto (carpeta <code>Migracion-Web/</code>, una subcarpeta por sección, cada una con su <code>NOTAS.md</code>).</p>
+    </section>
+
+    <!-- 09 -->
+    <section class="sec" id="github">
+      <div class="sec_head">
+        <div class="sec_icon is-navy"><i class="fa-brands fa-github" aria-hidden="true"></i></div>
+        <div><span class="sec_kicker">Archivos externos</span><h2>GitHub</h2></div>
+      </div>
+      <p>Cuenta <a href="https://github.com/renatopuente-ux" rel="noopener">renatopuente-ux</a>. Los repos son públicos y se sirven con GitHub Pages; no hay servidores propios.</p>
+      <h3>Repos de los que depende el sitio en vivo</h3>
+      <div class="tabla is-wide">
+        <table>
+          <thead><tr><th>Repo</th><th>Archivo</th><th>Lo usa</th><th>Integridad</th></tr></thead>
+          <tbody>
+            <tr><td><a href="https://github.com/renatopuente-ux/actuaria-flipbook" rel="noopener">actuaria-flipbook</a></td><td class="wrap"><code>flipbook.js?v=1.0.1</code> y las librerías PDF.js y StPageFlip</td><td>Todo el sitio: cualquier enlace a <code>.pdf</code>, las credenciales ISO y Coeficientes</td><td>SRI sha384 registrado en Webflow; las librerías se verifican con SHA-384</td></tr>
+            <tr><td><a href="https://github.com/renatopuente-ux/swiper-selfhosted" rel="noopener">swiper-selfhosted</a></td><td class="wrap"><code>dist/swiper-bundle.min.js</code> y <code>.css</code> (Swiper 14.2.0)</td><td>Carruseles del home</td><td>Sin SRI (hashes calculados, sin aplicar)</td></tr>
+            <tr><td><a href="https://github.com/renatopuente-ux/weblocks-slider-script" rel="noopener">weblocks-slider-script</a></td><td><code>slider.js</code></td><td>Carrusel del home sobre Swiper</td><td>Sin SRI</td></tr>
+            <tr><td><a href="https://github.com/renatopuente-ux/actuaria-brandbook-ai" rel="noopener">actuaria-brandbook-ai</a></td><td class="wrap"><code>pdf/Brandbook-Actuaria.pdf</code> (v22, 33 MB)</td><td><code>/brandbook</code>: visor y botón de descarga</td><td>No aplica (es un PDF)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Actualizar el visor de PDF</h3>
+      <ol class="steps">
+        <li>Sube el <code>flipbook.js</code> nuevo al repo y cambia el parámetro de versión (<code>?v=</code>) para saltar la caché de GitHub Pages, que dura unos 10 minutos.</li>
+        <li>Calcula el SHA-384 del archivo publicado y registra en Webflow una versión nueva del script con ese hash.</li>
+        <li>Aplica la versión nueva al sitio y publica. Si el hash no coincide, el navegador bloquea el script, y es a propósito: así nadie puede cambiarlo sin que se note.</li>
+      </ol>
+      <div class="note is-warn">
+        <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+        <div><p><strong>Riesgo a tener presente:</strong> estos cuatro repos están en una cuenta personal. El 29 sep 2026 se decidió dejarlos ahí. Si la cuenta se cierra o un repo cambia de nombre, el home pierde sus carruseles, los PDF dejan de abrirse en el visor y el brandbook no carga. Si en algún momento se pasan a una organización de GitHub de Actuaria, hay que actualizar las URL en Webflow, porque la dirección de Pages cambia.</p></div>
+      </div>
+      <h3>Repos de documentación y prototipos</h3>
+      <p>No cargan en el sitio; sirven de referencia.</p>
+      <div class="tabla">
+        <table>
+          <thead><tr><th>Repo</th><th>Qué es</th></tr></thead>
+          <tbody>
+            <tr><td><a href="https://github.com/renatopuente-ux/actuaria-web-entrega" rel="noopener">actuaria-web-entrega</a></td><td>Este documento.</td></tr>
+            <tr><td><a href="https://renatopuente-ux.github.io/actuaweb-servicios-template/" rel="noopener">actuaweb-servicios-template</a></td><td>Wireframe de 9 bloques que unificó las 4 verticales, más blog, artículo, contacto y Nosotros.</td></tr>
+            <tr><td><a href="https://github.com/renatopuente-ux/actuaria-brandbook-ai" rel="noopener">actuaria-brandbook-ai</a></td><td>Además del PDF, el brandbook en Markdown y <code>tokens.json</code> para que otras IA lo lean. El texto en Markdown todavía es el de la v13.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 10 -->
+    <section class="sec" id="medicion">
+      <div class="sec_head">
+        <div class="sec_icon is-orange"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></div>
+        <div><span class="sec_kicker">Analítica y conversiones</span><h2>Medición</h2></div>
+      </div>
+      <p>Desde el 2 de octubre de 2026 la web mide con cuentas propias de Actuaria. El head del sitio carga un único contenedor de Tag Manager, y todo lo demás se configura dentro de él, no en Webflow.</p>
+      <div class="chain" role="img" aria-label="Diagrama: cada página de actuaria.com carga GTM-WVB8ND3W, que envía datos a GA4 propio, GA4 heredado, Google Ads y Clarity.">
+        <div class="chain_node"><b><i class="fa-solid fa-display" aria-hidden="true"></i>Cada página</b>Solo en actuaria.com. El staging no mide, para no mezclar pruebas.</div>
+        <div class="chain_arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+        <div class="chain_node is-core"><b><i class="fa-solid fa-tags" aria-hidden="true"></i>GTM-WVB8ND3W</b>Un solo contenedor decide qué se envía y a dónde.</div>
+        <div class="chain_arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+        <div class="chain_group">
+          <div class="chain_node" style="--c:var(--orange)"><b><i class="fa-solid fa-chart-pie" aria-hidden="true"></i>GA4 propio</b>Visitas y 3 eventos de conversión</div>
+          <div class="chain_node" style="--c:var(--ink-3)"><b><i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i>GA4 heredado</b>En paralelo, para no cortar su historial</div>
+          <div class="chain_node" style="--c:var(--blue)"><b><i class="fa-brands fa-google" aria-hidden="true"></i>Google Ads</b>Formulario, WhatsApp y llamada</div>
+          <div class="chain_node" style="--c:var(--indigo)"><b><i class="fa-solid fa-video" aria-hidden="true"></i>Clarity</b>Grabaciones y mapas de calor</div>
+        </div>
+      </div>
+      <div class="tabla is-wide">
+        <table>
+          <thead><tr><th>Herramienta</th><th>ID</th><th>Cuenta</th><th>Estado</th></tr></thead>
+          <tbody>
+            <tr><td>Google Tag Manager</td><td><code>GTM-WVB8ND3W</code></td><td>Cuenta “Actuaria”</td><td><span class="tag ok">Propio · en uso</span></td></tr>
+            <tr><td>Google Analytics 4</td><td><code>G-PG79TRGV7Z</code></td><td>ACTUARIA CONSULTORES → propiedad “Actuaria” → flujo www.actuaria.com</td><td><span class="tag ok">Propio · en uso</span></td></tr>
+            <tr><td>Microsoft Clarity</td><td><code>o0nej6oe00</code></td><td>Proyecto “Actuaria Webflow”, vinculado a GA4 y a Google Ads</td><td><span class="tag ok">Propio · grabando</span></td></tr>
+            <tr><td>Google Ads (conversiones)</td><td><code>AW-16714364489</code></td><td>Cuenta de Ads de la campaña (la administra PMV)</td><td><span class="tag ok">En uso</span></td></tr>
+            <tr><td>Google Ads (Google tag)</td><td><code>AW-18328490443</code></td><td>Google tag aparte de Ads</td><td><span class="tag ok">En uso</span></td></tr>
+            <tr><td>Search Console</td><td><code>https://actuaria.com/</code></td><td>Propiedad con el historial de WordPress</td><td><span class="tag ok">Sitemap enviado</span></td></tr>
+            <tr><td>GA4 heredado</td><td><code>G-0KW3C82GY3</code></td><td>Cuenta de terceros con todo el historial anterior; Actuaria no la ve</td><td><span class="tag warn">Se sigue enviando en paralelo</span></td></tr>
+            <tr><td>GTM heredado</td><td><code>GTM-WHVP5PDX</code></td><td>Cuenta de terceros</td><td><span class="tag mute">Ya no se carga</span></td></tr>
+            <tr><td>Clarity heredado</td><td><code>o0mpb4cw3z</code></td><td>Cuenta de terceros</td><td><span class="tag mute">Ya no se carga</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Qué hay dentro del contenedor</h3>
+      <div class="tabla is-wide">
+        <table>
+          <thead><tr><th>Etiqueta</th><th>Se dispara</th><th>Envía a</th></tr></thead>
+          <tbody>
+            <tr><td>Google tag GA4</td><td>Todas las páginas</td><td><code>G-PG79TRGV7Z</code> y en paralelo <code>G-0KW3C82GY3</code></td></tr>
+            <tr><td>Google tag de Ads</td><td>Todas las páginas</td><td><code>AW-18328490443</code></td></tr>
+            <tr><td>Vinculador de conversiones</td><td>Todas las páginas</td><td>Guarda el <code>gclid</code> de los clics de anuncios</td></tr>
+            <tr><td>Clarity</td><td>Todas las páginas</td><td><code>o0nej6oe00</code></td></tr>
+            <tr><td>Conversión “Formulario”</td><td>Vista de <code>/gracias</code></td><td>Ads <code>AW-16714364489</code> + evento GA4 <code>generate_lead</code></td></tr>
+            <tr><td>Conversión “WhatsApp”</td><td>Clic en enlaces <code>wa.me</code>, <code>api.whatsapp.com</code>, <code>web.whatsapp.com</code> o <code>wa.link</code></td><td>Ads + evento GA4 <code>click_whatsapp</code></td></tr>
+            <tr><td>Conversión “Llamada”</td><td>Clic en enlaces <code>tel:</code></td><td>Ads + evento GA4 <code>click_phone</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>El contenedor se versiona como JSON en <code>lanzamiento-dominio/gtm/</code> (v2 base y v3 con la GA4 propia).</p>
+
+      <h3>Quién tiene acceso</h3>
+      <div class="tabla">
+        <table>
+          <thead><tr><th>Herramienta</th><th>Actuaria (Área de Producto)</th><th>PMV (agencia de marketing)</th></tr></thead>
+          <tbody>
+            <tr><td>Tag Manager</td><td>Administrador</td><td>Publicación (2 personas, invitación enviada)</td></tr>
+            <tr><td>GA4</td><td>Administrador</td><td>Editor (2 personas)</td></tr>
+            <tr><td>Clarity</td><td>Administrador</td><td>Miembro (1 persona activa y 2 con invitación enviada)</td></tr>
+            <tr><td>Google Ads</td><td>Sin acceso</td><td>Administra la cuenta</td></tr>
+            <tr><td>Search Console</td><td>Propietario</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Trampas conocidas</h3>
+      <ul>
+        <li><strong>Importar en GTM marca “Sobrescribir” por defecto</strong> y borra lo que no venga en el archivo. Elige “Combinar” y revisa la vista previa (añadido, modificado, eliminado) antes de confirmar.</li>
+        <li><strong>Clarity graba solo el primer proyecto que carga.</strong> Los demás quedan como un evento <code>dup.&lt;id&gt;</code>. Nunca dejes dos proyectos compitiendo.</li>
+        <li><strong>gtm.js tiene unos 15 minutos de caché.</strong> Para ver una versión recién publicada, recarga el archivo sin caché antes de probar.</li>
+        <li><strong>Los eventos clave de GA4</strong> solo se pueden marcar cuando el evento llegó al menos una vez.</li>
+        <li><strong>Para probar conversiones sin ensuciar los datos</strong> usa <code>lanzamiento-dominio/gtm/probar-conversiones.js</code>: intercepta y descarta los envíos a Google.</li>
+      </ul>
+    </section>
+
+    <!-- 11 -->
+    <section class="sec" id="formularios">
+      <div class="sec_head">
+        <div class="sec_icon is-blue"><i class="fa-solid fa-envelope-open-text" aria-hidden="true"></i></div>
+        <div><span class="sec_kicker">Captación</span><h2>Formularios</h2></div>
+      </div>
+      <p class="lane_title"><i class="fa-solid fa-user-tie" aria-hidden="true"></i>Formulario principal (Main Lead): de la visita al lead</p>
+      <div class="chain" role="img" aria-label="Flujo del formulario principal: el visitante envía, Webflow valida y guarda, el webhook lleva el lead a Salesforce, llega un aviso por correo y la visita pasa a /gracias, donde Tag Manager registra la conversión.">
+        <div class="chain_node"><b><i class="fa-solid fa-keyboard" aria-hidden="true"></i>Visitante</b>Llena el formulario en el home, contacto, soluciones o un artículo.</div>
+        <div class="chain_arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+        <div class="chain_node is-core"><b><i class="fa-solid fa-cube" aria-hidden="true"></i>Webflow</b>Turnstile filtra el spam y el envío queda guardado en Forms.</div>
+        <div class="chain_arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+        <div class="chain_group">
+          <div class="chain_node" style="--c:var(--blue)"><b><i class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i>Salesforce</b>El webhook crea el lead</div>
+          <div class="chain_node" style="--c:var(--orange)"><b><i class="fa-solid fa-envelope" aria-hidden="true"></i>Aviso “Nuevo Lead”</b>Correo interno de Webflow</div>
+          <div class="chain_node" style="--c:var(--indigo)"><b><i class="fa-solid fa-circle-check" aria-hidden="true"></i>/gracias</b>GTM registra la conversión en Ads y GA4</div>
+        </div>
+      </div>
+      <p class="lane_title"><i class="fa-solid fa-briefcase" aria-hidden="true"></i>Postulaciones: del formulario al correo de selección</p>
+      <div class="chain" role="img" aria-label="Flujo de postulaciones: el postulante envía, Webflow guarda, Apps Script lee la API cada minuto y envía dos correos.">
+        <div class="chain_node"><b><i class="fa-solid fa-user-graduate" aria-hidden="true"></i>Postulante</b>Llena el formulario en Nosotros con el enlace a su CV.</div>
+        <div class="chain_arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+        <div class="chain_node"><b><i class="fa-solid fa-cube" aria-hidden="true"></i>Webflow</b>Guarda el envío y muestra el mensaje de recibido.</div>
+        <div class="chain_arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+        <div class="chain_node is-core"><b><i class="fa-brands fa-google" aria-hidden="true"></i>Apps Script</b>Cada minuto revisa los envíos nuevos con la API de Webflow.</div>
+        <div class="chain_arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+        <div class="chain_group">
+          <div class="chain_node" style="--c:var(--orange)"><b><i class="fa-solid fa-inbox" aria-hidden="true"></i>Selección</b>Correo con los datos</div>
+          <div class="chain_node" style="--c:var(--indigo)"><b><i class="fa-solid fa-paper-plane" aria-hidden="true"></i>Postulante</b>Confirmación de recibido</div>
+        </div>
+      </div>
+      <div class="tabla is-wide">
+        <table>
+          <thead><tr><th>Formulario</th><th>Dónde está</th><th>A dónde llegan los datos</th><th>Después de enviar</th></tr></thead>
+          <tbody>
+            <tr><td>Main Lead</td><td>Componente Form_Section: Home, Contacto, 4 soluciones, Estudio actuarial y plantilla de post</td><td>Webhook “Form submission: API V2” hacia el servicio de Salesforce (configurado en Webflow → Apps &amp; integrations), más el aviso interno “Nuevo Lead” por correo y el registro en Webflow → Forms</td><td>Lleva a <code>/gracias</code>, que cuenta como conversión. Necesita los dos atributos, <code>redirect</code> y <code>data-redirect</code>.</td></tr>
+            <tr><td>Postulaciones</td><td><code>/nosotros#trabaja-con-nosotros</code></td><td>Google Apps Script v3.2 lee los envíos cada minuto con la API de formularios de Webflow. Envía los datos al responsable de selección y una confirmación al postulante.</td><td>Mensaje en la misma página. El CV se pide como enlace, porque el adjunto es privado y la API no lo entrega.</td></tr>
+            <tr><td>Registro Actuacont</td><td><code>/beneficios-ccppe</code></td><td>Webflow → Forms</td><td>Mensaje en la misma página.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul>
+        <li><strong>Antispam:</strong> todos usan Turnstile, nativo de Webflow.</li>
+        <li><strong>Mensajes de validación en español</strong>, aunque el navegador esté en otro idioma (4.º bloque del pie del sitio).</li>
+        <li><strong>Por qué Postulaciones no usa un webhook:</strong> el Google Workspace de Actuaria no permite publicar aplicaciones web abiertas, así que el script consulta la API en lugar de recibir avisos. El token que usa es de solo lectura de formularios y está guardado en las propiedades del script, nunca en el código.</li>
+        <li><strong>Sin correo al cliente:</strong> Webflow no le escribe a quien llena el formulario principal. El agradecimiento por Apps Script se quitó porque Workspace le pegaba la firma personal del dueño de la cuenta.</li>
+      </ul>
+      <div class="note is-bad">
+        <i class="fa-solid fa-hand" aria-hidden="true"></i>
+        <div><p><strong>No tocar:</strong> el webhook de Salesforce, los nombres de los campos del Main Lead, los tokens de API de Webflow, ni el formulario de Postulaciones. El script lo busca por su ID de elemento y por el <code>name</code> de cada campo: si se recrea o se renombra un campo, los correos dejan de salir sin avisar.</p></div>
+      </div>
+    </section>
+
+    <!-- 12 -->
+    <section class="sec" id="seo">
+      <div class="sec_head">
+        <div class="sec_icon"><i class="fa-solid fa-magnifying-glass-chart" aria-hidden="true"></i></div>
+        <div><span class="sec_kicker">Buscadores e IA</span><h2>SEO e indexación</h2></div>
+      </div>
+      <div class="charts">
+        <div class="chart">
+          <p class="chart_title"><i class="fa-solid fa-sitemap" aria-hidden="true"></i>Qué hay en el sitemap</p>
+          <div class="donut_wrap">
+            <svg class="donut" viewBox="0 0 120 120" role="img" aria-label="291 URLs: 274 artículos del blog y 17 páginas">
+              <circle cx="60" cy="60" r="46" fill="none" stroke="#df5e2d" stroke-width="16"/>
+              <circle cx="60" cy="60" r="46" fill="none" stroke="#151f47" stroke-width="16" stroke-dasharray="272.15 288.98" transform="rotate(-90 60 60)"/>
+              <text x="60" y="58" text-anchor="middle" font-size="22" font-weight="900" fill="#151f47">291</text>
+              <text x="60" y="74" text-anchor="middle" font-size="9.5" font-weight="700" fill="rgba(21,31,71,.6)">URLs</text>
+            </svg>
+            <ul class="legend">
+              <li><span class="sw" style="--c:var(--navy)"></span><span><b>274</b> artículos del blog (94 %)</span></li>
+              <li><span class="sw" style="--c:var(--orange)"></span><span><b>17</b> páginas (6 %)</span></li>
+              <li><span class="sw" style="--c:rgba(21,31,71,.15)"></span><span>Fuera a propósito: <code>/gracias</code>, <code>/404</code> y las fichas de equipo</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="chart">
+          <p class="chart_title"><i class="fa-solid fa-route" aria-hidden="true"></i>Cómo se llegó a 317 redirecciones</p>
+          <div class="stack" role="img" aria-label="317 redirecciones: 287 del 17 de septiembre, 2 del portal, 1 de un post nuevo y 27 del lanzamiento">
+            <span class="stack_seg" style="--w:90.5%;--c:var(--navy)">287</span>
+            <span class="stack_seg" style="--w:0.6%;--c:var(--blue)"></span>
+            <span class="stack_seg" style="--w:0.3%;--c:var(--indigo)"></span>
+            <span class="stack_seg" style="--w:8.5%;--c:var(--orange)"></span>
+          </div>
+          <ul class="legend">
+            <li><span class="sw" style="--c:var(--navy)"></span><span><b>287</b> base (17 sep)</span></li>
+            <li><span class="sw" style="--c:var(--blue)"></span><span><b>2</b> logins del portal</span></li>
+            <li><span class="sw" style="--c:var(--indigo)"></span><span><b>1</b> post nuevo (30 sep)</span></li>
+            <li><span class="sw" style="--c:var(--orange)"></span><span><b>27</b> del lanzamiento (2 oct)</span></li>
+          </ul>
+          <p class="chart_note">Las 27 del lanzamiento: 12 páginas de documentos del pie, 9 PDF de <code>/wp-content/</code>, 3 páginas del menú de WordPress, 2 accesos a dashboards y el comodín de paginación del blog.</p>
+        </div>
+      </div>
+      <div class="tabla">
+        <table>
+          <thead><tr><th>Pieza</th><th>Estado</th></tr></thead>
+          <tbody>
+            <tr><td><a href="https://actuaria.com/sitemap.xml" rel="noopener">sitemap.xml</a></td><td>Lo genera Webflow solo: 291 URLs, de las cuales 274 son artículos <code>/post/…</code>. Enviado a Search Console.</td></tr>
+            <tr><td><a href="https://actuaria.com/robots.txt" rel="noopener">robots.txt</a></td><td>Solo declara el sitemap; no bloquea nada.</td></tr>
+            <tr><td><a href="https://actuaria.com/llms.txt" rel="noopener">llms.txt</a></td><td>Guía del sitio para asistentes de IA con 21 enlaces, todos verificados con respuesta 200. Se sube en Webflow → SEO → LLMs.txt; la fuente está en <code>lanzamiento-dominio/llms.txt</code>.</td></tr>
+            <tr><td>Redirecciones 301</td><td>317 reglas de las URLs de WordPress a las nuevas, cargadas en Webflow (ajustes → Publicación → redirecciones 301).</td></tr>
+            <tr><td>Fuera de Google</td><td><code>/gracias</code> y las fichas <code>/equipo/&lt;slug&gt;</code> llevan <code>noindex</code>.</td></tr>
+            <tr><td>Títulos y descripciones</td><td>Cada página tiene su título y meta descripción en Webflow. Los posts los toman del CMS (nombre y gancho).</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Redirecciones 301</h3>
+      <ul>
+        <li><strong>Solo <code>/</code> y <code>/nosotros</code> conservaron su ruta.</strong> Los artículos pasaron de <code>/slug</code> a <code>/post/slug</code>, con dos saltos porque Webflow primero quita la barra final.</li>
+        <li><strong>Las 317 reglas</strong> cubren los posts, las páginas de WordPress, los PDF de <code>/wp-content/</code> (ahora en el CDN de Webflow) y los accesos viejos a dashboards, que van a plus.actuaria.com.</li>
+        <li><strong>Al final van los comodines:</strong> <code>/category</code>, <code>/tag</code>, <code>/author</code>, <code>/page</code> y <code>/feed</code> llevan a <code>/blog</code>.</li>
+        <li><strong>Las rutas distinguen mayúsculas y minúsculas.</strong> En el origen, los caracteres especiales se escapan con <code>%</code>.</li>
+        <li><strong>Se generan</strong> con <code>seo-redirecciones/generar-csv-webflow.ps1</code>, que produce un CSV de 2 columnas sin cabecera ni BOM, y <strong>se validan</strong> con <code>validar-import.mjs</code> antes de importar.</li>
+        <li><strong>Se mantienen como mínimo un año.</strong></li>
+      </ul>
+      <div class="note is-warn">
+        <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+        <div><p><strong>Importar un CSV de redirecciones reemplaza todas las reglas.</strong> Exporta las actuales antes de importar (el respaldo vigente está en <code>lanzamiento-dominio/respaldo-redirects/</code>). Para una regla suelta, agrégala a mano en el panel.</p></div>
+      </div>
+      <h3>Otros detalles</h3>
+      <ul>
+        <li>Canónica global, <code>lang="es-EC"</code>, y www redirige con 301 a la raíz.</li>
+        <li>El staging bloquea a los buscadores con <code>Disallow: /</code>.</li>
+        <li>Datos estructurados (JSON-LD): Organization y dos LocalBusiness en Contacto, Blog en el hub y Article en cada post.</li>
+        <li>Search Console conserva el historial de WordPress, incluido el sitemap viejo de 371 páginas.</li>
+      </ul>
+    </section>
+
+    <!-- 13 -->
+    <section class="sec" id="blog">
+      <div class="sec_head">
+        <div class="sec_icon is-orange"><i class="fa-solid fa-newspaper" aria-hidden="true"></i></div>
+        <div><span class="sec_kicker">Radar Actuarial</span><h2>Blog</h2></div>
+      </div>
+      <p>El hub <code>/blog</code> lista los artículos de la colección Blog Posts, y cada uno se abre en la plantilla <code>/post/&lt;slug&gt;</code>. Los dos se apoyan en scripts registrados (ver <a href="#codigo">Código propio</a>).</p>
+      <h3>Cómo se migró</h3>
+      <ul>
+        <li><strong>Un primer intento por CSV</strong> desde la API de WordPress conservó el texto, pero perdió imágenes, tablas, listas y enlaces.</li>
+        <li><strong>La migración final</strong> salió del respaldo <code>.wpress</code>: se extrajo el contenido original de la base de datos, se convirtió al texto enriquecido de Webflow y se comparó contra el original (scripts en <code>respaldo-wp/</code>).</li>
+        <li><strong>Hoy hay 274 artículos publicados</strong> y ningún borrador, en 5 categorías. Al 17 sep la distribución era: Beneficios 107, Actuanews 81, Datos 47, Seguros 25 y Riesgo 13. El 30 sep se migró uno más.</li>
+        <li><strong>Los 10 artículos de demostración</strong> de la plantilla se borraron, con respaldo.</li>
+      </ul>
+      <div class="chart">
+        <p class="chart_title"><i class="fa-solid fa-layer-group" aria-hidden="true"></i>Artículos por categoría (corte del 17 sep 2026)</p>
+        <div class="bars">
+          <div class="bar" style="--w:100%;--c:var(--navy)"><span class="bar_label">Beneficios Laborales y Actuariales</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">107</span></div>
+          <div class="bar" style="--w:75.7%;--c:var(--orange)"><span class="bar_label">Actuanews</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">81</span></div>
+          <div class="bar" style="--w:43.9%;--c:var(--indigo)"><span class="bar_label">Análisis de Datos para Negocios</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">47</span></div>
+          <div class="bar" style="--w:23.4%;--c:var(--blue)"><span class="bar_label">Seguros y Medicina Prepagada</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">25</span></div>
+          <div class="bar" style="--w:12.1%;--c:#6b7bbf"><span class="bar_label">Riesgo y Finanzas Corporativas</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">13</span></div>
+        </div>
+        <p class="chart_note">273 artículos categorizados ese día; el 30 sep se sumó uno más (274 en total).</p>
+      </div>
+      <h3>Publicar un artículo nuevo</h3>
+      <ol class="steps">
+        <li>En Webflow, CMS → Blog Posts → nuevo artículo.</li>
+        <li>Completa el nombre, el gancho (resumen), la categoría (obligatoria), la imagen principal, la fecha de publicación y, si hay, el GIF de portada.</li>
+        <li>Publica. El hub, los carruseles del home y la plantilla lo muestran solos; no hay que tocar código.</li>
+      </ol>
+      <div class="note is-info">
+        <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+        <div><p><strong>No borres</strong> el bloque de texto oculto <code>blog-article_card-slug</code> de las tarjetas: el script lo usa para armar cada enlace. El enlace “Current Blog Post” de la plantilla solo se puede poner desde el Designer.</p></div>
+      </div>
+    </section>
+
+    <!-- 14 -->
+    <section class="sec" id="herramientas">
+      <div class="sec_head">
+        <div class="sec_icon is-blue"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i></div>
+        <div><span class="sec_kicker">Para el equipo técnico</span><h2>Herramientas locales</h2></div>
+      </div>
+      <p>Para la migración y las pruebas se escribieron 92 scripts. Viven en el workspace del Área de Producto, en <code>Migracion-Web/</code>, y no se publican. Hay de cuatro tipos:</p>
+      <div class="cards">
+        <div class="card"><h4><i class="fa-solid fa-laptop-code" aria-hidden="true"></i>Se corren en la PC</h4><p>Node (<code>.mjs</code>) o PowerShell (<code>.ps1</code>): generan CSV, validan, verifican en vivo y leen el respaldo.</p></div>
+        <div class="card"><h4><i class="fa-solid fa-window-maximize" aria-hidden="true"></i>Se inyectan en una página abierta</h4><p>Scripts <code>.js</code> que miden una sección en el navegador. No quedan publicados.</p></div>
+        <div class="card"><h4><i class="fa-solid fa-globe" aria-hidden="true"></i>Corren en el sitio</h4><p>Las fuentes de los bloques y los scripts registrados (radar del blog, testimonios, medición, validación).</p></div>
+        <div class="card"><h4><i class="fa-solid fa-cloud" aria-hidden="true"></i>Corren en la nube</h4><p><code>nosotros/postulaciones-apps-script/Code.gs</code> v3.2, en Google Apps Script. Tiene 43 pruebas con servicios simulados.</p></div>
+      </div>
+      <div class="tabla is-wide">
+        <table>
+          <thead><tr><th>Carpeta</th><th>Para qué</th><th>Scripts principales</th></tr></thead>
+          <tbody>
+            <tr><td><code>lanzamiento-dominio/</code></td><td>Corte del dominio, auditoría de enlaces, llms.txt y medición</td><td class="wrap"><code>vigia-dns.mjs</code>, <code>verificar-dns-post.mjs</code>, <code>verificar-borde.mjs</code>, <code>verificar-llms.mjs</code>, <code>auditar-enlaces.sh</code>, <code>gtm/probar-conversiones.js</code></td></tr>
+            <tr><td><code>seo-redirecciones/</code></td><td>Generar, validar y probar las 317 redirecciones; auditorías de SEO y del blog</td><td class="wrap"><code>generar-csv-webflow.ps1</code>, <code>validar-csv-import.ps1</code>, <code>verificar-redirects.ps1</code>, <code>verificar-canonicas.ps1</code>, <code>auditar-h1.ps1</code></td></tr>
+            <tr><td><code>respaldo-wp/</code></td><td>Leer el <code>.wpress</code> y migrar los cuerpos de los artículos</td><td class="wrap"><code>wpress-extract.ps1</code>, <code>wp-posts-from-sql.ps1</code>, <code>limpiar-html-webflow.ps1</code>, <code>verificar-fidelidad.ps1</code></td></tr>
+            <tr><td><code>landings-ods/</code></td><td>Reconstruir páginas de Elementor desde el respaldo, sin descomprimirlo</td><td class="wrap"><code>indexar-wpress.ps1</code>, <code>extraer-elementor.ps1</code>, <code>mapear-elementor.ps1</code></td></tr>
+            <tr><td><code>blog-sincronizacion/</code></td><td>Traer posts nuevos de WordPress. Quedó obsoleto con el corte.</td><td class="wrap"><code>listar.mjs</code>, <code>bajar.mjs</code>, <code>preparar.mjs</code></td></tr>
+            <tr><td><code>home-soluciones/</code></td><td>Hashes SRI de los archivos de GitHub Pages; comparar un bloque publicado byte a byte</td><td class="wrap"><code>sri-home.mjs</code>, <code>verificar-publicado.mjs</code></td></tr>
+            <tr><td>Una carpeta por sección</td><td>Medir y verificar cada sección en vivo, en varios anchos</td><td class="wrap"><code>calculadoras/</code>, <code>contacto-rediseno/</code>, <code>testimonios-carrusel/</code>, <code>certificaciones-carrusel/</code>, <code>contraste-rai/</code>, <code>cta-form-soluciones/</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Ninguno guarda contraseñas ni tokens en el código. Cada carpeta tiene un <code>NOTAS.md</code> con qué se hizo, por qué, cómo se verificó y qué falta.</p>
+    </section>
+
+    <!-- 15 -->
+    <section class="sec" id="mantenimiento">
+      <div class="sec_head">
+        <div class="sec_icon is-navy"><i class="fa-solid fa-gears" aria-hidden="true"></i></div>
+        <div><span class="sec_kicker">Cambiar sin romper</span><h2>Mantenimiento</h2></div>
+      </div>
+      <h3>Publicar un cambio</h3>
+      <div class="chain">
+        <div class="chain_node"><b><i class="fa-solid fa-pen-ruler" aria-hidden="true"></i>1 · Editar</b>En el Designer o el CMS de Webflow.</div>
+        <div class="chain_arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+        <div class="chain_node" style="--c:var(--orange)"><b><i class="fa-solid fa-flask" aria-hidden="true"></i>2 · Probar</b>Si es riesgoso (código, formularios o redirecciones), publica primero solo en <code>actuaweb.webflow.io</code>.</div>
+        <div class="chain_arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+        <div class="chain_node is-core"><b><i class="fa-solid fa-rocket" aria-hidden="true"></i>3 · Publicar</b>En los tres dominios: actuaria.com, www y staging.</div>
+        <div class="chain_arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+        <div class="chain_node" style="--c:var(--blue)"><b><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>4 · Verificar</b>Abre la URL con <code>?nc=1</code> y revísala en escritorio y en celular.</div>
+      </div>
+      <p>Webflow publica el sitio entero, no solo la página que editaste: antes de publicar, revisa que no quede nada a medias en otras páginas.</p>
+      <h3>Tareas frecuentes</h3>
+      <div class="cards">
+        <div class="card">
+          <h4><i class="fa-solid fa-user-plus" aria-hidden="true"></i>Equipo</h4>
+          <p>CMS → Equipos. El <code>grupo</code> y el <code>orden</code> deciden dónde y en qué posición aparece la persona. La trayectoria va en 4 o 5 viñetas cortas. Si no hay LinkedIn, deja el campo vacío.</p>
+        </div>
+        <div class="card">
+          <h4><i class="fa-solid fa-route" aria-hidden="true"></i>Redirecciones</h4>
+          <p>Ajustes del sitio → Publicación → 301. Una regla suelta se agrega a mano. Para importar un CSV, exporta antes, porque la importación reemplaza todas.</p>
+        </div>
+        <div class="card">
+          <h4><i class="fa-solid fa-tags" aria-hidden="true"></i>Medición</h4>
+          <p>Todo cambio de etiquetas se hace en Tag Manager, no en Webflow. Prueba con la vista previa, publica una versión con nombre y, si importas, elige “Combinar”.</p>
+        </div>
+        <div class="card">
+          <h4><i class="fa-solid fa-robot" aria-hidden="true"></i>llms.txt</h4>
+          <p>Edita la fuente <code>lanzamiento-dominio/llms.txt</code>, verifica los enlaces con <code>verificar-llms.mjs</code> y, en Webflow → SEO → LLMs.txt, borra el archivo viejo, sube el nuevo y publica.</p>
+        </div>
+        <div class="card">
+          <h4><i class="fa-solid fa-code" aria-hidden="true"></i>Código propio</h4>
+          <p>Antes de editar, lee el bloque completo: el campo se reemplaza entero. Deja el comentario de cabecera con la fecha y el motivo, y guarda una copia en la carpeta de la sección.</p>
+        </div>
+        <div class="card">
+          <h4><i class="fa-solid fa-file-pdf" aria-hidden="true"></i>Un PDF nuevo</h4>
+          <p>Súbelo a los assets de Webflow y enlázalo. El visor propio lo abre solo, sin código extra.</p>
+        </div>
+      </div>
+      <h3>Trampas conocidas</h3>
+      <div class="tabla is-wide">
+        <table>
+          <thead><tr><th>Trampa</th><th>Qué pasa y qué hacer</th></tr></thead>
+          <tbody>
+            <tr><td>Script de anclas del sitio</td><td>Intercepta todos los enlaces <code>#…</code> y ya rompió una vez las pestañas de Calculadoras. Si agregas un widget nativo con enlaces <code>#</code>, exclúyelo del script y prueba todas las páginas.</td></tr>
+            <tr><td>Menú fijo</td><td>Mide 124 px (104 en celular). Una página nueva necesita entre 150 y 160 px de margen arriba, o el título queda tapado.</td></tr>
+            <tr><td>Embeds envueltos</td><td>Webflow mete cada HtmlEmbed dentro de un <code>div.w-embed</code>. Por eso <code>align-self</code> no actúa sobre el contenido y los scripts deben buscar desde el contenedor.</td></tr>
+            <tr><td>Body sin clase</td><td>La API no deja asignar clases al body. Donde falta la textura de fondo, se pone con CSS en el head de la página.</td></tr>
+            <tr><td>Nivel de un encabezado</td><td>Cambiar un título de H1 a H6 cambia su interlineado. Fija tamaño, interlineado y márgenes en la clase antes de cambiar el nivel.</td></tr>
+            <tr><td>Videos</td><td>Webflow quita <code>loop</code> y <code>muted</code> del video al publicar. El script <code>bridgevideos</code> los vuelve a poner.</td></tr>
+            <tr><td>Equipo holográfico</td><td>El efecto está en dos copias: pie del sitio y pie de Nosotros. Si ajustas una, ajusta la otra.</td></tr>
+            <tr><td>Vidrio y máscaras</td><td>Una <code>mask-image</code> en un elemento padre anula el <code>backdrop-filter</code> del vidrio.</td></tr>
+            <tr><td>Clarity duplicado</td><td>Solo graba el primer proyecto que carga. Un segundo snippet no suma: anula.</td></tr>
+            <tr><td>Caché</td><td>Cloudflare (Webflow), GitHub Pages (unos 10 min) y gtm.js (unos 15 min). Verifica siempre sin caché.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 16 -->
+    <section class="sec" id="pendientes">
+      <div class="sec_head">
+        <div class="sec_icon is-orange"><i class="fa-solid fa-list-check" aria-hidden="true"></i></div>
+        <div><span class="sec_kicker">Al 2 de octubre de 2026</span><h2>Pendientes</h2></div>
+      </div>
+      <p>Nada de esto bloquea el sitio en producción. Está agrupado por tema, con el responsable sugerido.</p>
+      <div class="chart">
+        <p class="chart_title"><i class="fa-solid fa-list-check" aria-hidden="true"></i>21 pendientes por tema</p>
+        <div class="bars">
+          <div class="bar" style="--w:100%;--c:var(--orange)"><span class="bar_label">Medición</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">5</span></div>
+          <div class="bar" style="--w:100%;--c:#6b7bbf"><span class="bar_label">CMS, SEO, contenido, accesibilidad y negocio</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">5</span></div>
+          <div class="bar" style="--w:80%;--c:#e0a43a"><span class="bar_label">Decisiones y diseño</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">4</span></div>
+          <div class="bar" style="--w:60%;--c:var(--indigo)"><span class="bar_label">Blog</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">3</span></div>
+          <div class="bar" style="--w:40%;--c:var(--navy)"><span class="bar_label">Infraestructura</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">2</span></div>
+          <div class="bar" style="--w:40%;--c:var(--blue)"><span class="bar_label">Formularios</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">2</span></div>
+        </div>
+        <p class="chart_note">Las 4 decisiones esperan definición de negocio. El resto ya tiene responsable sugerido.</p>
+      </div>
+      <div class="tabla is-wide">
+        <table>
+          <thead><tr><th>Tema</th><th>Pendiente</th><th>Responsable</th></tr></thead>
+          <tbody>
+            <tr><td>Medición</td><td>Marcar <code>generate_lead</code>, <code>click_whatsapp</code> y <code>click_phone</code> como eventos clave en GA4 cuando aparezcan (hasta 24 h).</td><td><span class="tag info">Área de Producto</span></td></tr>
+            <tr><td>Medición</td><td>Cambiar la conversión de Ads por URL de “igual a” a “contiene”, porque Webflow quita la barra final. El pedido ya está redactado.</td><td><span class="tag info">PMV / dueño de Ads</span></td></tr>
+            <tr><td>Medición</td><td>Aceptar las invitaciones de Tag Manager y Clarity.</td><td><span class="tag info">PMV</span></td></tr>
+            <tr><td>Medición</td><td>Identificar al dueño del GA4, GTM y Clarity heredados y de las cuentas de Ads, y pedir acceso de administrador, sobre todo al historial de GA4.</td><td><span class="tag info">Área de Producto + PMV</span></td></tr>
+            <tr><td>Medición</td><td>Revisar el estado del sitemap en Search Console y agregar un segundo método de verificación.</td><td><span class="tag info">Área de Producto</span></td></tr>
+            <tr><td>Infraestructura</td><td>Subir el TTL de los registros a 1 h, pasadas 24 a 48 h del corte.</td><td><span class="tag info">Titular de SiteGround</span></td></tr>
+            <tr><td>Infraestructura</td><td>Guardar una copia del respaldo <code>.wpress</code> fuera de la PC.</td><td><span class="tag info">TI</span></td></tr>
+            <tr><td>Formularios</td><td>Postulaciones: mandar el aviso a la casilla de selección y enviar desde una cuenta compartida o un alias sin firma personal.</td><td><span class="tag info">Área de Producto + Talento Humano</span></td></tr>
+            <tr><td>Formularios</td><td>Definir quién recibe los avisos de Registro Actuacont, y retirar el aviso “Nuevo Lead” de la casilla personal.</td><td><span class="tag info">Área de Producto</span></td></tr>
+            <tr><td>Decisión</td><td>Banner de cookies y Consent Mode v2. El enlace “Configuración de cookies” del pie todavía no hace nada.</td><td><span class="tag warn">Por decidir</span></td></tr>
+            <tr><td>Decisión</td><td>Botones de inscripción por Zoom vencidos en las dos landings de ODS 4 (cursos de 2025).</td><td><span class="tag warn">Por decidir</span></td></tr>
+            <tr><td>Decisión</td><td>Páginas de WordPress sin regla (estatutos, políticas, términos, webinars, entre otras) y si <code>/login</code> debe llevar a plus.actuaria.com.</td><td><span class="tag warn">Por decidir</span></td></tr>
+            <tr><td>Diseño</td><td>Textura de fondo en las páginas cuyo body no tiene clase (ODS, brandbook, seguridad, gracias, 404).</td><td><span class="tag warn">Por decidir</span></td></tr>
+            <tr><td>Blog</td><td>Subir las 26 imágenes y PDF que faltan en 13 artículos y agregar sus redirecciones.</td><td><span class="tag info">Equipo web</span></td></tr>
+            <tr><td>Blog</td><td>El hub muestra hasta 100 artículos, el límite de una lista de Webflow. Falta paginación para llegar a los 274.</td><td><span class="tag info">Equipo web</span></td></tr>
+            <tr><td>Blog</td><td>Poner el enlace “Current Blog Post” en 2 elementos de la plantilla (solo se puede desde el Designer).</td><td><span class="tag info">Equipo web</span></td></tr>
+            <tr><td>CMS</td><td>Equipos: corregir errores de tipeo en nombres y cargos, cargar los LinkedIn reales, completar la trayectoria que falta en Liderazgo y las fotos de las fichas en borrador.</td><td><span class="tag info">Área de Producto + Talento Humano</span></td></tr>
+            <tr><td>SEO</td><td>Imagen para compartir (<code>og:image</code>) en todas las páginas, título y descripción propios en las 4 soluciones (hoy solo tienen el nombre) y bajar a uno los H1 del home.</td><td><span class="tag info">Equipo web</span></td></tr>
+            <tr><td>Contenido</td><td>Revisar la cifra de CO₂ de NFTree (aparecen dos valores), el hito de 2007 con “ISO 9001:2015” y el enlace “Ver la noticia” de NFTree, que apunta a WordPress.</td><td><span class="tag info">Marketing</span></td></tr>
+            <tr><td>Accesibilidad</td><td>Botón visible de pausa para el título animado del hero (WCAG 2.2.2).</td><td><span class="tag info">Equipo web</span></td></tr>
+            <tr><td>Negocio</td><td>Avisar a los usuarios del antiguo “Dashboard Seguros”: sus credenciales vivían en WordPress.</td><td><span class="tag info">Comercial</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer class="pie shell">
+  <p>Actuaria Consultores · Área de Producto · Documento de entrega técnica de actuaria.com · v1.0 · 2 de octubre de 2026</p>
+</footer>
+
+<script>
+  // Labels every cell with its column header so tables can stack as cards on phones (see .is-stack).
+  (function () {
+    [].forEach.call(document.querySelectorAll('.tabla'), function (box) {
+      var heads = [].map.call(box.querySelectorAll('thead th'), function (th) { return th.textContent.trim(); });
+      if (!heads.length) return;
+      [].forEach.call(box.querySelectorAll('tbody tr'), function (tr) {
+        [].forEach.call(tr.children, function (td, i) { if (heads[i]) td.setAttribute('data-label', heads[i]); });
+      });
+      box.classList.add('is-stack');
+    });
+  })();
+
+  // Grows the bars of each chart the first time it scrolls into view (instantly without IntersectionObserver).
+  (function () {
+    var charts = [].slice.call(document.querySelectorAll('.chart'));
+    if (!('IntersectionObserver' in window)) {
+      charts.forEach(function (c) { c.classList.add('is-in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.25 });
+    charts.forEach(function (c) { io.observe(c); });
+  })();
+
+  // Builds the mobile table of contents from the desktop one and highlights the section in view.
+  (function () {
+    var desk = document.getElementById('toc-list');
+    var mob = document.getElementById('toc-mobile-list');
+    if (desk && mob) {
+      mob.innerHTML = desk.innerHTML;
+      mob.addEventListener('click', function (e) {
+        if (e.target.closest('a')) mob.closest('details').removeAttribute('open');
+      });
+    }
+    var links = [].slice.call(document.querySelectorAll('.toc a'));
+    if (!('IntersectionObserver' in window) || !links.length) return;
+    var byId = {};
+    links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        links.forEach(function (a) { a.classList.remove('is-active'); });
+        var a = byId[en.target.id];
+        if (a) a.classList.add('is-active');
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    Object.keys(byId).forEach(function (id) {
+      var s = document.getElementById(id);
+      if (s) io.observe(s);
+    });
+  })();
+</script>
+</body>
+</html>
