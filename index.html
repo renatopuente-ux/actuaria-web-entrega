@@ -9,10 +9,19 @@
 <link rel="icon" type="image/png" href="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a9883c0a48926ccd2c2e1f4_Light.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 <style>
+  /* Brand type system, same as actuaria.com: Lemon Milk Pro for titles, Nunito for subtitles and
+     labels, Prompt for body text. Lemon Milk Pro is the site's own font file on the Webflow CDN
+     (served with Access-Control-Allow-Origin: *), so it is not copied into this public repo. */
+  @font-face { font-family: "Lemon Milk Pro"; src: url("https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a8349e767be686373ed8862_Lemon%20Milk%20Pro%20Regular.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+  @font-face { font-family: "Lemon Milk Pro"; src: url("https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a8349e4ac9602373f7724e6_Lemon%20Milk%20Pro%20Medium.otf") format("opentype"); font-weight: 500; font-style: normal; font-display: swap; }
+  @font-face { font-family: "Lemon Milk Pro"; src: url("https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a8349e6425dae8dfa2a027d_Lemon%20Milk%20Pro%20Bold.otf") format("opentype"); font-weight: 700; font-style: normal; font-display: swap; }
   :root {
+    --f-display: "Lemon Milk Pro", Tahoma, sans-serif;
+    --f-sub: Nunito, system-ui, sans-serif;
+    --f-body: Prompt, system-ui, sans-serif;
     --navy: #151f47;
     --indigo: #4c64d9;
     --blue: #3061aa;
@@ -40,9 +49,10 @@
     margin: 0;
     background: var(--bg);
     color: var(--ink);
-    font-family: Nunito, system-ui, sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
+    font-family: var(--f-body);
+    font-size: 15.5px;
+    font-weight: 400;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
   }
   a { color: var(--blue); text-decoration-thickness: 1px; text-underline-offset: 3px; }
@@ -55,11 +65,19 @@
     padding: .1em .4em;
     overflow-wrap: anywhere;
   }
-  h1, h2, h3, h4 { line-height: 1.2; margin: 0; color: var(--navy); }
+  h1, h2, h3, h4 { line-height: 1.2; margin: 0; color: var(--navy); font-family: var(--f-sub); }
   p { margin: 0 0 12px; }
   ul, ol { margin: 0 0 12px; padding-left: 22px; }
   li { margin-bottom: 6px; }
-  strong { font-weight: 800; }
+  strong { font-weight: 600; }
+  /* Titles in Lemon Milk Pro (the site uses it at weight 800, which resolves to the Bold file). */
+  .hero h1, .sec h2, .stat b { font-family: var(--f-display); font-weight: 700; letter-spacing: -.5px; }
+  /* Subtitles, labels and UI text in Nunito. */
+  .chip, .meta, .stat span, .toc_title, .toc a, .toc_mobile summary, .sec_kicker, .card h4, .rules b.n, .rules strong,
+  .note strong, th, td:first-child, .tag, .pill, .arq_node b, .arq_label, .chain_node b, .lane_title, .chart_title,
+  .bar_label, .bar_value, .legend b, .timeline time, .timeline b, .dns_chip, .deps_page, .steps li::before, .stack_seg {
+    font-family: var(--f-sub);
+  }
 
   /* Layout */
   .shell { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
@@ -76,7 +94,7 @@
     font-size: 13px; font-weight: 800; letter-spacing: .02em; color: var(--navy);
   }
   .chip i { color: var(--orange); }
-  .hero h1 { font-size: clamp(32px, 5vw, 54px); font-weight: 900; letter-spacing: -.02em; max-width: 880px; }
+  .hero h1 { font-size: clamp(30px, 4.4vw, 50px); line-height: 1.12; max-width: 900px; }
   .hero h1 span { color: var(--indigo); }
   .hero_lead { font-size: 19px; color: var(--ink-2); max-width: 800px; margin: 18px 0 22px; }
   .meta { display: flex; flex-wrap: wrap; gap: 10px 22px; font-size: 14px; color: var(--ink-3); font-weight: 700; }
@@ -84,7 +102,7 @@
 
   .stats { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; margin-top: 30px; }
   .stat { background: var(--box); border-radius: 18px; box-shadow: var(--neu); padding: 16px 16px 14px; }
-  .stat b { display: block; font-size: 30px; font-weight: 900; line-height: 1.05; color: var(--navy); }
+  .stat b { display: block; font-size: 30px; line-height: 1.05; color: var(--navy); }
   .stat span { display: block; font-size: 13px; color: var(--ink-2); font-weight: 700; margin-top: 4px; }
 
   /* TOC */
@@ -113,7 +131,7 @@
     background: var(--bg); box-shadow: var(--neu-sm);
     color: var(--indigo); font-size: 19px;
   }
-  .sec h2 { font-size: 27px; font-weight: 900; letter-spacing: -.01em; }
+  .sec h2 { font-size: 26px; line-height: 1.15; }
   .sec_kicker { display: block; font-size: 12px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; color: var(--orange); margin-bottom: 2px; }
   .sec h3 { font-size: 19px; font-weight: 800; margin: 26px 0 10px; }
   .sec h3:first-of-type { margin-top: 8px; }
@@ -221,7 +239,8 @@
   .legend b { color: var(--navy); }
   .donut_wrap { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
   .donut { width: 150px; height: 150px; flex: none; }
-  .donut text { font-family: Nunito, sans-serif; }
+  .donut text { font-family: var(--f-sub); }
+  .donut .donut_num { font-family: var(--f-display); font-weight: 700; }
   .donut_wrap .legend { flex-direction: column; margin: 0; }
 
   /* Timeline */
@@ -355,21 +374,21 @@
 <header class="hero shell">
   <div class="hero_top">
     <img class="hero_logo" src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a70bbec17f7fc765c2ea5d9_logo-actuaria.svg" alt="Actuaria Consultores">
-    <span class="chip"><i class="fa-solid fa-file-shield" aria-hidden="true"></i>Documento de entrega · v1.2</span>
+    <span class="chip"><i class="fa-solid fa-file-shield" aria-hidden="true"></i>Documento de entrega · v1.3</span>
   </div>
   <h1>Cómo está construida <span>actuaria.com</span></h1>
-  <p class="hero_lead">Todo lo que necesitas para entender, mantener y cambiar el sitio sin romperlo: infraestructura, dominio, cuentas, medición, formularios, código propio y scripts. Refleja el estado del 2 de octubre de 2026, día del lanzamiento en Webflow.</p>
+  <p class="hero_lead">Todo lo que necesitas para entender, mantener y cambiar el sitio sin romperlo: infraestructura, dominio, cuentas, medición, formularios, código propio y scripts. Refleja el estado del sitio al 3 de octubre de 2026; el lanzamiento en Webflow fue el 2 de octubre.</p>
   <div class="meta">
     <span><i class="fa-solid fa-user-gear" aria-hidden="true"></i>Responsable: Área de Producto · Renato Puente</span>
     <span><i class="fa-solid fa-calendar-check" aria-hidden="true"></i>Última revisión: 3 oct 2026</span>
     <span><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Estado: en producción</span>
   </div>
   <div class="stats" aria-label="Cifras del sitio">
-    <div class="stat"><b>24</b><span>páginas en Webflow</span></div>
+    <div class="stat"><b>25</b><span>páginas en Webflow</span></div>
     <div class="stat"><b>274</b><span>artículos del blog</span></div>
     <div class="stat"><b>37</b><span>personas en el CMS</span></div>
     <div class="stat"><b>317</b><span>redirecciones 301</span></div>
-    <div class="stat"><b>291</b><span>URLs en el sitemap</span></div>
+    <div class="stat"><b>292</b><span>URLs en el sitemap</span></div>
     <div class="stat"><b>4</b><span>repos de GitHub Pages en uso</span></div>
   </div>
 </header>
@@ -419,7 +438,7 @@
       <div class="cards">
         <div class="card">
           <h4><i class="fa-solid fa-layer-group" aria-hidden="true"></i>Qué se construyó</h4>
-          <p>24 páginas (home, nosotros, 4 soluciones, landing de estudio actuarial, calculadoras, blog, contacto, brandbook, landings ODS y páginas legales), un blog con 274 artículos migrados y un directorio de equipo administrable desde el CMS.</p>
+          <p>25 páginas (home, nosotros, 4 soluciones, landing de estudio actuarial, calculadoras, blog, contacto, brandbook, landings ODS y páginas legales), un blog con 274 artículos migrados y un directorio de equipo administrable desde el CMS.</p>
         </div>
         <div class="card">
           <h4><i class="fa-solid fa-server" aria-hidden="true"></i>Dónde vive</h4>
@@ -431,7 +450,7 @@
         </div>
         <div class="card">
           <h4><i class="fa-solid fa-envelope-open-text" aria-hidden="true"></i>A dónde llegan los formularios</h4>
-          <p>El formulario principal envía los leads a Salesforce por un webhook y lleva a <code>/gracias</code>. Las postulaciones de empleo llegan por correo mediante Google Apps Script.</p>
+          <p>El formulario principal envía los leads a Salesforce por un webhook y lleva a <code>/gracias</code>. Las postulaciones llegan a <code>seleccion@actuaria.com</code> mediante Google Apps Script y el postulante ve <code>/postulacion-recibida</code>.</p>
         </div>
       </div>
       <h3>Cinco reglas para no romper nada</h3>
@@ -466,7 +485,7 @@
           <div class="arq_node"><b><i class="fa-brands fa-github" aria-hidden="true"></i>GitHub Pages</b><span>Visor de PDF propio en todo el sitio, Swiper 14.2.0 y un slider en el home, y el PDF del brandbook.</span></div>
           <div class="arq_node"><b><i class="fa-solid fa-tags" aria-hidden="true"></i>Tag Manager</b><span><code>GTM-WVB8ND3W</code> carga GA4, Google Ads y Clarity. Solo en actuaria.com, no en staging.</span></div>
           <div class="arq_node"><b><i class="fa-solid fa-paper-plane" aria-hidden="true"></i>Salesforce</b><span>Recibe los leads del formulario principal por un webhook que dispara Webflow.</span></div>
-          <div class="arq_node"><b><i class="fa-brands fa-google" aria-hidden="true"></i>Google Apps Script</b><span>Lee las postulaciones de empleo cada minuto y envía los correos.</span></div>
+          <div class="arq_node"><b><i class="fa-brands fa-google" aria-hidden="true"></i>Google Apps Script</b><span>Lee las postulaciones cada minuto y manda el aviso a Selección.</span></div>
           <div class="arq_node"><b><i class="fa-solid fa-window-restore" aria-hidden="true"></i>Servicios embebidos</b><span>shinyapps.io (las 12 calculadoras), Power BI (ODS 5) y Google Maps (contacto).</span></div>
         </div>
       </div>
@@ -513,7 +532,7 @@
             <tr><td>Microsoft Clarity</td><td>Grabaciones de sesión y mapas de calor</td><td><code>o0nej6oe00</code></td><td>Área de Producto · PMV miembro</td></tr>
             <tr><td>Google Ads</td><td>Campañas y sus conversiones</td><td><code>AW-16714364489</code> · <code>AW-18328490443</code></td><td>PMV o el dueño de la cuenta. Actuaria aún no tiene acceso.</td></tr>
             <tr><td>Search Console</td><td>Indexación y búsquedas orgánicas</td><td><code>https://actuaria.com/</code></td><td>Área de Producto</td></tr>
-            <tr><td>Google Apps Script</td><td>Correos de las postulaciones de empleo</td><td>Proyecto “Postulaciones actuaweb” v3.2</td><td>Área de Producto</td></tr>
+            <tr><td>Google Apps Script</td><td>Correos de las postulaciones de empleo</td><td>Proyecto “Postulaciones actuaweb” v3.3</td><td>Área de Producto</td></tr>
             <tr><td>Salesforce</td><td>Recibe los leads del formulario principal</td><td>Webhook en Webflow → Apps &amp; integrations</td><td>Área de Producto configuró el webhook · equipo comercial usa los leads</td></tr>
             <tr><td>shinyapps.io</td><td>Las 12 calculadoras, cargadas como iframes</td><td>Cuenta <code>actuariaconsultores</code></td><td><span class="tag warn">Por confirmar</span></td></tr>
             <tr><td>Power BI</td><td>Tablero de la landing ODS 5</td><td>Informe publicado en la web</td><td><span class="tag warn">Por confirmar</span></td></tr>
@@ -633,7 +652,7 @@
         <div class="sec_icon"><i class="fa-solid fa-file-lines" aria-hidden="true"></i></div>
         <div><span class="sec_kicker">Inventario</span><h2>Páginas</h2></div>
       </div>
-      <p>Las 24 páginas del sitio en Webflow. La columna “Código propio” indica si la página tiene CSS o JavaScript añadido por nosotros (detalle en <a href="#codigo">Código propio</a>).</p>
+      <p>Las 25 páginas del sitio en Webflow. La columna “Código propio” indica si la página tiene CSS o JavaScript añadido por nosotros (detalle en <a href="#codigo">Código propio</a>).</p>
       <div class="tabla is-wide">
         <table>
           <thead><tr><th>Página</th><th>Ruta</th><th>Para qué</th><th>Código propio</th></tr></thead>
@@ -652,6 +671,7 @@
             <tr><td>Plantilla de equipo</td><td><code>/equipo/&lt;slug&gt;</code></td><td>Ficha individual de cada persona; fuera de Google hasta tener contenido</td><td><span class="tag info">Sí</span></td></tr>
             <tr><td>Contacto</td><td><code>/contacto</code></td><td>Canales, formulario y mapas de las oficinas de Quito y Guayaquil</td><td><span class="tag info">Sí</span></td></tr>
             <tr><td>Gracias</td><td><code>/gracias</code></td><td>Confirmación del formulario principal; su vista es la conversión de lead</td><td><span class="tag info">Sí</span></td></tr>
+            <tr><td>Postulación recibida</td><td><code>/postulacion-recibida</code></td><td>Confirmación del formulario de postulaciones, con botón para volver al inicio. No cuenta como lead.</td><td><span class="tag info">Sí</span></td></tr>
             <tr><td>Brandbook</td><td><code>/brandbook</code></td><td>Brandbook v22 en visor y descarga en PDF</td><td><span class="tag mute">No</span></td></tr>
             <tr><td>Seguridad de la Información</td><td class="wrap"><code>/seguridad-de-la-informacion</code></td><td>ISO 27001, ISO 9001, DLP y SOC</td><td><span class="tag mute">No</span></td></tr>
             <tr><td>Plan de Recompensas Actuacont</td><td><code>/beneficios-ccppe</code></td><td>Alianza con el CCPPE y formulario de registro</td><td><span class="tag info">Sí</span></td></tr>
@@ -707,7 +727,7 @@
       </div>
       <p>El código añadido vive en cinco lugares. Cada bloque empieza con un comentario que explica qué hace, por qué y desde cuándo, así que el propio Webflow sirve de documentación.</p>
       <div class="cards is-3">
-        <div class="card"><h4><i class="fa-solid fa-globe" aria-hidden="true"></i>Sitio: head y pie</h4><p>Ajustes del sitio → Código personalizado. Corre en las 24 páginas.</p></div>
+        <div class="card"><h4><i class="fa-solid fa-globe" aria-hidden="true"></i>Sitio: head y pie</h4><p>Ajustes del sitio → Código personalizado. Corre en las 25 páginas.</p></div>
         <div class="card"><h4><i class="fa-solid fa-file-code" aria-hidden="true"></i>Página: head y pie</h4><p>Ajustes de cada página → Código personalizado. Solo esa página.</p></div>
         <div class="card"><h4><i class="fa-solid fa-puzzle-piece" aria-hidden="true"></i>Scripts registrados</h4><p>Archivos JS versionados, alojados en el CDN de Webflow o en GitHub Pages, aplicados al sitio o a una página.</p></div>
         <div class="card"><h4><i class="fa-solid fa-square-code" aria-hidden="true"></i>Embeds en el diseño</h4><p>Elementos HtmlEmbed dentro de la página: ilustraciones SVG, el radar animado del blog.</p></div>
@@ -782,7 +802,7 @@
             <tr><td>Coeficientes JP-AM99</td><td>head 0,3 KB + embed</td><td>Textura de fondo y el selector de año (HtmlEmbed) que abre cada tabla en el visor o la descarga. La lista de PDF está en el propio embed (<code>COEF_PDFS</code>).</td></tr>
             <tr><td>Nosotros</td><td>embed</td><td>Desplegable de “Área de interés” del formulario de postulaciones.</td></tr>
             <tr><td>Beneficios CCPPE</td><td>pie 0,3 KB</td><td>Textos de ayuda (placeholders) del formulario Registro Actuacont.</td></tr>
-            <tr><td>Gracias · Plantilla de equipo</td><td>head 0,2–0,3 KB</td><td><code>noindex</code>: fuera de Google.</td></tr>
+            <tr><td>Gracias · Postulación recibida · Plantilla de equipo</td><td>head 0,2–0,4 KB</td><td><code>noindex</code>: fuera de Google.</td></tr>
             <tr><td>Design System</td><td>pie 1,1 KB</td><td>Resalta en el menú lateral la sección que estás viendo.</td></tr>
           </tbody>
         </table>
@@ -948,13 +968,12 @@
       <div class="chain" role="img" aria-label="Flujo de postulaciones: el postulante envía, Webflow guarda, Apps Script lee la API cada minuto y envía dos correos.">
         <div class="chain_node"><b><i class="fa-solid fa-user-graduate" aria-hidden="true"></i>Postulante</b>Llena el formulario en Nosotros con el enlace a su CV.</div>
         <div class="chain_arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
-        <div class="chain_node"><b><i class="fa-solid fa-cube" aria-hidden="true"></i>Webflow</b>Guarda el envío y muestra el mensaje de recibido.</div>
+        <div class="chain_node"><b><i class="fa-solid fa-cube" aria-hidden="true"></i>Webflow</b>Guarda el envío y lleva al postulante a <code>/postulacion-recibida</code>.</div>
         <div class="chain_arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
         <div class="chain_node is-core"><b><i class="fa-brands fa-google" aria-hidden="true"></i>Apps Script</b>Cada minuto revisa los envíos nuevos con la API de Webflow.</div>
         <div class="chain_arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
         <div class="chain_group">
           <div class="chain_node" style="--c:var(--orange)"><b><i class="fa-solid fa-inbox" aria-hidden="true"></i>Selección</b>Correo con los datos a <code>seleccion@actuaria.com</code></div>
-          <div class="chain_node" style="--c:var(--indigo)"><b><i class="fa-solid fa-paper-plane" aria-hidden="true"></i>Postulante</b>Confirmación de recibido</div>
         </div>
       </div>
       <div class="tabla is-wide">
@@ -962,7 +981,7 @@
           <thead><tr><th>Formulario</th><th>Dónde está</th><th>A dónde llegan los datos</th><th>Después de enviar</th></tr></thead>
           <tbody>
             <tr><td>Main Lead</td><td>Componente Form_Section: Home, Contacto, 4 soluciones, Estudio actuarial y plantilla de post</td><td>Webhook “Form submission: API V2” hacia el servicio de Salesforce (configurado en Webflow → Apps &amp; integrations), más el aviso interno “Nuevo Lead” por correo y el registro en Webflow → Forms</td><td>Lleva a <code>/gracias</code>, que cuenta como conversión. Necesita los dos atributos, <code>redirect</code> y <code>data-redirect</code>.</td></tr>
-            <tr><td>Postulaciones</td><td><code>/nosotros#trabaja-con-nosotros</code></td><td>Google Apps Script v3.2 lee los envíos cada minuto con la API de formularios de Webflow. Envía los datos a <code>seleccion@actuaria.com</code> y una confirmación al postulante.</td><td>Mensaje en la misma página. El CV se pide como enlace, porque el adjunto es privado y la API no lo entrega.</td></tr>
+            <tr><td>Postulaciones</td><td><code>/nosotros#trabaja-con-nosotros</code></td><td>Google Apps Script v3.3 lee los envíos cada minuto con la API de formularios de Webflow y manda los datos a <code>seleccion@actuaria.com</code>. Al postulante no le llega ningún correo.</td><td>Lleva a <code>/postulacion-recibida</code>, que confirma la recepción y tiene un botón para volver al inicio. El CV se pide como enlace, porque el adjunto es privado y la API no lo entrega.</td></tr>
             <tr><td>Registro Actuacont</td><td><code>/beneficios-ccppe</code></td><td>Webflow → Forms</td><td>Mensaje en la misma página.</td></tr>
           </tbody>
         </table>
@@ -972,7 +991,8 @@
         <li><strong>Mensajes de validación en español</strong>, aunque el navegador esté en otro idioma (4.º bloque del pie del sitio).</li>
         <li><strong>Por qué Postulaciones no usa un webhook:</strong> el Google Workspace de Actuaria no permite publicar aplicaciones web abiertas, así que el script consulta la API en lugar de recibir avisos. El token que usa es de solo lectura de formularios y está guardado en las propiedades del script, nunca en el código.</li>
         <li><strong>Cambiar a quién llegan las postulaciones:</strong> en Apps Script, proyecto “Postulaciones actuaweb” → Configuración del proyecto → Propiedades del script → <code>RECIPIENT</code>. Hoy es <code>seleccion@actuaria.com</code>. No hace falta tocar el código, y el cambio aplica en el minuto siguiente.</li>
-        <li><strong>Sin correo al cliente:</strong> Webflow no le escribe a quien llena el formulario principal. El agradecimiento por Apps Script se quitó porque Workspace le pegaba la firma personal del dueño de la cuenta.</li>
+        <li><strong>Sin correos a quien llena un formulario:</strong> ni el formulario principal ni Postulaciones le escriben al visitante (los correos de Apps Script salían con la firma personal del dueño de la cuenta). En su lugar, cada uno lleva a su página de confirmación: <code>/gracias</code> y <code>/postulacion-recibida</code>.</li>
+        <li><strong>Solo <code>/gracias</code> es conversión:</strong> Tag Manager cuenta como lead la vista de <code>/gracias</code>. <code>/postulacion-recibida</code> tiene otra ruta a propósito, para que las postulaciones no se mezclen con los leads.</li>
       </ul>
       <div class="note is-bad">
         <i class="fa-solid fa-hand" aria-hidden="true"></i>
@@ -990,16 +1010,16 @@
         <div class="chart">
           <p class="chart_title"><i class="fa-solid fa-sitemap" aria-hidden="true"></i>Qué hay en el sitemap</p>
           <div class="donut_wrap">
-            <svg class="donut" viewBox="0 0 120 120" role="img" aria-label="291 URLs: 274 artículos del blog y 17 páginas">
+            <svg class="donut" viewBox="0 0 120 120" role="img" aria-label="292 URLs: 274 artículos del blog y 18 páginas">
               <circle cx="60" cy="60" r="46" fill="none" stroke="#df5e2d" stroke-width="16"/>
-              <circle cx="60" cy="60" r="46" fill="none" stroke="#151f47" stroke-width="16" stroke-dasharray="272.15 288.98" transform="rotate(-90 60 60)"/>
-              <text x="60" y="58" text-anchor="middle" font-size="22" font-weight="900" fill="#151f47">291</text>
+              <circle cx="60" cy="60" r="46" fill="none" stroke="#151f47" stroke-width="16" stroke-dasharray="271.22 289.03" transform="rotate(-90 60 60)"/>
+              <text class="donut_num" x="60" y="58" text-anchor="middle" font-size="19" fill="#151f47">292</text>
               <text x="60" y="74" text-anchor="middle" font-size="9.5" font-weight="700" fill="rgba(21,31,71,.6)">URLs</text>
             </svg>
             <ul class="legend">
               <li><span class="sw" style="--c:var(--navy)"></span><span><b>274</b> artículos del blog (94 %)</span></li>
-              <li><span class="sw" style="--c:var(--orange)"></span><span><b>17</b> páginas (6 %)</span></li>
-              <li><span class="sw" style="--c:rgba(21,31,71,.15)"></span><span>Fuera a propósito: <code>/gracias</code>, <code>/404</code> y las fichas de equipo</span></li>
+              <li><span class="sw" style="--c:var(--orange)"></span><span><b>18</b> páginas (6 %)</span></li>
+              <li><span class="sw" style="--c:rgba(21,31,71,.15)"></span><span>Fuera a propósito: <code>/gracias</code>, <code>/404</code> y las fichas de equipo. <code>/postulacion-recibida</code> tiene <code>noindex</code> pero todavía figura (ver pendientes)</span></li>
             </ul>
           </div>
         </div>
@@ -1024,11 +1044,11 @@
         <table>
           <thead><tr><th>Pieza</th><th>Estado</th></tr></thead>
           <tbody>
-            <tr><td><a href="https://actuaria.com/sitemap.xml" rel="noopener">sitemap.xml</a></td><td>Lo genera Webflow solo: 291 URLs, de las cuales 274 son artículos <code>/post/…</code>. Enviado a Search Console.</td></tr>
+            <tr><td><a href="https://actuaria.com/sitemap.xml" rel="noopener">sitemap.xml</a></td><td>Lo genera Webflow solo: 292 URLs, de las cuales 274 son artículos <code>/post/…</code>. Enviado a Search Console.</td></tr>
             <tr><td><a href="https://actuaria.com/robots.txt" rel="noopener">robots.txt</a></td><td>Solo declara el sitemap; no bloquea nada.</td></tr>
             <tr><td><a href="https://actuaria.com/llms.txt" rel="noopener">llms.txt</a></td><td>Guía del sitio para asistentes de IA con 21 enlaces, todos verificados con respuesta 200. Se sube en Webflow → SEO → LLMs.txt; la fuente está en <code>lanzamiento-dominio/llms.txt</code>.</td></tr>
             <tr><td>Redirecciones 301</td><td>317 reglas de las URLs de WordPress a las nuevas, cargadas en Webflow (ajustes → Publicación → redirecciones 301).</td></tr>
-            <tr><td>Fuera de Google</td><td><code>/gracias</code> y las fichas <code>/equipo/&lt;slug&gt;</code> llevan <code>noindex</code>.</td></tr>
+            <tr><td>Fuera de Google</td><td><code>/gracias</code>, <code>/postulacion-recibida</code> y las fichas <code>/equipo/&lt;slug&gt;</code> llevan <code>noindex</code>.</td></tr>
             <tr><td>Títulos y descripciones</td><td>Cada página tiene su título y meta descripción en Webflow. Los posts los toman del CMS (nombre y gancho).</td></tr>
           </tbody>
         </table>
@@ -1103,7 +1123,7 @@
         <div class="card"><h4><i class="fa-solid fa-laptop-code" aria-hidden="true"></i>Se corren en la PC</h4><p>Node (<code>.mjs</code>) o PowerShell (<code>.ps1</code>): generan CSV, validan, verifican en vivo y leen el respaldo.</p></div>
         <div class="card"><h4><i class="fa-solid fa-window-maximize" aria-hidden="true"></i>Se inyectan en una página abierta</h4><p>Scripts <code>.js</code> que miden una sección en el navegador. No quedan publicados.</p></div>
         <div class="card"><h4><i class="fa-solid fa-globe" aria-hidden="true"></i>Corren en el sitio</h4><p>Las fuentes de los bloques y los scripts registrados (radar del blog, testimonios, medición, validación).</p></div>
-        <div class="card"><h4><i class="fa-solid fa-cloud" aria-hidden="true"></i>Corren en la nube</h4><p><code>nosotros/postulaciones-apps-script/Code.gs</code> v3.2, en Google Apps Script. Tiene 43 pruebas con servicios simulados.</p></div>
+        <div class="card"><h4><i class="fa-solid fa-cloud" aria-hidden="true"></i>Corren en la nube</h4><p><code>nosotros/postulaciones-apps-script/Code.gs</code> v3.3, en Google Apps Script. Tiene 45 pruebas con servicios simulados.</p></div>
       </div>
       <div class="tabla is-wide">
         <table>
@@ -1216,7 +1236,7 @@
             <tr><td>Medición</td><td>Revisar el estado del sitemap en Search Console y agregar un segundo método de verificación.</td><td><span class="tag info">Área de Producto</span></td></tr>
             <tr><td>Infraestructura</td><td>Subir el TTL de los registros a 1 h, pasadas 24 a 48 h del corte.</td><td><span class="tag info">Titular de SiteGround</span></td></tr>
             <tr><td>Infraestructura</td><td>Guardar una copia del respaldo <code>.wpress</code> fuera de la PC.</td><td><span class="tag info">TI</span></td></tr>
-            <tr><td>Formularios</td><td>Postulaciones: los avisos ya llegan a seleccion@, pero salen desde la cuenta de Google del Área de Producto, con su firma. Para enviarlos desde seleccion@, Selección tiene que confirmar una vez la verificación de Gmail.</td><td><span class="tag info">Área de Producto + Selección</span></td></tr>
+            <tr><td>Formularios</td><td>Sacar <code>/postulacion-recibida</code> del sitemap: en el Designer, configuración de la página → SEO → interruptor del sitemap, como en <code>/gracias</code>. Ya tiene <code>noindex</code>; es un solo clic.</td><td><span class="tag info">Área de Producto</span></td></tr>
             <tr><td>Formularios</td><td>Definir quién recibe los avisos de Registro Actuacont, y retirar el aviso “Nuevo Lead” de la casilla personal.</td><td><span class="tag info">Área de Producto</span></td></tr>
             <tr><td>Decisión</td><td>Banner de cookies y Consent Mode v2. El enlace “Configuración de cookies” del pie todavía no hace nada.</td><td><span class="tag warn">Por decidir</span></td></tr>
             <tr><td>Decisión</td><td>Botones de inscripción por Zoom vencidos en las dos landings de ODS 4 (cursos de 2025).</td><td><span class="tag warn">Por decidir</span></td></tr>
@@ -1243,7 +1263,8 @@
       </div>
       <p>Cada cambio en el sitio o en sus conexiones se anota aquí y se refleja en la sección que corresponde.</p>
       <ol class="timeline">
-        <li class="is-key" style="--c: var(--orange)"><time datetime="2026-10-03">3 oct 2026 · v1.2</time><b>Postulaciones a seleccion@actuaria.com.</b> El aviso de cada postulación llegaba a la casilla de pruebas de una persona. Se cambió la propiedad <code>RECIPIENT</code> del script y se verificó: el valor quedó guardado y el activador sigue corriendo cada minuto sin errores.</li>
+        <li class="is-key" style="--c: var(--orange)"><time datetime="2026-10-03">3 oct 2026 · v1.3</time><b>Postulaciones sin correo al postulante y con página de confirmación.</b> Se quitó la confirmación por correo (script v3.3); ahora el formulario lleva a la página nueva <code>/postulacion-recibida</code>, con botón para volver al inicio. Se reenvió a seleccion@ la única postulación real que había llegado a la casilla de pruebas; las dos pruebas internas no se reenviaron. Tipografía del documento alineada con el brandbook: Lemon Milk Pro en títulos, Nunito en subtítulos y Prompt en el texto.</li>
+        <li style="--c: var(--orange)"><time datetime="2026-10-03">3 oct 2026 · v1.2</time><b>Postulaciones a seleccion@actuaria.com.</b> El aviso de cada postulación llegaba a la casilla de pruebas de una persona. Se cambió la propiedad <code>RECIPIENT</code> del script y se verificó: el valor quedó guardado y el activador sigue corriendo cada minuto sin errores.</li>
         <li style="--c: var(--indigo)"><time datetime="2026-10-02">2 oct 2026 · v1.1</time><b>Gráficos y diagramas:</b> dependencias por página, DNS antes y después, cronología, peso del código, flujos de medición y de formularios, sitemap, redirecciones, blog y pendientes.</li>
         <li style="--c: var(--blue)"><time datetime="2026-10-02">2 oct 2026 · v1.0</time><b>Primera versión</b> del documento de entrega, el día del lanzamiento.</li>
       </ol>
@@ -1253,7 +1274,7 @@
 </div>
 
 <footer class="pie shell">
-  <p>Actuaria Consultores · Área de Producto · Documento de entrega técnica de actuaria.com · v1.2 · 3 de octubre de 2026</p>
+  <p>Actuaria Consultores · Área de Producto · Documento de entrega técnica de actuaria.com · v1.3 · 3 de octubre de 2026</p>
 </footer>
 
 <script>
