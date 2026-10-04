@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Entrega técnica actuaria.com</title>
+<title>Acta de Entrega actuaria.com</title>
 <meta name="description" content="Cómo está construida actuaria.com en Webflow: infraestructura, dominio, cuentas, medición, formularios, código propio y scripts.">
 <link rel="icon" type="image/png" href="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a9883c0a48926ccd2c2e1f4_Light.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -210,6 +210,26 @@
 
   footer.pie { padding: 10px 0 48px; color: var(--ink-3); font-size: 14px; text-align: center; }
 
+  /* Full redirect list: collapsible, searchable */
+  details.redir { margin: 16px 0 8px; background: var(--bg); border-radius: 18px; box-shadow: var(--neu-sm); }
+  details.redir summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 18px; font-family: var(--f-sub); font-weight: 800; color: var(--navy); }
+  details.redir summary::-webkit-details-marker { display: none; }
+  details.redir summary i { color: var(--indigo); transition: transform .2s; }
+  details.redir[open] summary > i { transform: rotate(180deg); }
+  details.redir > :not(summary) { margin-left: 18px; margin-right: 18px; }
+  details.redir > .chart_note { padding-bottom: 16px; }
+  .redir_tools { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-bottom: 6px; }
+  .redir_search { flex: 1 1 260px; display: flex; align-items: center; gap: 10px; padding: 9px 14px; border-radius: 12px; background: var(--box); box-shadow: var(--neu-in); color: var(--ink-3); }
+  .redir_search input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; font: inherit; font-family: var(--f-body); color: var(--ink); }
+  .redir_count { font-family: var(--f-sub); font-size: 13px; font-weight: 800; color: var(--ink-3); }
+  .redir_csv { font-family: var(--f-sub); font-size: 14px; font-weight: 800; text-decoration: none; }
+  .redir_tabla { max-height: 560px; overflow: auto; }
+  /* Stacked on phones too: keep its own vertical scroll (the generic stacked table sets overflow visible). */
+  .tabla.redir_tabla.is-stack { overflow-x: hidden; overflow-y: auto; }
+  .redir_tabla th { position: sticky; top: 0; z-index: 1; background: #f7f9fe; }
+  .redir_tabla td { font-size: 13.5px; }
+  #redir-tabla tr[hidden] { display: none !important; }
+
   /* Section icon tints */
   .sec_icon.is-orange { color: var(--orange); }
   .sec_icon.is-blue { color: var(--blue); }
@@ -374,7 +394,7 @@
 <header class="hero shell">
   <div class="hero_top">
     <img class="hero_logo" src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a70bbec17f7fc765c2ea5d9_logo-actuaria.svg" alt="Actuaria Consultores">
-    <span class="chip"><i class="fa-solid fa-file-shield" aria-hidden="true"></i>Documento de entrega · v1.3</span>
+    <span class="chip"><i class="fa-solid fa-file-shield" aria-hidden="true"></i>Acta de Entrega · v1.4</span>
   </div>
   <h1>Cómo está construida <span>actuaria.com</span></h1>
   <p class="hero_lead">Todo lo que necesitas para entender, mantener y cambiar el sitio sin romperlo: infraestructura, dominio, cuentas, medición, formularios, código propio y scripts. Refleja el estado del sitio al 3 de octubre de 2026; el lanzamiento en Webflow fue el 2 de octubre.</p>
@@ -425,7 +445,7 @@
 
     <div class="note is-info">
       <i class="fa-solid fa-lock" aria-hidden="true"></i>
-      <div><p><strong>Este documento es público a propósito</strong>, para compartirlo con un enlace. No contiene contraseñas, tokens, URLs privadas de webhooks ni correos personales, y no aparece en buscadores. Los identificadores que sí verás (GTM, GA4, Clarity, Ads) ya son visibles en el código de cualquier página del sitio. Los accesos se piden al responsable de cada cuenta (sección <a href="#cuentas">Cuentas y accesos</a>).</p></div>
+      <div><p><strong>Esta acta es pública a propósito</strong>, para compartirlo con un enlace. No contiene contraseñas, tokens, URLs privadas de webhooks ni correos personales, y no aparece en buscadores. Los identificadores que sí verás (GTM, GA4, Clarity, Ads) ya son visibles en el código de cualquier página del sitio. Los accesos se piden al responsable de cada cuenta (sección <a href="#cuentas">Cuentas y accesos</a>).</p></div>
     </div>
 
     <!-- 01 -->
@@ -526,7 +546,7 @@
           <tbody>
             <tr><td>Webflow</td><td>Diseño, CMS, hosting, formularios, redirecciones y SSL</td><td>Sitio “Actuaria” (<code>actuaweb</code>)</td><td>Área de Producto</td></tr>
             <tr><td>SiteGround</td><td>Zona DNS de actuaria.com, subdominios, correo (registros) y el WordPress de respaldo</td><td><code>ns1/ns2.siteground.net</code></td><td>Titular de la cuenta (inicia sesión en persona: el acceso rechaza navegadores automatizados)</td></tr>
-            <tr><td>GitHub</td><td>4 repos que el sitio carga y este documento</td><td>Cuenta <code>renatopuente-ux</code></td><td>Área de Producto</td></tr>
+            <tr><td>GitHub</td><td>4 repos que el sitio carga y esta Acta de Entrega</td><td>Cuenta <code>renatopuente-ux</code></td><td>Área de Producto</td></tr>
             <tr><td>Google Tag Manager</td><td>Etiquetas de medición y conversiones</td><td><code>GTM-WVB8ND3W</code></td><td>Área de Producto · PMV publica</td></tr>
             <tr><td>Google Analytics 4</td><td>Analítica del sitio</td><td><code>G-PG79TRGV7Z</code></td><td>Área de Producto · PMV edita</td></tr>
             <tr><td>Microsoft Clarity</td><td>Grabaciones de sesión y mapas de calor</td><td><code>o0nej6oe00</code></td><td>Área de Producto · PMV miembro</td></tr>
@@ -861,7 +881,7 @@
         <table>
           <thead><tr><th>Repo</th><th>Qué es</th></tr></thead>
           <tbody>
-            <tr><td><a href="https://github.com/renatopuente-ux/actuaria-web-entrega" rel="noopener">actuaria-web-entrega</a></td><td>Este documento.</td></tr>
+            <tr><td><a href="https://github.com/renatopuente-ux/actuaria-web-entrega" rel="noopener">actuaria-web-entrega</a></td><td>Esta Acta de Entrega.</td></tr>
             <tr><td><a href="https://renatopuente-ux.github.io/actuaweb-servicios-template/" rel="noopener">actuaweb-servicios-template</a></td><td>Wireframe de 9 bloques que unificó las 4 verticales, más blog, artículo, contacto y Nosotros.</td></tr>
             <tr><td><a href="https://github.com/renatopuente-ux/actuaria-brandbook-ai" rel="noopener">actuaria-brandbook-ai</a></td><td>Además del PDF, el brandbook en Markdown y <code>tokens.json</code> para que otras IA lo lean. El texto en Markdown todavía es el de la v13.</td></tr>
           </tbody>
@@ -1047,7 +1067,7 @@
             <tr><td><a href="https://actuaria.com/sitemap.xml" rel="noopener">sitemap.xml</a></td><td>Lo genera Webflow solo: 292 URLs, de las cuales 274 son artículos <code>/post/…</code>. Enviado a Search Console.</td></tr>
             <tr><td><a href="https://actuaria.com/robots.txt" rel="noopener">robots.txt</a></td><td>Solo declara el sitemap; no bloquea nada.</td></tr>
             <tr><td><a href="https://actuaria.com/llms.txt" rel="noopener">llms.txt</a></td><td>Guía del sitio para asistentes de IA con 21 enlaces, todos verificados con respuesta 200. Se sube en Webflow → SEO → LLMs.txt; la fuente está en <code>lanzamiento-dominio/llms.txt</code>.</td></tr>
-            <tr><td>Redirecciones 301</td><td>317 reglas de las URLs de WordPress a las nuevas, cargadas en Webflow (ajustes → Publicación → redirecciones 301).</td></tr>
+            <tr><td>Redirecciones 301</td><td>317 reglas de las URLs de WordPress a las nuevas, cargadas en Webflow (ajustes → Publicación → redirecciones 301). La lista completa está en <a href="#rescate-seo">Rescate SEO de la web anterior</a>.</td></tr>
             <tr><td>Fuera de Google</td><td><code>/gracias</code>, <code>/postulacion-recibida</code> y las fichas <code>/equipo/&lt;slug&gt;</code> llevan <code>noindex</code>.</td></tr>
             <tr><td>Títulos y descripciones</td><td>Cada página tiene su título y meta descripción en Webflow. Los posts los toman del CMS (nombre y gancho).</td></tr>
           </tbody>
@@ -1066,6 +1086,362 @@
         <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
         <div><p><strong>Importar un CSV de redirecciones reemplaza todas las reglas.</strong> Exporta las actuales antes de importar (el respaldo vigente está en <code>lanzamiento-dominio/respaldo-redirects/</code>). Para una regla suelta, agrégala a mano en el panel.</p></div>
       </div>
+      <h3 id="rescate-seo">Rescate SEO de la web anterior</h3>
+      <p>Google tenía indexadas y posicionadas las URLs de WordPress, y muchas tenían enlaces desde otros sitios. Una redirección 301 le avisa a Google que la página se mudó y le traspasa ese valor a la URL nueva. Sin ellas, cada URL vieja daría error 404 y se perdería el posicionamiento ganado en años.</p>
+      <ul>
+        <li><strong>Misma ruta, sin redirección:</strong> <code>/</code> y <code>/nosotros</code> existen igual en Webflow; Google solo ve contenido nuevo.</li>
+        <li><strong>Ruta nueva, con 301:</strong> cada artículo, página, documento o acceso que cambió de dirección tiene su regla, una por una.</li>
+        <li><strong>Nunca en masa a la portada:</strong> Google lo trata como un error. La única excepción justificada es <code>/demo_slider1</code>, que solo aparecía en búsquedas de la marca.</li>
+        <li><strong>Lo que no se migró da 404 limpio:</strong> páginas de prueba, restos de Elementor y la home vieja.</li>
+        <li><strong>Prioridad por nivel:</strong> antes del lanzamiento, una auditoría SEO marcó las URLs con más clics y conversiones (niveles A y B). Esas se verificaron una por una: que redirijan, a qué destino, en cuántos saltos y con qué H1 y contenido.</li>
+      </ul>
+      <div class="chart">
+        <p class="chart_title"><i class="fa-solid fa-route" aria-hidden="true"></i>Las 317 redirecciones por tipo</p>
+        <div class="bars">
+          <div class="bar" style="--w:100%;--c:var(--navy)"><span class="bar_label">Artículos del blog</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">274</span></div>
+          <div class="bar" style="--w:8.4%;--c:var(--orange)"><span class="bar_label">Documentos y PDF</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">23</span></div>
+          <div class="bar" style="--w:2.6%;--c:var(--indigo)"><span class="bar_label">Páginas</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">7</span></div>
+          <div class="bar" style="--w:2.6%;--c:var(--blue)"><span class="bar_label">Comodines (categorías, etiquetas, feeds)</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">7</span></div>
+          <div class="bar" style="--w:1.8%;--c:#6b7bbf"><span class="bar_label">Accesos y funciones de WordPress</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">5</span></div>
+          <div class="bar" style="--w:0.4%;--c:#e0a43a"><span class="bar_label">Excepción a la portada</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">1</span></div>
+        </div>
+        <p class="chart_note">Nivel de prioridad: 9 reglas de nivel A, 26 de nivel B y 282 de nivel C. Verificadas el 2 oct 2026 contra el servidor de Webflow: 317 de 317 llegan al destino exacto.</p>
+      </div>
+      <details class="redir">
+        <summary><span><i class="fa-solid fa-list" aria-hidden="true"></i> Ver las 317 reglas, una por una</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+        <div class="redir_tools">
+          <label class="redir_search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><input id="redir-buscar" type="search" placeholder="Buscar por ruta, destino o tipo" aria-label="Buscar en las redirecciones"></label>
+          <span id="redir-cuenta" class="redir_count">317 reglas</span>
+          <a class="redir_csv" href="redirecciones-301.csv" download><i class="fa-solid fa-file-csv" aria-hidden="true"></i> Descargar CSV</a>
+        </div>
+        <div class="tabla is-wide redir_tabla">
+          <table id="redir-tabla">
+            <thead><tr><th>Origen (WordPress)</th><th>Destino (Webflow)</th><th>Tipo</th><th>Nivel</th></tr></thead>
+            <tbody>
+            <!--REDIRECCIONES:inicio-->
+            <tr><td class="wrap"><code>/calculadoras-automatizadas-a-su-servicio</code></td><td class="wrap"><code>/post/calculadoras-automatizadas-a-su-servicio</code></td><td>Artículo del blog</td><td>A</td></tr>
+            <tr><td class="wrap"><code>/calculo-del-fondo-global-retos-actuales</code></td><td class="wrap"><code>/post/calculo-del-fondo-global-retos-actuales</code></td><td>Artículo del blog</td><td>A</td></tr>
+            <tr><td class="wrap"><code>/calculo-de-pensiones-de-iess</code></td><td class="wrap"><code>/post/calculo-de-pensiones-de-iess</code></td><td>Artículo del blog</td><td>A</td></tr>
+            <tr><td class="wrap"><code>/iess-montepio-e-invalidez</code></td><td class="wrap"><code>/post/iess-montepio-e-invalidez</code></td><td>Artículo del blog</td><td>A</td></tr>
+            <tr><td class="wrap"><code>/importancia-del-calculo-tecnico-del-fondo-global-de-jubilacion-patronal</code></td><td class="wrap"><code>/post/importancia-del-calculo-tecnico-del-fondo-global-de-jubilacion-patronal</code></td><td>Artículo del blog</td><td>A</td></tr>
+            <tr><td class="wrap"><code>/la-importancia-de-las-vacaciones-y-su-impacto-en-el-mundo-laboral</code></td><td class="wrap"><code>/post/la-importancia-de-las-vacaciones-y-su-impacto-en-el-mundo-laboral</code></td><td>Artículo del blog</td><td>A</td></tr>
+            <tr><td class="wrap"><code>/que-es-la-bonificacion-por-desahucio</code></td><td class="wrap"><code>/post/que-es-la-bonificacion-por-desahucio</code></td><td>Artículo del blog</td><td>A</td></tr>
+            <tr><td class="wrap"><code>/acta-finiquito-jubilacion-patronal</code></td><td class="wrap"><code>/post/acta-finiquito-jubilacion-patronal</code></td><td>Artículo del blog</td><td>B</td></tr>
+            <tr><td class="wrap"><code>/actualizacion-tasa-de-descuento-financiero</code></td><td class="wrap"><code>/post/actualizacion-tasa-de-descuento-financiero</code></td><td>Artículo del blog</td><td>B</td></tr>
+            <tr><td class="wrap"><code>/actuaria-plus-el-nuevo-ecosistema-digital-de-actuaria</code></td><td class="wrap"><code>/post/actuaria-plus-el-nuevo-ecosistema-digital-de-actuaria</code></td><td>Artículo del blog</td><td>B</td></tr>
+            <tr><td class="wrap"><code>/aplicacion-de-la-normativa-tributaria-para-reversos-de-provisiones-de-jubilacion-patronal-y-desahucio</code></td><td class="wrap"><code>/post/aplicacion-de-la-normativa-tributaria-para-reversos-de-provisiones-de-jubilacion-patronal-y-desahucio</code></td><td>Artículo del blog</td><td>B</td></tr>
+            <tr><td class="wrap"><code>/calculo-de-la-pension-de-jubilacion-patronal-analisis-de-las-rebajas-a-favor-del-empleador</code></td><td class="wrap"><code>/post/calculo-de-la-pension-de-jubilacion-patronal-analisis-de-las-rebajas-a-favor-del-empleador</code></td><td>Artículo del blog</td><td>B</td></tr>
+            <tr><td class="wrap"><code>/dia-del-contador-ecuatoriano</code></td><td class="wrap"><code>/post/dia-del-contador-ecuatoriano</code></td><td>Artículo del blog</td><td>B</td></tr>
+            <tr><td class="wrap"><code>/dia-del-jubilado-ecuatoriano-la-realidad-actual-y-retos-para-el-pais</code></td><td class="wrap"><code>/post/dia-del-jubilado-ecuatoriano-la-realidad-actual-y-retos-para-el-pais</code></td><td>Artículo del blog</td><td>B</td></tr>
+            <tr><td class="wrap"><code>/estado-financiero-y-actuarial-del-sistema-de-seguridad-social-ecuatoriano</code></td><td class="wrap"><code>/post/estado-financiero-y-actuarial-del-sistema-de-seguridad-social-ecuatoriano</code></td><td>Artículo del blog</td><td>B</td></tr>
+            <tr><td class="wrap"><code>/fondos-complementarios-previsionales-cerrados</code></td><td class="wrap"><code>/post/fondos-complementarios-previsionales-cerrados</code></td><td>Artículo del blog</td><td>B</td></tr>
+            <tr><td class="wrap"><code>/impacto-de-la-inseguridad-en-ecuador-en-el-ambito-laboral-desafios-y-perspectivas</code></td><td class="wrap"><code>/post/impacto-de-la-inseguridad-en-ecuador-en-el-ambito-laboral-desafios-y-perspectivas</code></td><td>Artículo del blog</td><td>B</td></tr>
+            <tr><td class="wrap"><code>/jubilacion-patronal-y-la-jubilacion-del-seguro-social-del-iess</code></td><td class="wrap"><code>/post/jubilacion-patronal-y-la-jubilacion-del-seguro-social-del-iess</code></td><td>Artículo del blog</td><td>B</td></tr>
+            <tr><td class="wrap"><code>/modificacion-en-el-calculo-de-pensiones-del-iees</code></td><td class="wrap"><code>/post/modificacion-en-el-calculo-de-pensiones-del-iees</code></td><td>Artículo del blog</td><td>B</td></tr>
+            <tr><td class="wrap"><code>/nic-19-en-el-ecuador</code></td><td class="wrap"><code>/post/nic-19-en-el-ecuador</code></td><td>Artículo del blog</td><td>B</td></tr>
+            <tr><td class="wrap"><code>/pension-vitalicia-exmandatarios</code></td><td class="wrap"><code>/post/pension-vitalicia-exmandatarios</code></td><td>Artículo del blog</td><td>B</td></tr>
+            <tr><td class="wrap"><code>/perfil-del-actuario-ecuatoriano</code></td><td class="wrap"><code>/post/perfil-del-actuario-ecuatoriano</code></td><td>Artículo del blog</td><td>B</td></tr>
+            <tr><td class="wrap"><code>/por-que-realizar-un-estudio-actuarial-para-estimar-los-pasivos-laborales</code></td><td class="wrap"><code>/post/por-que-realizar-un-estudio-actuarial-para-estimar-los-pasivos-laborales</code></td><td>Artículo del blog</td><td>B</td></tr>
+            <tr><td class="wrap"><code>/actas-de-finiquito-por-jubilacion-patronal</code></td><td class="wrap"><code>/post/actas-de-finiquito-por-jubilacion-patronal</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/actas-de-jubilacion-patronal</code></td><td class="wrap"><code>/post/actas-de-jubilacion-patronal</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/actua-par</code></td><td class="wrap"><code>/post/actua-par</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/actuaria_blackfriday_2024_diferencia_usa_ec</code></td><td class="wrap"><code>/post/actuaria-blackfriday-2024-diferencia-usa-ec</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/actuaria-alineada-con-la-red-de-pacto-global</code></td><td class="wrap"><code>/post/actuaria-alineada-con-la-red-de-pacto-global</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/actuaria-consultora-especializada-en-data-analytics</code></td><td class="wrap"><code>/post/actuaria-consultora-especializada-en-data-analytics</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/actuaria-consultora-experta-en-datos</code></td><td class="wrap"><code>/post/actuaria-consultora-experta-en-datos</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/actuaria-miembro-pacto-global</code></td><td class="wrap"><code>/post/actuaria-miembro-pacto-global</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/actuaria-presenta-en-el-bfa-2026-el-dashboard-de-inteligencia-comercial-para-amcham-quito</code></td><td class="wrap"><code>/post/actuaria-presenta-en-el-bfa-2026-el-dashboard-de-inteligencia-comercial-para-amcham-quito</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/actuar-por-la-equidad-analisis-estadistico-de-participacion-laboral</code></td><td class="wrap"><code>/post/actuar-por-la-equidad-analisis-estadistico-de-participacion-laboral</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/actuar-por-la-equidad-la-mujer-en-el-mercado-laboral</code></td><td class="wrap"><code>/post/actuar-por-la-equidad-la-mujer-en-el-mercado-laboral</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/actuar-ya-rsc</code></td><td class="wrap"><code>/post/actuar-ya-rsc</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/ahorro-el-tercer-pilar-del-sistemas-de-pensiones</code></td><td class="wrap"><code>/post/ahorro-el-tercer-pilar-del-sistemas-de-pensiones</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/analisis-de-la-fortaleza-del-dolar-estadounidense-y-el-euro-con-respecto-a-la-situacion-actual</code></td><td class="wrap"><code>/post/analisis-de-la-fortaleza-del-dolar-estadounidense-y-el-euro-con-respecto-a-la-situacion-actual</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/analisis-del-deterioro-de-cuentas-por-cobrar-por-perdidas-esperadas-como-parte-de-la-gestion-de-riesgo-de-credito</code></td><td class="wrap"><code>/post/analisis-del-deterioro-de-cuentas-por-cobrar-por-perdidas-esperadas-como-parte-de-la-gestion-de-riesgo-de-credito</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/analisis-del-mercado-asegurador-ecuatoriano-ecuatoriano</code></td><td class="wrap"><code>/post/analisis-del-mercado-asegurador-ecuatoriano-ecuatoriano</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/analisis-de-sentimiento-comprendiendo-las-emociones-del-consumidor-a-traves-de-los-datos</code></td><td class="wrap"><code>/post/analisis-de-sentimiento-comprendiendo-las-emociones-del-consumidor-a-traves-de-los-datos</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/analitica-presente-y-futuro-del-deporte</code></td><td class="wrap"><code>/post/analitica-presente-y-futuro-del-deporte</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/analytics-in-finance</code></td><td class="wrap"><code>/post/analytics-in-finance</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/apoyar-la-educacion</code></td><td class="wrap"><code>/post/apoyar-la-educacion</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/apoyo-de-actuaria-al-proyecto-nftree</code></td><td class="wrap"><code>/post/apoyo-de-actuaria-al-proyecto-nftree</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/aprovecha-al-maximo-tus-beneficios-de-jubilacion-y-planifica-tu-futuro-con-tu-jubilacion-ideal</code></td><td class="wrap"><code>/post/aprovecha-al-maximo-tus-beneficios-de-jubilacion-y-planifica-tu-futuro-con-tu-jubilacion-ideal</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/aprovecha-al-maximo-tus-beneficios-de-jubilacion-y-planifica-tu-futuro-con-tu-jubilacion-ideal-2</code></td><td class="wrap"><code>/post/aprovecha-al-maximo-tus-beneficios-de-jubilacion-y-planifica-tu-futuro-con-tu-jubilacion-ideal-2</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/asesoramiento-financiero</code></td><td class="wrap"><code>/post/asesoramiento-financiero</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/asesoria-integral</code></td><td class="wrap"><code>/post/asesoria-integral</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/asesoria-internacional-el-salvador-prestacion-economica-por-renuncia-voluntaria</code></td><td class="wrap"><code>/post/asesoria-internacional-el-salvador-prestacion-economica-por-renuncia-voluntaria</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/aspectos-importantes-en-el-calculo-de-finiquito-de-jubilacion-patronal</code></td><td class="wrap"><code>/post/aspectos-importantes-en-el-calculo-de-finiquito-de-jubilacion-patronal</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/automatizacion-robotica-de-procesos-rpa-e-inteligencia-artificial-ai</code></td><td class="wrap"><code>/post/automatizacion-robotica-de-procesos-rpa-e-inteligencia-artificial-ai</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/beneficios-de-un-chatbot</code></td><td class="wrap"><code>/post/beneficios-de-un-chatbot</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/beneficios-de-utilizar-servicios-actuariales</code></td><td class="wrap"><code>/post/beneficios-de-utilizar-servicios-actuariales</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/beneficios-plan-de-ahorro-y-retiro</code></td><td class="wrap"><code>/post/beneficios-plan-de-ahorro-y-retiro</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/benefits-using-qualified-actuarial-services-company</code></td><td class="wrap"><code>/post/benefits-using-qualified-actuarial-services-company</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/blockchain</code></td><td class="wrap"><code>/post/blockchain</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/blockchain-en-el-mercado-asegurador-innovacion-y-perspectivas-en-el-contexto-ecuatoriano</code></td><td class="wrap"><code>/post/blockchain-en-el-mercado-asegurador-innovacion-y-perspectivas-en-el-contexto-ecuatoriano</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/blockchain-en-el-mercado-asegurador-innovacion-y-perspectivas-en-el-contexto-ecuatoriano-2</code></td><td class="wrap"><code>/post/blockchain-en-el-mercado-asegurador-innovacion-y-perspectivas-en-el-contexto-ecuatoriano-2</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/brecha-salarial-de-genero-durante-la-pandemia-en-el-ecuador-y-el-mundo</code></td><td class="wrap"><code>/post/brecha-salarial-de-genero-durante-la-pandemia-en-el-ecuador-y-el-mundo</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/buscamos-asistente-pasivos-laborales</code></td><td class="wrap"><code>/post/buscamos-asistente-pasivos-laborales</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/business-intelligence</code></td><td class="wrap"><code>/post/business-intelligence</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/business-intelligence-beneficios</code></td><td class="wrap"><code>/post/business-intelligence-beneficios</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/business-intelligence-el-futuro-de-la-gestion-empresarial</code></td><td class="wrap"><code>/post/business-intelligence-el-futuro-de-la-gestion-empresarial</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/business-intelligence-en-la-gestion-de-recursos-humanos</code></td><td class="wrap"><code>/post/business-intelligence-en-la-gestion-de-recursos-humanos</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/business-intelligence-una-necesidad-empresarial</code></td><td class="wrap"><code>/post/business-intelligence-una-necesidad-empresarial</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/business-intelligence-y-sus-beneficios</code></td><td class="wrap"><code>/post/business-intelligence-y-sus-beneficios</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/calculo-reservas-para-programas-de-fidelizacion</code></td><td class="wrap"><code>/post/calculo-reservas-para-programas-de-fidelizacion</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/cambios-demograficos-y-culturales-retos-y-oportunidades-para-la-innovacion-en-seguros-y-salud</code></td><td class="wrap"><code>/post/cambios-demograficos-y-culturales-retos-y-oportunidades-para-la-innovacion-en-seguros-y-salud</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/cambios-demograficos-y-sociales</code></td><td class="wrap"><code>/post/cambios-demograficos-y-sociales</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/cambiosdemograficoylaseguridadsocial</code></td><td class="wrap"><code>/post/cambiosdemograficoylaseguridadsocial</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/capacitaciones-seguros</code></td><td class="wrap"><code>/post/capacitaciones-seguros</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/certificacion-iso-27001-2013</code></td><td class="wrap"><code>/post/certificacion-iso-27001-2013</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/ciberataques-y-robo-de-datos-personales-la-importancia-de-la-gestion-de-seguridad-de-la-informacion-y-la-norma-iso-27001</code></td><td class="wrap"><code>/post/ciberataques-y-robo-de-datos-personales-la-importancia-de-la-gestion-de-seguridad-de-la-informacion-y-la-norma-iso-27001</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/coberturas-y-requisitos-del-seguro-de-invalidez-vejez-y-muerte-del-iess</code></td><td class="wrap"><code>/post/coberturas-y-requisitos-del-seguro-de-invalidez-vejez-y-muerte-del-iess</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/comite-de-pensiones-beneficios-y-seguridad-social</code></td><td class="wrap"><code>/post/comite-de-pensiones-beneficios-y-seguridad-social</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/como-la-ciencia-de-datos-esta-transformando-la-lucha-contra-el-cambio-climatico</code></td><td class="wrap"><code>/post/como-la-ciencia-de-datos-esta-transformando-la-lucha-contra-el-cambio-climatico</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/como-la-tecnologia-ha-ayudado-a-sobrellevar-la-crisis</code></td><td class="wrap"><code>/post/como-la-tecnologia-ha-ayudado-a-sobrellevar-la-crisis</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/como-prepararse-para-la-jubilacion</code></td><td class="wrap"><code>/post/como-prepararse-para-la-jubilacion</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/conoce-nuestro-portafolio-de-productos</code></td><td class="wrap"><code>/post/conoce-nuestro-portafolio-de-productos</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/coronavirus-golpea-a-la-industria-del-turismo-global</code></td><td class="wrap"><code>/post/coronavirus-golpea-a-la-industria-del-turismo-global</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/covid-19-y-su-efecto-en-los-paises-latinoamericanos</code></td><td class="wrap"><code>/post/covid-19-y-su-efecto-en-los-paises-latinoamericanos</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/cuales-son-los-sistemas-de-pensiones-mas-exitosos-del-mundo</code></td><td class="wrap"><code>/post/cuales-son-los-sistemas-de-pensiones-mas-exitosos-del-mundo</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/cual-fue-el-impacto-del-covid-19-en-el-mercado-asegurador-ecuatoriano-en-el-2020</code></td><td class="wrap"><code>/post/cual-fue-el-impacto-del-covid-19-en-el-mercado-asegurador-ecuatoriano-en-el-2020</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/cuanto-cambiaria-la-pension-por-vejez-del-iess</code></td><td class="wrap"><code>/post/cuanto-cambiaria-la-pension-por-vejez-del-iess</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/customer-experience-y-la-busqueda-de-la-innovacion-constante</code></td><td class="wrap"><code>/post/customer-experience-y-la-busqueda-de-la-innovacion-constante</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/dashboard-de-inteligencia-comercial-de-ecuador-que-es-como-funciona-y-que-puede-responder</code></td><td class="wrap"><code>/post/dashboard-de-inteligencia-comercial-de-ecuador-que-es-como-funciona-y-que-puede-responder</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/data-analytics-y-la-nueva-era-del-futbol</code></td><td class="wrap"><code>/post/data-analytics-y-la-nueva-era-del-futbol</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/data-analytics-y-su-relevancia-en-el-mundial-de-catar</code></td><td class="wrap"><code>/post/data-analytics-y-su-relevancia-en-el-mundial-de-catar</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/data-mining</code></td><td class="wrap"><code>/post/data-mining</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/datascience</code></td><td class="wrap"><code>/post/datascience</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/de-apagones-a-innovacion-el-futuro-energetico-del-ecuador</code></td><td class="wrap"><code>/post/de-apagones-a-innovacion-el-futuro-energetico-del-ecuador</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/deducibilidad-de-la-provision-de-jubilacion-patronal-a-traves-de-un-fondo-de-inversion</code></td><td class="wrap"><code>/post/deducibilidad-de-la-provision-de-jubilacion-patronal-a-traves-de-un-fondo-de-inversion</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/desarrollodecotizadores</code></td><td class="wrap"><code>/post/desarrollodecotizadores</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/desarrollo-de-productos-para-seguros</code></td><td class="wrap"><code>/post/desarrollo-de-productos-para-seguros</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/desigualdad-de-las-pensiones-de-jubilacion-entre-generaciones</code></td><td class="wrap"><code>/post/desigualdad-de-las-pensiones-de-jubilacion-entre-generaciones</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/ecuador-el-dolar-y-su-inflacion-record</code></td><td class="wrap"><code>/post/ecuador-el-dolar-y-su-inflacion-record</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/ecuador-el-pais-con-la-pension-jubilar-mas-alta-de-la-region</code></td><td class="wrap"><code>/post/ecuador-el-pais-con-la-pension-jubilar-mas-alta-de-la-region</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/efectos-financieros-ley-medicina-prepagada</code></td><td class="wrap"><code>/post/efectos-financieros-ley-medicina-prepagada</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/el-auge-de-los-negocios-digitales-y-la-seguridad-social-en-ecuador</code></td><td class="wrap"><code>/post/el-auge-de-los-negocios-digitales-y-la-seguridad-social-en-ecuador</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/el-contador-y-sus-desafios-en-el-siglo-xxi</code></td><td class="wrap"><code>/post/el-contador-y-sus-desafios-en-el-siglo-xxi</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/el-coronavirus-covid-19-las-redes-sociales-y-el-sistema-sanitario</code></td><td class="wrap"><code>/post/el-coronavirus-covid-19-las-redes-sociales-y-el-sistema-sanitario</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/el-crecimiento-del-mercado-asegurador-a-traves-del-analisis-de-datos</code></td><td class="wrap"><code>/post/el-crecimiento-del-mercado-asegurador-a-traves-del-analisis-de-datos</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/el-empleo-informal-ha-crecido-en-el-ecuador-pero-no-la-poblacion-afiliada-al-iess</code></td><td class="wrap"><code>/post/el-empleo-informal-ha-crecido-en-el-ecuador-pero-no-la-poblacion-afiliada-al-iess</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/el-envejecimiento-de-la-poblacion</code></td><td class="wrap"><code>/post/el-envejecimiento-de-la-poblacion</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/el-futuro-de-la-jubilacion-en-el-ecuador-un-debate-clave-entre-sostenibilidad-y-derechos</code></td><td class="wrap"><code>/post/el-futuro-de-la-jubilacion-en-el-ecuador-un-debate-clave-entre-sostenibilidad-y-derechos</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/el-impacto-de-la-inteligencia-artificial-en-la-valoracion-de-empresas</code></td><td class="wrap"><code>/post/el-impacto-de-la-inteligencia-artificial-en-la-valoracion-de-empresas</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/el-impacto-del-envejecimiento-poblacional-y-el-coronavirus-covid-19</code></td><td class="wrap"><code>/post/el-impacto-del-envejecimiento-poblacional-y-el-coronavirus-covid-19</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/el-precio-del-seguro-que-tiene-que-ver-dividir-gastos-entre-amigos-con-el-precio-de-un-seguro</code></td><td class="wrap"><code>/post/el-precio-del-seguro-que-tiene-que-ver-dividir-gastos-entre-amigos-con-el-precio-de-un-seguro</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/el-seguro-social-necesita-reformarse</code></td><td class="wrap"><code>/post/el-seguro-social-necesita-reformarse</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/envejecimiento-de-ecuatorianos-afecta-a-la-seguridad-social</code></td><td class="wrap"><code>/post/envejecimiento-de-ecuatorianos-afecta-a-la-seguridad-social</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/ergonomia-para-el-teletrabajo</code></td><td class="wrap"><code>/post/ergonomia-para-el-teletrabajo</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/evaluacion-360-y-clima-laboral</code></td><td class="wrap"><code>/post/evaluacion-360-y-clima-laboral</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/evaluacion-de-riesgos-climaticos-y-su-impacto-en-el-sector-asegurador</code></td><td class="wrap"><code>/post/evaluacion-de-riesgos-climaticos-y-su-impacto-en-el-sector-asegurador</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/evaluacion-de-riesgos-climaticos-y-su-impacto-en-el-sector-asegurador-2</code></td><td class="wrap"><code>/post/evaluacion-de-riesgos-climaticos-y-su-impacto-en-el-sector-asegurador-2</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/evolucion-de-los-principales-actores-en-el-mercado-de-seguros</code></td><td class="wrap"><code>/post/evolucion-de-los-principales-actores-en-el-mercado-de-seguros</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/finanzas-personales-un-factor-clave-en-tu-vida</code></td><td class="wrap"><code>/post/finanzas-personales-un-factor-clave-en-tu-vida</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/fondeo-del-pasivo-laboral-como-alternativa-de-gestion-de-obligaciones-patronales</code></td><td class="wrap"><code>/post/fondeo-del-pasivo-laboral-como-alternativa-de-gestion-de-obligaciones-patronales</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/fondos-privados-jubilacion-cesantia</code></td><td class="wrap"><code>/post/fondos-privados-jubilacion-cesantia</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/gestionar-la-incertidumbre-un-desafio-empresarial</code></td><td class="wrap"><code>/post/gestionar-la-incertidumbre-un-desafio-empresarial</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/guia-rapida-sobre-soluciones-aplicadas-de-software</code></td><td class="wrap"><code>/post/guia-rapida-sobre-soluciones-aplicadas-de-software</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/hipoteca-inversa-una-solucion-para-los-adultos-mayores</code></td><td class="wrap"><code>/post/hipoteca-inversa-una-solucion-para-los-adultos-mayores</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/ia-generativa-la-herramienta-que-esta-transformando-a-las-empresas-de-todos-los-sectores</code></td><td class="wrap"><code>/post/ia-generativa-la-herramienta-que-esta-transformando-a-las-empresas-de-todos-los-sectores</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/identidad-corporativa-actuaria</code></td><td class="wrap"><code>/post/identidad-corporativa-actuaria</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/iess-levanto-la-reserva-de-los-estudios-actuariales</code></td><td class="wrap"><code>/post/iess-levanto-la-reserva-de-los-estudios-actuariales</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/iess-riesgo-descapitalizacion-posibles-medidas</code></td><td class="wrap"><code>/post/iess-riesgo-descapitalizacion-posibles-medidas</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/iess-sistema-de-gestion-inviable</code></td><td class="wrap"><code>/post/iess-sistema-de-gestion-inviable</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/ifrs-17-en-ecuador-gestion-estrategica-del-riesgo-y-transformacion-financiera-en-el-sector-asegurador</code></td><td class="wrap"><code>/post/ifrs-17-en-ecuador-gestion-estrategica-del-riesgo-y-transformacion-financiera-en-el-sector-asegurador</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/impacto-de-la-apertura-del-metro-de-quito</code></td><td class="wrap"><code>/post/impacto-de-la-apertura-del-metro-de-quito</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/impacto-de-la-inteligencia-artificial-en-el-empleo-sustitucion-o-transformacion-laboral</code></td><td class="wrap"><code>/post/impacto-de-la-inteligencia-artificial-en-el-empleo-sustitucion-o-transformacion-laboral</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/impacto-de-la-pandemia-covid-19-en-la-expectativa-de-vida</code></td><td class="wrap"><code>/post/impacto-de-la-pandemia-covid-19-en-la-expectativa-de-vida</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/impacto-del-envejecimiento-poblacional-en-ecuador-sobre-los-costos-medicos-analisis-de-frecuencia-y-severidad-en-salud</code></td><td class="wrap"><code>/post/impacto-del-envejecimiento-poblacional-en-ecuador-sobre-los-costos-medicos-analisis-de-frecuencia-y-severidad-en-salud</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/impacto-del-envejecimiento-poblacional-en-el-iess-proyeccion-actuarial-de-sostenibilidad-del-sistema-de-pensiones-en-los-proximos-20-anos</code></td><td class="wrap"><code>/post/impacto-del-envejecimiento-poblacional-en-el-iess-proyeccion-actuarial-de-sostenibilidad-del-sistema-de-pensiones-en-los-proximos-20-anos</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/impacto-en-el-pago-del-impuesto-a-la-renta-de-las-personas-naturales-ley-organica-para-el-fortalecimiento-de-la-economia-familiar</code></td><td class="wrap"><code>/post/impacto-en-el-pago-del-impuesto-a-la-renta-de-las-personas-naturales-ley-organica-para-el-fortalecimiento-de-la-economia-familiar</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/impacto-financiero-de-la-reforma-nic-19</code></td><td class="wrap"><code>/post/impacto-financiero-de-la-reforma-nic-19</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/impactos-de-la-pandemia-en-los-habitos-de-trabajo</code></td><td class="wrap"><code>/post/impactos-de-la-pandemia-en-los-habitos-de-trabajo</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/implicaciones-actuales-sobre-el-calculo-de-la-pension-de-la-jubilacion-patronal</code></td><td class="wrap"><code>/post/implicaciones-actuales-sobre-el-calculo-de-la-pension-de-la-jubilacion-patronal</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/implicaciones-del-incremento-del-salario-basico-unificado</code></td><td class="wrap"><code>/post/implicaciones-del-incremento-del-salario-basico-unificado</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/implicaciones-ley-organica-de-simplificacio-y-progresividad-tributaria</code></td><td class="wrap"><code>/post/implicaciones-ley-organica-de-simplificacio-y-progresividad-tributaria</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/implicaciones-ley-organica-que-regula-a-las-companias</code></td><td class="wrap"><code>/post/implicaciones-ley-organica-que-regula-a-las-companias</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/importancia-de-alcanzar-un-clima-laboral-optimo</code></td><td class="wrap"><code>/post/importancia-de-alcanzar-un-clima-laboral-optimo</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/importancia-de-estudios-de-impuestos-diferidos-por-las-provisiones-de-jubilacion-patronal</code></td><td class="wrap"><code>/post/importancia-de-estudios-de-impuestos-diferidos-por-las-provisiones-de-jubilacion-patronal</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/importancia-de-la-inversion-de-las-utilidades</code></td><td class="wrap"><code>/post/importancia-de-la-inversion-de-las-utilidades</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/importancia-de-la-prevision-del-retiro</code></td><td class="wrap"><code>/post/importancia-de-la-prevision-del-retiro</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/importancia-del-calculo-de-reservas-tecnicas</code></td><td class="wrap"><code>/post/importancia-del-calculo-de-reservas-tecnicas</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/importancia-del-estudio-actuarial</code></td><td class="wrap"><code>/post/importancia-del-estudio-actuarial</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/importancia-del-estudio-actuarial-en-las-pymes</code></td><td class="wrap"><code>/post/importancia-del-estudio-actuarial-en-las-pymes</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/importancia-de-los-estudios-actuariales-en-materia-de-seguridad-social</code></td><td class="wrap"><code>/post/importancia-de-los-estudios-actuariales-en-materia-de-seguridad-social</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/importancia-de-realizar-un-diagnostico-financiero-de-una-empresa</code></td><td class="wrap"><code>/post/importancia-de-realizar-un-diagnostico-financiero-de-una-empresa</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/incentivo-tributario-de-la-ley-organica-para-impulsar-la-economia-violeta</code></td><td class="wrap"><code>/post/incentivo-tributario-de-la-ley-organica-para-impulsar-la-economia-violeta</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/incentivo-tributario-de-la-ley-organica-para-impulsar-la-economia-violetas-2</code></td><td class="wrap"><code>/post/incentivo-tributario-de-la-ley-organica-para-impulsar-la-economia-violetas-2</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/indice-de-preparacion-del-gobierno-para-la-inteligencia-artificial</code></td><td class="wrap"><code>/post/indice-de-preparacion-del-gobierno-para-la-inteligencia-artificial</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/informe-iess-actuaria</code></td><td class="wrap"><code>/post/informe-iess-actuaria</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/innovacion-de-las-finanzas-a-traves-de-data-analytics</code></td><td class="wrap"><code>/post/innovacion-de-las-finanzas-a-traves-de-data-analytics</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/innovacion-tecnologica-en-el-calculo-de-reservas-matematicas-de-beneficios-a-empleados</code></td><td class="wrap"><code>/post/innovacion-tecnologica-en-el-calculo-de-reservas-matematicas-de-beneficios-a-empleados</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/inteligencia-artificial-en-la-medicina-actualidad-y-retos-para-el-futuro</code></td><td class="wrap"><code>/post/inteligencia-artificial-en-la-medicina-actualidad-y-retos-para-el-futuro</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/inteligencia-artificial-ia-oportunidades-y-amenazas</code></td><td class="wrap"><code>/post/inteligencia-artificial-ia-oportunidades-y-amenazas</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/inteligencia-artificial-la-clave-de-la-transformacion-empresarial</code></td><td class="wrap"><code>/post/inteligencia-artificial-la-clave-de-la-transformacion-empresarial</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/interpretacion-niif-tasa-descuento-financero-ecuador</code></td><td class="wrap"><code>/post/interpretacion-niif-tasa-descuento-financero-ecuador</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/iso-9001-2015-certificado-de-gestion-de-calidad</code></td><td class="wrap"><code>/post/iso-9001-2015-certificado-de-gestion-de-calidad</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/jornadas-internacionales-de-derecho-empresarial</code></td><td class="wrap"><code>/post/jornadas-internacionales-de-derecho-empresarial</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/jubilacion-patronal-y-fondeo</code></td><td class="wrap"><code>/post/jubilacion-patronal-y-fondeo</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/la-analitica-de-datos-como-la-principal-materia-prima-de-los-negocios</code></td><td class="wrap"><code>/post/la-analitica-de-datos-como-la-principal-materia-prima-de-los-negocios</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/la-batalla-del-data-science-contra-el-coronavirus</code></td><td class="wrap"><code>/post/la-batalla-del-data-science-contra-el-coronavirus</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/la-brecha-salarial-y-participacion-laboral-segun-claudia-goldin</code></td><td class="wrap"><code>/post/la-brecha-salarial-y-participacion-laboral-segun-claudia-goldin</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/la-experiencia-reemplaza-los-titulos</code></td><td class="wrap"><code>/post/la-experiencia-reemplaza-los-titulos</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/la-gestion-de-riesgos-en-las-empresas</code></td><td class="wrap"><code>/post/la-gestion-de-riesgos-en-las-empresas</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/la-gestion-de-riesgos-en-las-empresas-del-mercado-asegurador</code></td><td class="wrap"><code>/post/la-gestion-de-riesgos-en-las-empresas-del-mercado-asegurador</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/la-importancia-de-las-ciencias-actuariales-en-las-estrategias-financieras</code></td><td class="wrap"><code>/post/la-importancia-de-las-ciencias-actuariales-en-las-estrategias-financieras</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/la-influencia-de-las-emociones-en-las-decisiones-fiancieras</code></td><td class="wrap"><code>/post/la-influencia-de-las-emociones-en-las-decisiones-fiancieras</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/la-innovacion-empresarial-y-su-importancia</code></td><td class="wrap"><code>/post/la-innovacion-empresarial-y-su-importancia</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/la-innovacion-tecnologica-a-traves-de-actuafast</code></td><td class="wrap"><code>/post/la-innovacion-tecnologica-a-traves-de-actuafast</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/la-inteligencia-artificial-como-herramienta-para-automatizar-procesos</code></td><td class="wrap"><code>/post/la-inteligencia-artificial-como-herramienta-para-automatizar-procesos</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/la-inteligencia-de-datos-con-ia-transformando-la-toma-de-decisiones-en-el-mercado-financiero-y-empresaria</code></td><td class="wrap"><code>/post/la-inteligencia-de-datos-con-ia-transformando-la-toma-de-decisiones-en-el-mercado-financiero-y-empresaria</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/la-jubilacion-patronal-es-suficiente-para-el-retiro</code></td><td class="wrap"><code>/post/la-jubilacion-patronal-es-suficiente-para-el-retiro</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/la-magia-del-data-science-y-como-utilizarlo-para-ampliar-los-negocios</code></td><td class="wrap"><code>/post/la-magia-del-data-science-y-como-utilizarlo-para-ampliar-los-negocios</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/la-modalidad-de-teletrabajo-en-ecuador</code></td><td class="wrap"><code>/post/la-modalidad-de-teletrabajo-en-ecuador</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/la-nueva-normalidad-de-la-tasa-pasiva-referencial-factores-economicos-y-efectos-actuariales</code></td><td class="wrap"><code>/post/la-nueva-normalidad-de-la-tasa-pasiva-referencial-factores-economicos-y-efectos-actuariales</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/la-pandemia-del-covid-19-genero-un-retraso-de-mas-de-una-decada-en-los-niveles-de-participacion-laboral-de-los-mujeres-en-la-region</code></td><td class="wrap"><code>/post/la-pandemia-del-covid-19-genero-un-retraso-de-mas-de-una-decada-en-los-niveles-de-participacion-laboral-de-los-mujeres-en-la-region</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/la-pandemia-un-reto-para-la-seguridad-social-del-ecuador</code></td><td class="wrap"><code>/post/la-pandemia-un-reto-para-la-seguridad-social-del-ecuador</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/la-prospectiva-una-oportunidad-de-crecimiento-para-las-organizaciones</code></td><td class="wrap"><code>/post/la-prospectiva-una-oportunidad-de-crecimiento-para-las-organizaciones</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/la-recreacion-fomenta-la-motivacion-de-los-colaboradores</code></td><td class="wrap"><code>/post/la-recreacion-fomenta-la-motivacion-de-los-colaboradores</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/la-seguridad-social</code></td><td class="wrap"><code>/post/la-seguridad-social</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/la-seguridad-social-publica-en-el-ecuador-y-nicaragua</code></td><td class="wrap"><code>/post/la-seguridad-social-publica-en-el-ecuador-y-nicaragua</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/las-mujeres-ganan-terreno-en-el-sector-empresarial-sin-embargo-la-brecha-salarial-persiste</code></td><td class="wrap"><code>/post/las-mujeres-ganan-terreno-en-el-sector-empresarial-sin-embargo-la-brecha-salarial-persiste</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/las-organizaciones-buscan-incorporar-los-mejores-talentos-al-reclutar</code></td><td class="wrap"><code>/post/las-organizaciones-buscan-incorporar-los-mejores-talentos-al-reclutar</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/ley-de-medicina-prepagada-y-asistencia-medica-preexistencia-embarazo-y-adulto-mayor</code></td><td class="wrap"><code>/post/ley-de-medicina-prepagada-y-asistencia-medica-preexistencia-embarazo-y-adulto-mayor</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/los-aspectos-macroeconomicos-tambien-afectan-tu-provision-laboral-te-explicamos-como</code></td><td class="wrap"><code>/post/los-aspectos-macroeconomicos-tambien-afectan-tu-provision-laboral-te-explicamos-como</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/los-ciberseguros-una-necesidad-frente-al-aumento-de-la-ciberdelincuencia</code></td><td class="wrap"><code>/post/los-ciberseguros-una-necesidad-frente-al-aumento-de-la-ciberdelincuencia</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/losderechoshumanos</code></td><td class="wrap"><code>/post/losderechoshumanos</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/los-estudios-actuariales-son-clave-para-una-sostenibilidad-financiera-empresarial</code></td><td class="wrap"><code>/post/los-estudios-actuariales-son-clave-para-una-sostenibilidad-financiera-empresarial</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/machine-learning</code></td><td class="wrap"><code>/post/machine-learning</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/machine-learning-actuaria</code></td><td class="wrap"><code>/post/machine-learning-actuaria</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/machine-learning-para-el-mercado-asegurador</code></td><td class="wrap"><code>/post/machine-learning-para-el-mercado-asegurador</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/machine-learning-previene-las-transacciones-fraudulentas</code></td><td class="wrap"><code>/post/machine-learning-previene-las-transacciones-fraudulentas</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/manejo-de-finanzas-en-navidad</code></td><td class="wrap"><code>/post/manejo-de-finanzas-en-navidad</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/manejo-del-iess-repercusiones</code></td><td class="wrap"><code>/post/manejo-del-iess-repercusiones</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/mas-alla-del-calculo-actuarial-como-las-provisiones-por-beneficios-a-empleados-inciden-en-el-resultado-fiscal</code></td><td class="wrap"><code>/post/mas-alla-del-calculo-actuarial-como-las-provisiones-por-beneficios-a-empleados-inciden-en-el-resultado-fiscal</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/matematica-actuarial-en-el-calculo-de-pensiones-de-jubilacion</code></td><td class="wrap"><code>/post/matematica-actuarial-en-el-calculo-de-pensiones-de-jubilacion</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/materialidad-de-la-informacion-actuarial</code></td><td class="wrap"><code>/post/materialidad-de-la-informacion-actuarial</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/microseguros-en-ecuador-proteccion-financiera-para-el-desarrollo</code></td><td class="wrap"><code>/post/microseguros-en-ecuador-proteccion-financiera-para-el-desarrollo</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/microseguros-un-producto-para-la-inclusion-financiera-y-social</code></td><td class="wrap"><code>/post/microseguros-un-producto-para-la-inclusion-financiera-y-social</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/modelos-predictivos-para-evitar-la-desercion-de-clientes</code></td><td class="wrap"><code>/post/modelos-predictivos-para-evitar-la-desercion-de-clientes</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/mujeres-en-las-matematicas-talento-sin-barreras</code></td><td class="wrap"><code>/post/mujeres-en-las-matematicas-talento-sin-barreras</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/nueva-calificacion-actuaria</code></td><td class="wrap"><code>/post/nueva-calificacion-actuaria</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/nueva-resolucion-reservas-tecnicas</code></td><td class="wrap"><code>/post/nueva-resolucion-reservas-tecnicas</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/nuevo-instructivo-para-la-aplicacion-de-las-normas-niif</code></td><td class="wrap"><code>/post/nuevo-instructivo-para-la-aplicacion-de-las-normas-niif</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/ods5-igualdad-de-genero</code></td><td class="wrap"><code>/post/ods5-igualdad-de-genero</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/panorama-de-la-situacion-economica-mundial-ante-el-conflicto-entre-rusia-y-ucrania</code></td><td class="wrap"><code>/post/panorama-de-la-situacion-economica-mundial-ante-el-conflicto-entre-rusia-y-ucrania</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/panorama-en-chile-frente-a-la-nueva-constitucion</code></td><td class="wrap"><code>/post/panorama-en-chile-frente-a-la-nueva-constitucion</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/pbss-colloquium-cancun-actuaria-la-inversion-de-fondos-de-pensiones-en-reforestacion-y-proyectos-forestales-en-ecuador</code></td><td class="wrap"><code>/post/pbss-colloquium-cancun-actuaria-la-inversion-de-fondos-de-pensiones-en-reforestacion-y-proyectos-forestales-en-ecuador</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/pi-en-las-ciencias-actuariales</code></td><td class="wrap"><code>/post/pi-en-las-ciencias-actuariales</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/plan-ahorro-retiro-actua-par</code></td><td class="wrap"><code>/post/plan-ahorro-retiro-actua-par</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/plan-de-ahorro-y-retiro-beneficios</code></td><td class="wrap"><code>/post/plan-de-ahorro-y-retiro-beneficios</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/plan-de-ahorro-y-retiro-una-alternativa-de-ahorro-e-inversion</code></td><td class="wrap"><code>/post/plan-de-ahorro-y-retiro-una-alternativa-de-ahorro-e-inversion</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/por-que-actuaria</code></td><td class="wrap"><code>/post/por-que-actuaria</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/por-que-es-importante-que-las-companias-generen-un-plan-interno-al-ejecutar-un-dlv</code></td><td class="wrap"><code>/post/por-que-es-importante-que-las-companias-generen-un-plan-interno-al-ejecutar-un-dlv</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/por-que-gestionar-el-clima-laboral-de-las-empresas</code></td><td class="wrap"><code>/post/por-que-gestionar-el-clima-laboral-de-las-empresas</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/por-que-seguimos-apostando-aun-con-probabilidades-en-contra</code></td><td class="wrap"><code>/post/por-que-seguimos-apostando-aun-con-probabilidades-en-contra</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/por-que-son-importante-los-programas-de-capacitacion-en-las-empresas</code></td><td class="wrap"><code>/post/por-que-son-importante-los-programas-de-capacitacion-en-las-empresas</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/por-un-8-de-marzo-de-igualdad-y-equidad-laboral</code></td><td class="wrap"><code>/post/por-un-8-de-marzo-de-igualdad-y-equidad-laboral</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/por-un-8-de-marzo-de-igualdad-y-equidad-laboral-2</code></td><td class="wrap"><code>/post/por-un-8-de-marzo-de-igualdad-y-equidad-laboral-2</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/primerinformeactuaria-nacionesunidasglobalcompact</code></td><td class="wrap"><code>/post/primerinformeactuaria-nacionesunidasglobalcompact</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/principio-de-plena-competencia-y-los-precios-de-transferencia</code></td><td class="wrap"><code>/post/principio-de-plena-competencia-y-los-precios-de-transferencia</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/proceso-de-seleccion</code></td><td class="wrap"><code>/post/proceso-de-seleccion</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/proyeccion-de-pasivos-laborales-anticipa-riesgos-fortalece-tu-empresa-y-evita-sorpresas-financieras</code></td><td class="wrap"><code>/post/proyeccion-de-pasivos-laborales-anticipa-riesgos-fortalece-tu-empresa-y-evita-sorpresas-financieras</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/puede-un-modelo-estadistico-predecir-el-campeon-del-mundial-2026</code></td><td class="wrap"><code>/post/puede-un-modelo-estadistico-predecir-el-campeon-del-mundial-2026</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/punto-de-equilibrio-finanzas</code></td><td class="wrap"><code>/post/punto-de-equilibrio-finanzas</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/que-es-un-panel-de-control</code></td><td class="wrap"><code>/post/que-es-un-panel-de-control</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/que-hace-un-actuario</code></td><td class="wrap"><code>/post/que-hace-un-actuario</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/que-hay-despues-de-la-jubilacion-del-seguro-social-en-el-ecuador</code></td><td class="wrap"><code>/post/que-hay-despues-de-la-jubilacion-del-seguro-social-en-el-ecuador</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/ranking-de-companias-de-seguros-por-primas-netas-emitidas-ecuador</code></td><td class="wrap"><code>/post/ranking-de-companias-de-seguros-por-primas-netas-emitidas-ecuador</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/reglamento-a-la-ley-de-reactivacion-economica</code></td><td class="wrap"><code>/post/reglamento-a-la-ley-de-reactivacion-economica</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/relevancia-del-pasivo-laboral-en-la-contabilidad-de-las-empresas-ecuatorianas</code></td><td class="wrap"><code>/post/relevancia-del-pasivo-laboral-en-la-contabilidad-de-las-empresas-ecuatorianas</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/repercusiones-del-paro-nacional</code></td><td class="wrap"><code>/post/repercusiones-del-paro-nacional</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/responsabilidad-social-empresarial</code></td><td class="wrap"><code>/post/responsabilidad-social-empresarial</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/retorno-laboral</code></td><td class="wrap"><code>/post/retorno-laboral</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/riesgo-moral-el-factor-invisible-que-dispara-la-inflacion-medica</code></td><td class="wrap"><code>/post/riesgo-moral-el-factor-invisible-que-dispara-la-inflacion-medica</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/riesgos-para-fondos-previsionales</code></td><td class="wrap"><code>/post/riesgos-para-fondos-previsionales</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/sabias-que-para-2020-y-2021-existe-un-nuevo-tipo-de-gasto-deducible-para-el-impuesto-a-la-renta</code></td><td class="wrap"><code>/post/sabias-que-para-2020-y-2021-existe-un-nuevo-tipo-de-gasto-deducible-para-el-impuesto-a-la-renta</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/savings-retirement-plan</code></td><td class="wrap"><code>/post/savings-retirement-plan</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/segmentacion-el-motor-de-una-estrategia-empresarial-efectiva</code></td><td class="wrap"><code>/post/segmentacion-el-motor-de-una-estrategia-empresarial-efectiva</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/seguridad-juridica-vs-realidad-financiera-el-dilema-del-fondo-global</code></td><td class="wrap"><code>/post/seguridad-juridica-vs-realidad-financiera-el-dilema-del-fondo-global</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/seguridad-social-en-espana</code></td><td class="wrap"><code>/post/seguridad-social-en-espana</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/seguridad-social-en-francia</code></td><td class="wrap"><code>/post/seguridad-social-en-francia</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/ser-un-colaborador-actuaria</code></td><td class="wrap"><code>/post/ser-un-colaborador-actuaria</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/servicios-actuaria</code></td><td class="wrap"><code>/post/servicios-actuaria</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/sistema-de-pensiones-en-europa</code></td><td class="wrap"><code>/post/sistema-de-pensiones-en-europa</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/sistemas-de-pensiones-en-america-latina</code></td><td class="wrap"><code>/post/sistemas-de-pensiones-en-america-latina</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/sistemas-de-pensiones-en-america-latina-y-el-caribe</code></td><td class="wrap"><code>/post/sistemas-de-pensiones-en-america-latina-y-el-caribe</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/sistemas-nordicos-y-pensiones-verdes</code></td><td class="wrap"><code>/post/sistemas-nordicos-y-pensiones-verdes</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/situacion-compleja-iess</code></td><td class="wrap"><code>/post/situacion-compleja-iess</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/situacion-financiera-iess</code></td><td class="wrap"><code>/post/situacion-financiera-iess</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/situacion-laboral-ecuador-2020</code></td><td class="wrap"><code>/post/situacion-laboral-ecuador-2020</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/solvencia-ii</code></td><td class="wrap"><code>/post/solvencia-ii</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/solvencia-ii-beneficios-clave-para-fortalecer-a-las-aseguradoras</code></td><td class="wrap"><code>/post/solvencia-ii-beneficios-clave-para-fortalecer-a-las-aseguradoras</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/te-has-preguntado-que-pasaria-si-no-planificas-tu-retiro</code></td><td class="wrap"><code>/post/te-has-preguntado-que-pasaria-si-no-planificas-tu-retiro</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/teletrabajo</code></td><td class="wrap"><code>/post/teletrabajo</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/transformacion-digital-en-la-gestion-de-fondos-de-jubilacion-en-ecuador</code></td><td class="wrap"><code>/post/transformacion-digital-en-la-gestion-de-fondos-de-jubilacion-en-ecuador</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/transforma-la-gestion-del-pasivo-laboral-con-el-simulador-de-beneficios-post-empleo</code></td><td class="wrap"><code>/post/transforma-la-gestion-del-pasivo-laboral-con-el-simulador-de-beneficios-post-empleo</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/transicion-de-esquemas-para-sistemas-de-pensiones-quien-paga-el-costo-del-cambio</code></td><td class="wrap"><code>/post/transicion-de-esquemas-para-sistemas-de-pensiones-quien-paga-el-costo-del-cambio</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/trasformacion-digital</code></td><td class="wrap"><code>/post/trasformacion-digital</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/una-decision-complicada-la-vision-del-jubilado</code></td><td class="wrap"><code>/post/una-decision-complicada-la-vision-del-jubilado</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/una-opcion-viable-ante-la-situacion-del-sistema-de-pensiones</code></td><td class="wrap"><code>/post/una-opcion-viable-ante-la-situacion-del-sistema-de-pensiones</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/una-vision-de-liderazgo-en-tiempos-dificiles</code></td><td class="wrap"><code>/post/una-vision-de-liderazgo-en-tiempos-dificiles</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/utilidades-una-oportunidad-de-ahorro</code></td><td class="wrap"><code>/post/utilidades-una-oportunidad-de-ahorro</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/ventajas-talleres-empresariales</code></td><td class="wrap"><code>/post/ventajas-talleres-empresariales</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/actuaria-insights-n1-actualizacion-tasa-pasiva-referencial-junio-2026</code></td><td class="wrap"><code>/post/actuaria-insights-n1-actualizacion-tasa-pasiva-referencial-junio-2026</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/agentes-inteligentes-en-2026-como-la-inteligencia-artificial-esta-transformando-empresas</code></td><td class="wrap"><code>/post/agentes-inteligentes-en-2026-como-la-inteligencia-artificial-esta-transformando-empresas</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/bancos-y-aseguradoras-dos-modelos-un-mismo-desafio</code></td><td class="wrap"><code>/post/bancos-y-aseguradoras-dos-modelos-un-mismo-desafio</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/el-mercado-laboral-esta-transformando-la-estrategia-de-remuneracion</code></td><td class="wrap"><code>/post/el-mercado-laboral-esta-transformando-la-estrategia-de-remuneracion</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/por-que-estar-asegurados-nos-hace-asumir-mas-riesgos</code></td><td class="wrap"><code>/post/por-que-estar-asegurados-nos-hace-asumir-mas-riesgos</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/inflacion-y-provision-de-jubilacion-patronal-esta-preparada-su-empresa-para-el-futuro</code></td><td class="wrap"><code>/post/inflacion-y-provision-de-jubilacion-patronal-esta-preparada-su-empresa-para-el-futuro</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/jubilacion-patronal-y-conciliacion-tributaria-las-cinco-revisiones-comunes-que-realiza-el-sri</code></td><td class="wrap"><code>/post/jubilacion-patronal-y-conciliacion-tributaria-las-cinco-revisiones-comunes-que-realiza-el-sri</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/actuaria-en-el-vii-congreso-tributa-2026-organizado-por-el-colegio-de-contadores</code></td><td class="wrap"><code>/post/actuaria-en-el-vii-congreso-tributa-2026-organizado-por-el-colegio-de-contadores</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/calculadoras</code></td><td class="wrap"><code>/12-calculadoras-especializadas</code></td><td>Página</td><td>A</td></tr>
+            <tr><td class="wrap"><code>/login</code></td><td class="wrap"><code>/</code></td><td>Acceso o función de WordPress</td><td>A</td></tr>
+            <tr><td class="wrap"><code>/estudiosactuariales-jubilacionpatronal</code></td><td class="wrap"><code>/estudio-actuarial-jubilacion-patronal</code></td><td>Página</td><td>B</td></tr>
+            <tr><td class="wrap"><code>/trabajaconnosotros</code></td><td class="wrap"><code>/nosotros</code></td><td>Página</td><td>B</td></tr>
+            <tr><td class="wrap"><code>/data-analytics</code></td><td class="wrap"><code>/analisis-de-datos</code></td><td>Página</td><td>B</td></tr>
+            <tr><td class="wrap"><code>/iniciar-sesion-dashboard-seguros</code></td><td class="wrap"><code>https://plus.actuaria.com/</code></td><td>Acceso o función de WordPress</td><td>B</td></tr>
+            <tr><td class="wrap"><code>/register</code></td><td class="wrap"><code>https://plus.actuaria.com/</code></td><td>Acceso o función de WordPress</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/demo_slider1</code></td><td class="wrap"><code>/</code></td><td>Excepción a la portada</td><td>B</td></tr>
+            <tr><td class="wrap"><code>/wp-content/uploads/2016/11/ppt-jp-jornadas-derecho-r.-ibarra.pdf</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6aab630d21e3946fae8582ed_PPT-JP-Jornadas-Derecho-R-Ibarra.pdf</code></td><td>Documento o PDF</td><td>B</td></tr>
+            <tr><td class="wrap"><code>/wp-content/uploads/2016/11/PPT-JP-Jornadas-Derecho-R.-Ibarra.pdf</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6aab630d21e3946fae8582ed_PPT-JP-Jornadas-Derecho-R-Ibarra.pdf</code></td><td>Documento o PDF</td><td>B</td></tr>
+            <tr><td class="wrap"><code>/riesgos-y-servicios-financieros</code></td><td class="wrap"><code>/riesgos-y-finanzas</code></td><td>Página</td><td>B</td></tr>
+            <tr><td class="wrap"><code>/salud-y-medicina-prepagada</code></td><td class="wrap"><code>/seguros-y-medicina</code></td><td>Página</td><td>B</td></tr>
+            <tr><td class="wrap"><code>/blog-actuaria</code></td><td class="wrap"><code>/blog</code></td><td>Página</td><td>B</td></tr>
+            <tr><td class="wrap"><code>/politica-de-privacidad-y-proteccion-de-datos-personales</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6aa18df6459360730d2f79e4_politica-privacidad-proteccion-datos.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/politica-de-prevencion-de-lavado-de-activos-y-antisoborno</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6aa18df799ec7f9fe8ef9d73_politica-prevencion-lavado-activos-antisoborno.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/solicitud-tratamiento-proteccion-datos-personales</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6aa18df880e66d64b3d5f97d_solicitud-ejercicio-derechos-datos-personales.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/solicitud-para-el-ejercicio-de-derechos-en-el-tratamiento-de-proteccion-de-datos-personales-2</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6aa18df880e66d64b3d5f97d_solicitud-ejercicio-derechos-datos-personales.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/certificacion-iso-90012015-gestion-de-la-calidad</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6aa18df8abae1f93dd1f54ed_certificacion-iso-9001-2015.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/certificacion-iso-iec-270012013-seguridad-de-la-informacion</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6aa18df880e66d64b3d5f9bb_certificacion-iso-iec-27001-2022.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/iso-iec-27001-2022</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6aa18df880e66d64b3d5f9bb_certificacion-iso-iec-27001-2022.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/codigo-de-conducta-empresarial</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6abbe9ef7715a35b07817866_codigo-conducta-empresarial.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/codigo-de-buen-gobierno-corporativo</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6abbe9eff0ec45724fcbcbd6_codigo-buen-gobierno-corporativo.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/reglamento-interno-del-directorio</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6abbe9f0af836287a2bbdcda_reglamento-interno-directorio.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/reglamento-interno-de-la-junta-de-accionistas</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6abbe9f00e971ce644d3c423_reglamento-interno-junta-accionistas.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/politica-de-igualdad-de-genero-2</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6abbe9f0b559bd0f608baca7_politica-igualdad-genero.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/wp-content/uploads/2026/01/ACTUARIA-CONSULTORES-ISO-9001.pdf</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6aa18df8abae1f93dd1f54ed_certificacion-iso-9001-2015.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/wp-content/uploads/2024/05/Politica-de-Proteccion-de-Datos-Personales.pdf</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6aa18df6459360730d2f79e4_politica-privacidad-proteccion-datos.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/wp-content/uploads/2024/10/SOLICITUD-PARA-EL-EJERCICIO-DE-DERECHOS-EN-EL-TRATAMIENTO-DE-PROTECCION-DE-DATOS-PERSONALES.pdf</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6aa18df880e66d64b3d5f97d_solicitud-ejercicio-derechos-datos-personales.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/wp-content/uploads/2024/05/Codigo_Conducta.pdf</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6abbe9ef7715a35b07817866_codigo-conducta-empresarial.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/wp-content/uploads/2024/05/ACTUARIA_Codigo_de_Buen_Gobierno_Corporativo.pdf</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6abbe9eff0ec45724fcbcbd6_codigo-buen-gobierno-corporativo.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/wp-content/uploads/2024/05/ACTUARIA_Reglamento_Interno_de_la_Junta-General_de_Accionistas.pdf</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6abbe9f00e971ce644d3c423_reglamento-interno-junta-accionistas.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/wp-content/uploads/2024/05/ACTUARIA_Reglamento_Interno_Directorio.pdf</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6abbe9f0af836287a2bbdcda_reglamento-interno-directorio.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/wp-content/uploads/2024/05/Certificado-27001-Seguridad-de-la-Informacion-1.pdf</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6aa18df880e66d64b3d5f9bb_certificacion-iso-iec-27001-2022.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/wp-content/uploads/2024/05/Politica-Prevencion-de-Lavado-de-Activos-y-Antisoborno.pdf</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6aa18df799ec7f9fe8ef9d73_politica-prevencion-lavado-activos-antisoborno.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/iniciar-sesion-dashboard-mp</code></td><td class="wrap"><code>https://plus.actuaria.com/</code></td><td>Acceso o función de WordPress</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/login-dashboard-proyeccion</code></td><td class="wrap"><code>https://plus.actuaria.com/</code></td><td>Acceso o función de WordPress</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/category/(.*)</code></td><td class="wrap"><code>/blog</code></td><td>Comodín</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/tag/(.*)</code></td><td class="wrap"><code>/blog</code></td><td>Comodín</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/author/(.*)</code></td><td class="wrap"><code>/blog</code></td><td>Comodín</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/page/(.*)</code></td><td class="wrap"><code>/blog</code></td><td>Comodín</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/feed</code></td><td class="wrap"><code>/blog</code></td><td>Comodín</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/comments/feed</code></td><td class="wrap"><code>/blog</code></td><td>Comodín</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/blog-actuaria/(.*)</code></td><td class="wrap"><code>/blog</code></td><td>Comodín</td><td>C</td></tr>
+            <!--REDIRECCIONES:fin-->
+            </tbody>
+          </table>
+        </div>
+        <p class="chart_note">Fuente: <code>seo-redirecciones/datos/</code> (artículos, especiales y comodines), la misma que generó el CSV importado en Webflow. Se regenera con <code>node generar-redirecciones.mjs</code>.</p>
+      </details>
       <h3>Otros detalles</h3>
       <ul>
         <li>Canónica global, <code>lang="es-EC"</code>, y www redirige con 301 a la raíz.</li>
@@ -1263,10 +1639,11 @@
       </div>
       <p>Cada cambio en el sitio o en sus conexiones se anota aquí y se refleja en la sección que corresponde.</p>
       <ol class="timeline">
-        <li class="is-key" style="--c: var(--orange)"><time datetime="2026-10-03">3 oct 2026 · v1.3</time><b>Postulaciones sin correo al postulante y con página de confirmación.</b> Se quitó la confirmación por correo (script v3.3); ahora el formulario lleva a la página nueva <code>/postulacion-recibida</code>, con botón para volver al inicio. Se reenvió a seleccion@ la única postulación real que había llegado a la casilla de pruebas; las dos pruebas internas no se reenviaron. Tipografía del documento alineada con el brandbook: Lemon Milk Pro en títulos, Nunito en subtítulos y Prompt en el texto.</li>
+        <li class="is-key" style="--c: var(--orange)"><time datetime="2026-10-03">3 oct 2026 · v1.4</time><b>El documento pasa a llamarse Acta de Entrega</b> (el enlace no cambia). Se agrega “Rescate SEO de la web anterior”: el criterio de las redirecciones, un gráfico por tipo y la lista completa de las 317 reglas, con buscador y descarga en CSV.</li>
+        <li style="--c: var(--orange)"><time datetime="2026-10-03">3 oct 2026 · v1.3</time><b>Postulaciones sin correo al postulante y con página de confirmación.</b> Se quitó la confirmación por correo (script v3.3); ahora el formulario lleva a la página nueva <code>/postulacion-recibida</code>, con botón para volver al inicio. Se reenvió a seleccion@ la única postulación real que había llegado a la casilla de pruebas; las dos pruebas internas no se reenviaron. Tipografía del documento alineada con el brandbook: Lemon Milk Pro en títulos, Nunito en subtítulos y Prompt en el texto.</li>
         <li style="--c: var(--orange)"><time datetime="2026-10-03">3 oct 2026 · v1.2</time><b>Postulaciones a seleccion@actuaria.com.</b> El aviso de cada postulación llegaba a la casilla de pruebas de una persona. Se cambió la propiedad <code>RECIPIENT</code> del script y se verificó: el valor quedó guardado y el activador sigue corriendo cada minuto sin errores.</li>
         <li style="--c: var(--indigo)"><time datetime="2026-10-02">2 oct 2026 · v1.1</time><b>Gráficos y diagramas:</b> dependencias por página, DNS antes y después, cronología, peso del código, flujos de medición y de formularios, sitemap, redirecciones, blog y pendientes.</li>
-        <li style="--c: var(--blue)"><time datetime="2026-10-02">2 oct 2026 · v1.0</time><b>Primera versión</b> del documento de entrega, el día del lanzamiento.</li>
+        <li style="--c: var(--blue)"><time datetime="2026-10-02">2 oct 2026 · v1.0</time><b>Primera versión</b> del acta, el día del lanzamiento.</li>
       </ol>
     </section>
 
@@ -1274,7 +1651,7 @@
 </div>
 
 <footer class="pie shell">
-  <p>Actuaria Consultores · Área de Producto · Documento de entrega técnica de actuaria.com · v1.3 · 3 de octubre de 2026</p>
+  <p>Actuaria Consultores · Área de Producto · Acta de Entrega de actuaria.com · v1.4 · 3 de octubre de 2026</p>
 </footer>
 
 <script>
@@ -1287,6 +1664,26 @@
         [].forEach.call(tr.children, function (td, i) { if (heads[i]) td.setAttribute('data-label', heads[i]); });
       });
       box.classList.add('is-stack');
+    });
+  })();
+
+  // Filters the full redirect table as the reader types (accents and case ignored).
+  (function () {
+    var input = document.getElementById('redir-buscar');
+    if (!input) return;
+    var rows = [].slice.call(document.querySelectorAll('#redir-tabla tbody tr'));
+    var out = document.getElementById('redir-cuenta');
+    var norm = function (s) { return s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase(); };
+    var texts = rows.map(function (r) { return norm(r.textContent); });
+    input.addEventListener('input', function () {
+      var q = norm(input.value.trim());
+      var shown = 0;
+      rows.forEach(function (r, i) {
+        var match = !q || texts[i].indexOf(q) >= 0;
+        r.hidden = !match;
+        if (match) shown++;
+      });
+      out.textContent = q ? shown + ' de ' + rows.length + ' reglas' : rows.length + ' reglas';
     });
   })();
 
