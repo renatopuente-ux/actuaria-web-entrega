@@ -1,10 +1,11 @@
-# Entrega técnica de actuaria.com
+# Acta de Entrega de actuaria.com
 
-Documento de entrega de la web de Actuaria Consultores en Webflow: infraestructura, dominio, cuentas, medición, formularios, código propio, scripts y pendientes. Refleja el estado del 2 de octubre de 2026, día del lanzamiento.
+Acta de Entrega de la web de Actuaria Consultores en Webflow: infraestructura, dominio, cuentas, medición, formularios, código propio, scripts y pendientes. Se lanzó el 2 de octubre de 2026 y se actualiza con cada cambio del sitio (ver "Registro de cambios").
 
 **Léelo aquí:** https://renatopuente-ux.github.io/actuaria-web-entrega/
 
-- `index.html`: el documento, una sola página sin dependencias de compilación (Nunito de Google Fonts y Font Awesome de cdnjs).
+- `index.html`: el acta, una sola página sin dependencias de compilación. Tipografía de marca: Lemon Milk Pro (archivo del sitio en el CDN de Webflow), Nunito y Prompt (Google Fonts); íconos de Font Awesome (cdnjs).
+- `redirecciones-301.csv`: las 317 redirecciones 301 vigentes (origen, destino, tipo, nivel), las mismas que muestra el acta.
 - Es público a propósito para poder compartirlo con un enlace. No contiene contraseñas, tokens, URLs de webhooks ni correos personales, y lleva `noindex` para no aparecer en buscadores.
 
 Mantiene: Área de Producto de Actuaria Consultores. La fuente vive en el workspace del área, en `Migracion-Web/entrega/`, y se publica con `node publicar.mjs`.
