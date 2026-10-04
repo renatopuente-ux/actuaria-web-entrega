@@ -355,13 +355,13 @@
 <header class="hero shell">
   <div class="hero_top">
     <img class="hero_logo" src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a70bbec17f7fc765c2ea5d9_logo-actuaria.svg" alt="Actuaria Consultores">
-    <span class="chip"><i class="fa-solid fa-file-shield" aria-hidden="true"></i>Documento de entrega · v1.0</span>
+    <span class="chip"><i class="fa-solid fa-file-shield" aria-hidden="true"></i>Documento de entrega · v1.2</span>
   </div>
   <h1>Cómo está construida <span>actuaria.com</span></h1>
   <p class="hero_lead">Todo lo que necesitas para entender, mantener y cambiar el sitio sin romperlo: infraestructura, dominio, cuentas, medición, formularios, código propio y scripts. Refleja el estado del 2 de octubre de 2026, día del lanzamiento en Webflow.</p>
   <div class="meta">
     <span><i class="fa-solid fa-user-gear" aria-hidden="true"></i>Responsable: Área de Producto · Renato Puente</span>
-    <span><i class="fa-solid fa-calendar-check" aria-hidden="true"></i>Última revisión: 2 oct 2026</span>
+    <span><i class="fa-solid fa-calendar-check" aria-hidden="true"></i>Última revisión: 3 oct 2026</span>
     <span><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Estado: en producción</span>
   </div>
   <div class="stats" aria-label="Cifras del sitio">
@@ -394,6 +394,7 @@
       <li><a href="#herramientas">Herramientas locales</a></li>
       <li><a href="#mantenimiento">Mantenimiento</a></li>
       <li><a href="#pendientes">Pendientes</a></li>
+      <li><a href="#cambios">Registro de cambios</a></li>
     </ol>
   </nav>
 
@@ -952,7 +953,7 @@
         <div class="chain_node is-core"><b><i class="fa-brands fa-google" aria-hidden="true"></i>Apps Script</b>Cada minuto revisa los envíos nuevos con la API de Webflow.</div>
         <div class="chain_arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
         <div class="chain_group">
-          <div class="chain_node" style="--c:var(--orange)"><b><i class="fa-solid fa-inbox" aria-hidden="true"></i>Selección</b>Correo con los datos</div>
+          <div class="chain_node" style="--c:var(--orange)"><b><i class="fa-solid fa-inbox" aria-hidden="true"></i>Selección</b>Correo con los datos a <code>seleccion@actuaria.com</code></div>
           <div class="chain_node" style="--c:var(--indigo)"><b><i class="fa-solid fa-paper-plane" aria-hidden="true"></i>Postulante</b>Confirmación de recibido</div>
         </div>
       </div>
@@ -961,7 +962,7 @@
           <thead><tr><th>Formulario</th><th>Dónde está</th><th>A dónde llegan los datos</th><th>Después de enviar</th></tr></thead>
           <tbody>
             <tr><td>Main Lead</td><td>Componente Form_Section: Home, Contacto, 4 soluciones, Estudio actuarial y plantilla de post</td><td>Webhook “Form submission: API V2” hacia el servicio de Salesforce (configurado en Webflow → Apps &amp; integrations), más el aviso interno “Nuevo Lead” por correo y el registro en Webflow → Forms</td><td>Lleva a <code>/gracias</code>, que cuenta como conversión. Necesita los dos atributos, <code>redirect</code> y <code>data-redirect</code>.</td></tr>
-            <tr><td>Postulaciones</td><td><code>/nosotros#trabaja-con-nosotros</code></td><td>Google Apps Script v3.2 lee los envíos cada minuto con la API de formularios de Webflow. Envía los datos al responsable de selección y una confirmación al postulante.</td><td>Mensaje en la misma página. El CV se pide como enlace, porque el adjunto es privado y la API no lo entrega.</td></tr>
+            <tr><td>Postulaciones</td><td><code>/nosotros#trabaja-con-nosotros</code></td><td>Google Apps Script v3.2 lee los envíos cada minuto con la API de formularios de Webflow. Envía los datos a <code>seleccion@actuaria.com</code> y una confirmación al postulante.</td><td>Mensaje en la misma página. El CV se pide como enlace, porque el adjunto es privado y la API no lo entrega.</td></tr>
             <tr><td>Registro Actuacont</td><td><code>/beneficios-ccppe</code></td><td>Webflow → Forms</td><td>Mensaje en la misma página.</td></tr>
           </tbody>
         </table>
@@ -970,6 +971,7 @@
         <li><strong>Antispam:</strong> todos usan Turnstile, nativo de Webflow.</li>
         <li><strong>Mensajes de validación en español</strong>, aunque el navegador esté en otro idioma (4.º bloque del pie del sitio).</li>
         <li><strong>Por qué Postulaciones no usa un webhook:</strong> el Google Workspace de Actuaria no permite publicar aplicaciones web abiertas, así que el script consulta la API en lugar de recibir avisos. El token que usa es de solo lectura de formularios y está guardado en las propiedades del script, nunca en el código.</li>
+        <li><strong>Cambiar a quién llegan las postulaciones:</strong> en Apps Script, proyecto “Postulaciones actuaweb” → Configuración del proyecto → Propiedades del script → <code>RECIPIENT</code>. Hoy es <code>seleccion@actuaria.com</code>. No hace falta tocar el código, y el cambio aplica en el minuto siguiente.</li>
         <li><strong>Sin correo al cliente:</strong> Webflow no le escribe a quien llena el formulario principal. El agradecimiento por Apps Script se quitó porque Workspace le pegaba la firma personal del dueño de la cuenta.</li>
       </ul>
       <div class="note is-bad">
@@ -1214,7 +1216,7 @@
             <tr><td>Medición</td><td>Revisar el estado del sitemap en Search Console y agregar un segundo método de verificación.</td><td><span class="tag info">Área de Producto</span></td></tr>
             <tr><td>Infraestructura</td><td>Subir el TTL de los registros a 1 h, pasadas 24 a 48 h del corte.</td><td><span class="tag info">Titular de SiteGround</span></td></tr>
             <tr><td>Infraestructura</td><td>Guardar una copia del respaldo <code>.wpress</code> fuera de la PC.</td><td><span class="tag info">TI</span></td></tr>
-            <tr><td>Formularios</td><td>Postulaciones: mandar el aviso a la casilla de selección y enviar desde una cuenta compartida o un alias sin firma personal.</td><td><span class="tag info">Área de Producto + Talento Humano</span></td></tr>
+            <tr><td>Formularios</td><td>Postulaciones: los avisos ya llegan a seleccion@, pero salen desde la cuenta de Google del Área de Producto, con su firma. Para enviarlos desde seleccion@, Selección tiene que confirmar una vez la verificación de Gmail.</td><td><span class="tag info">Área de Producto + Selección</span></td></tr>
             <tr><td>Formularios</td><td>Definir quién recibe los avisos de Registro Actuacont, y retirar el aviso “Nuevo Lead” de la casilla personal.</td><td><span class="tag info">Área de Producto</span></td></tr>
             <tr><td>Decisión</td><td>Banner de cookies y Consent Mode v2. El enlace “Configuración de cookies” del pie todavía no hace nada.</td><td><span class="tag warn">Por decidir</span></td></tr>
             <tr><td>Decisión</td><td>Botones de inscripción por Zoom vencidos en las dos landings de ODS 4 (cursos de 2025).</td><td><span class="tag warn">Por decidir</span></td></tr>
@@ -1233,11 +1235,25 @@
       </div>
     </section>
 
+    <!-- 17 -->
+    <section class="sec" id="cambios">
+      <div class="sec_head">
+        <div class="sec_icon is-blue"><i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i></div>
+        <div><span class="sec_kicker">Trazabilidad</span><h2>Registro de cambios</h2></div>
+      </div>
+      <p>Cada cambio en el sitio o en sus conexiones se anota aquí y se refleja en la sección que corresponde.</p>
+      <ol class="timeline">
+        <li class="is-key" style="--c: var(--orange)"><time datetime="2026-10-03">3 oct 2026 · v1.2</time><b>Postulaciones a seleccion@actuaria.com.</b> El aviso de cada postulación llegaba a la casilla de pruebas de una persona. Se cambió la propiedad <code>RECIPIENT</code> del script y se verificó: el valor quedó guardado y el activador sigue corriendo cada minuto sin errores.</li>
+        <li style="--c: var(--indigo)"><time datetime="2026-10-02">2 oct 2026 · v1.1</time><b>Gráficos y diagramas:</b> dependencias por página, DNS antes y después, cronología, peso del código, flujos de medición y de formularios, sitemap, redirecciones, blog y pendientes.</li>
+        <li style="--c: var(--blue)"><time datetime="2026-10-02">2 oct 2026 · v1.0</time><b>Primera versión</b> del documento de entrega, el día del lanzamiento.</li>
+      </ol>
+    </section>
+
   </main>
 </div>
 
 <footer class="pie shell">
-  <p>Actuaria Consultores · Área de Producto · Documento de entrega técnica de actuaria.com · v1.0 · 2 de octubre de 2026</p>
+  <p>Actuaria Consultores · Área de Producto · Documento de entrega técnica de actuaria.com · v1.2 · 3 de octubre de 2026</p>
 </footer>
 
 <script>
