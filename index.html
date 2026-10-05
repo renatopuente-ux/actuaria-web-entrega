@@ -485,7 +485,7 @@
     <div class="chipsx">
       <span class="chipx"><i class="fa-brands fa-figma" aria-hidden="true"></i>Figma</span><span class="chipx"><i class="fa-solid fa-cube" aria-hidden="true"></i>Webflow</span><span class="chipx"><i class="fa-solid fa-database" aria-hidden="true"></i>Webflow CMS</span><span class="chipx"><i class="fa-solid fa-tags" aria-hidden="true"></i>Google Tag Manager</span><span class="chipx"><i class="fa-solid fa-chart-pie" aria-hidden="true"></i>Google Analytics 4</span><span class="chipx"><i class="fa-solid fa-video" aria-hidden="true"></i>Microsoft Clarity</span><span class="chipx"><i class="fa-solid fa-cloud" aria-hidden="true"></i>Salesforce</span><span class="chipx"><i class="fa-brands fa-google" aria-hidden="true"></i>Apps Script</span><span class="chipx"><i class="fa-brands fa-github" aria-hidden="true"></i>GitHub Pages</span>
     </div>
-    <div class="cover_foot"><span>Versión del acta 1.8 · 5 de octubre de 2026</span><span>actuaria.com</span></div>
+    <div class="cover_foot"><span>Versión del acta 1.9 · 5 de octubre de 2026</span><span>actuaria.com</span></div>
   </div>
 </header>
 
@@ -752,7 +752,7 @@
             <li><code>name</code>, <code>slug</code>, <code>cargo</code>, <code>foto-de-perfil</code>, <code>foto-main</code></li>
             <li><code>grupo</code>: Liderazgo o Heads de área · <code>orden</code> dentro del grupo</li>
             <li><code>trayectoria</code>: reverso de la tarjeta de Liderazgo, 4 o 5 viñetas (unos 380 caracteres)</li>
-            <li><code>linkedin</code>: si queda vacío, el botón “Ver LinkedIn” se oculta solo</li>
+            <li><code>linkedin</code>: alimenta “Visitar perfil” en los Heads de área de Nosotros y “Ver LinkedIn” en las soluciones; si queda vacío, el enlace se oculta solo. Cargado en 11 de los 12 Heads (falta María Beatriz Ibarra)</li>
           </ul>
           <p>La ficha individual <code>/equipo/&lt;slug&gt;</code> está fuera de Google (noindex) hasta que tenga contenido propio.</p>
         </div>
@@ -1515,13 +1515,13 @@
         <p class="chart_title"><i class="fa-solid fa-chart-bar" aria-hidden="true"></i>Dónde se concentra el código propio (KB)</p>
         <div class="bars">
           <div class="bar" style="--w:100%;--c:var(--navy)"><span class="bar_label">Pie del sitio</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">21,6</span></div>
-          <div class="bar" style="--w:67.1%"><span class="bar_label">Pie de Nosotros</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">14,5</span></div>
+          <div class="bar" style="--w:82.4%"><span class="bar_label">Pie de Nosotros</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">17,8</span></div>
           <div class="bar" style="--w:57.4%"><span class="bar_label">Pie de Inicio</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">12,4</span></div>
           <div class="bar" style="--w:43.1%;--c:var(--navy)"><span class="bar_label">Head del sitio</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">9,3</span></div>
           <div class="bar" style="--w:31.9%"><span class="bar_label">Pie del blog</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">6,9</span></div>
           <div class="bar" style="--w:26.4%"><span class="bar_label">Head de Inicio</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">5,7</span></div>
+          <div class="bar" style="--w:24.5%"><span class="bar_label">Head de Nosotros</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">5,3</span></div>
           <div class="bar" style="--w:22.2%"><span class="bar_label">Head de Calculadoras</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">4,8</span></div>
-          <div class="bar" style="--w:18.5%"><span class="bar_label">Head de Nosotros</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">4,0</span></div>
           <div class="bar" style="--w:14.4%"><span class="bar_label">Head de Contacto</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">3,1</span></div>
           <div class="bar" style="--w:6.9%"><span class="bar_label">Head de plantilla de post</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">1,5</span></div>
           <div class="bar" style="--w:5.1%"><span class="bar_label">Pie de Design System</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">1,1</span></div>
@@ -1529,7 +1529,7 @@
         </div>
         <ul class="legend">
           <li><span class="sw" style="--c:var(--navy)"></span><span><b>Nivel sitio</b> · 30,9 KB, corre en todas las páginas</span></li>
-          <li><span class="sw" style="--c:var(--indigo)"></span><span><b>Nivel página</b> · unos 56 KB repartidos en 11 páginas</span></li>
+          <li><span class="sw" style="--c:var(--indigo)"></span><span><b>Nivel página</b> · unos 61 KB repartidos en 11 páginas</span></li>
         </ul>
         <p class="chart_note">No incluye los scripts registrados ni los embeds. Bloques de menos de 0,5 KB (Coeficientes, CCPPE, Gracias, plantilla de equipo) omitidos.</p>
       </div>
@@ -1571,8 +1571,8 @@
           <tbody>
             <tr><td>Inicio</td><td>head 5,7 KB</td><td>CSS de Swiper (desde GitHub Pages), carruseles de logos de clientes (48 s por vuelta), marquee de credenciales, alineación de las 4 tarjetas de soluciones y textura de puntos en las tarjetas de cifras (+6.500 clientes y estudios actuariales), la misma de “Lo que nos mueve”.</td></tr>
             <tr><td>Inicio</td><td>pie 12,4 KB</td><td>Swiper y el slider de Weblocks (GitHub Pages) para los carruseles del blog; contador “en vivo” de estudios actuariales tipo odómetro; conteo hasta +6.500 clientes; H1 del hero con efecto de escritura en bucle.</td></tr>
-            <tr><td>Nosotros</td><td>head 4,0 KB</td><td>Tarjetas que giran del equipo de Liderazgo (con la “Trayectoria” del CMS al reverso), tipografía del cierre, tarjetas de Propósito, Visión y Valores con vidrio y puntos, y vidrio en “Impulsa tu carrera”.</td></tr>
-            <tr><td>Nosotros</td><td>pie 14,5 KB</td><td>Tarjeta holográfica de “Heads de área” y los íconos con entrada en escena de “Nuestra historia”.</td></tr>
+            <tr><td>Nosotros</td><td>head 5,3 KB</td><td>Tarjetas que giran del equipo de Liderazgo (con la “Trayectoria” del CMS al reverso), tipografía del cierre, tarjetas de Propósito, Visión y Valores con vidrio y puntos, vidrio en “Impulsa tu carrera” y el enlace “Visitar perfil” de los Heads de área, oculto hasta pasar el mouse.</td></tr>
+            <tr><td>Nosotros</td><td>pie 17,8 KB</td><td>Tarjeta holográfica de “Heads de área”, que al pasar el mouse abre espacio para “Visitar perfil” (LinkedIn) entre el nombre y el cargo, y los íconos con entrada en escena de “Nuestra historia”.</td></tr>
             <tr><td>Contacto</td><td>head 3,1 KB</td><td>Ajustes de la instancia del componente de formulario y la textura de fondo (el body de esta página no tiene la clase que la pone).</td></tr>
             <tr><td>Calculadoras</td><td>head 4,8 KB</td><td>Textura de fondo y el menú de entrada con dos tarjetas que llevan con scroll suave a <code>#beneficios-post-empleo</code> y <code>#ahorros-impuestos</code>.</td></tr>
             <tr><td>Blog</td><td>head 0,7 KB + embed</td><td>Textura de fondo, ajuste del chip y el radar animado junto al título (HtmlEmbed, navy y naranja, quieto con “reducir movimiento”).</td></tr>
@@ -1747,7 +1747,7 @@
             <tr><td>Body sin clase</td><td>La API no deja asignar clases al body. Donde falta la textura de fondo, se pone con CSS en el head de la página.</td></tr>
             <tr><td>Nivel de un encabezado</td><td>Cambiar un título de H1 a H6 cambia su interlineado. Fija tamaño, interlineado y márgenes en la clase antes de cambiar el nivel.</td></tr>
             <tr><td>Videos</td><td>Webflow quita <code>loop</code> y <code>muted</code> del video al publicar. El script <code>bridgevideos</code> los vuelve a poner.</td></tr>
-            <tr><td>Equipo holográfico</td><td>El efecto está en dos copias: pie del sitio y pie de Nosotros. Si ajustas una, ajusta la otra.</td></tr>
+            <tr><td>Equipo holográfico</td><td>El efecto está en dos copias: pie del sitio (soluciones) y pie de Nosotros. Desde el 5 de octubre la de Nosotros suma el enlace “Visitar perfil” (bloque v5), así que ya no son idénticas: si cambias el giro o la foto en una, revisa la otra.</td></tr>
             <tr><td>Tarjeta holográfica del blog</td><td>Es el efecto de Nosotros adaptado, en el pie de la página Blog: el marco de vidrio (<code>.blog-hub_item</code>) queda quieto y gira la tarjeta de adentro. Para que la foto suba en el eje Z, la tarjeta no puede llevar <code>overflow: hidden</code> (aplana el 3D), así que la foto recorta sus propias esquinas. Si cambias el efecto de Nosotros, revisa también este.</td></tr>
             <tr><td>Vidrio y máscaras</td><td>Una <code>mask-image</code> en un elemento padre anula el <code>backdrop-filter</code> del vidrio.</td></tr>
             <tr><td>Clarity duplicado</td><td>Solo graba el primer proyecto que carga. Un segundo snippet no suma: anula.</td></tr>
@@ -1818,7 +1818,7 @@
             <tr><td>Blog</td><td>Subir las 26 imágenes y PDF que faltan en 13 artículos y agregar sus redirecciones.</td><td><span class="tag info">Equipo web</span></td></tr>
             <tr><td>Blog</td><td>El hub muestra hasta 100 artículos, el límite de una lista de Webflow. Falta paginación para llegar a los 274.</td><td><span class="tag info">Equipo web</span></td></tr>
             <tr><td>Blog</td><td>Poner el enlace “Current Blog Post” en 2 elementos de la plantilla (solo se puede desde el Designer).</td><td><span class="tag info">Equipo web</span></td></tr>
-            <tr><td>CMS</td><td>Equipos: corregir errores de tipeo en nombres y cargos, cargar los LinkedIn reales, completar la trayectoria que falta en Liderazgo y las fotos de las fichas en borrador.</td><td><span class="tag info">Área de Producto + Talento Humano</span></td></tr>
+            <tr><td>CMS</td><td>Equipos: corregir errores de tipeo en nombres y cargos, cargar el LinkedIn de María Beatriz Ibarra (los otros 11 Heads ya están), completar la trayectoria que falta en Liderazgo y las fotos de las fichas en borrador.</td><td><span class="tag info">Área de Producto + Talento Humano</span></td></tr>
             <tr><td>SEO</td><td>Imagen para compartir (<code>og:image</code>) en todas las páginas, título y descripción propios en las 4 soluciones (hoy solo tienen el nombre) y bajar a uno los H1 del home.</td><td><span class="tag info">Equipo web</span></td></tr>
             <tr><td>Contenido</td><td>Revisar la cifra de CO₂ de NFTree (aparecen dos valores), el hito de 2007 con “ISO 9001:2015” y el enlace “Ver la noticia” de NFTree, que apunta a WordPress.</td><td><span class="tag info">Marketing</span></td></tr>
             <tr><td>Accesibilidad</td><td>Botón visible de pausa para el título animado del hero (WCAG 2.2.2).</td><td><span class="tag info">Equipo web</span></td></tr>
@@ -1835,7 +1835,8 @@
       <div class="sec_head"><p class="eyebrow">17 · Registro de cambios</p><h2>Historial del acta</h2></div>
       <p>Cada cambio en el sitio o en sus conexiones se anota aquí y se refleja en la sección que corresponde.</p>
       <ol class="timeline">
-        <li class="is-key" style="--c: var(--orange)"><time datetime="2026-10-05">5 oct 2026 · v1.8</time><b>Efecto holográfico del blog con eje Z y puntos en las cifras del home.</b> A pedido, las tarjetas del blog usan ahora el mismo efecto de los Heads de área: el marco de vidrio queda quieto, la tarjeta se inclina y la foto sube en el eje Z con su sombra; se quitó el borde de colores del vidrio. Las tarjetas de cifras del inicio (+6.500 clientes y estudios actuariales) llevan la textura de puntos de “Lo que nos mueve”.</li>
+        <li class="is-key" style="--c: var(--orange)"><time datetime="2026-10-05">5 oct 2026 · v1.9</time><b>Heads de área con marco de vidrio y enlace a LinkedIn.</b> Las tarjetas de los Heads en Nosotros llevan el marco de vidrio y, al pasar el mouse, un enlace naranja “Visitar perfil” entre el nombre y el cargo que abre el LinkedIn en otra pestaña (en celular se ve siempre). Se cargaron en el CMS 11 de los 12 perfiles, tomados de la web anterior; falta el de María Beatriz Ibarra.</li>
+        <li style="--c: var(--orange)"><time datetime="2026-10-05">5 oct 2026 · v1.8</time><b>Efecto holográfico del blog con eje Z y puntos en las cifras del home.</b> A pedido, las tarjetas del blog usan ahora el mismo efecto de los Heads de área: el marco de vidrio queda quieto, la tarjeta se inclina y la foto sube en el eje Z con su sombra; se quitó el borde de colores del vidrio. Las tarjetas de cifras del inicio (+6.500 clientes y estudios actuariales) llevan la textura de puntos de “Lo que nos mueve”.</li>
         <li style="--c: var(--orange)"><time datetime="2026-10-05">5 oct 2026 · v1.7</time><b>Blog con tarjetas de vidrio y efecto holográfico.</b> Las tarjetas de <code>/blog</code> llevan el marco de vidrio de los testimonios y, con mouse, el efecto holográfico 3D. “Buscar” y “Cargar más artículos” pasaron de naranja a navy, como los demás llamados principales, con lupa y flecha. La caja del buscador creció de 360 a 384 px para que el ejemplo del campo se lea completo. Se renovaron las capturas del blog.</li>
         <li style="--c: var(--orange)"><time datetime="2026-10-05">5 oct 2026 · v1.6</time><b>Recomendaciones generales en lugar de la conformidad de entrega.</b> La hoja de firmas se reemplazó por buenas prácticas para publicar, medir, cuidar el SEO, los accesos y los respaldos, y por el aviso de que cada cambio en el sitio o en sus conexiones se registra en esta acta.</li>
         <li style="--c: var(--orange)"><time datetime="2026-10-05">5 oct 2026 · v1.5</time><b>Nuevo formato de acta</b>, con el acta de scornik.com como referencia: portada, ficha del proyecto, alcance y cifras, proceso, sistema visual, 22 capturas reales del sitio en marcos de navegador y celular, antes y ahora, galería, conformidad con firmas y versión en PDF. Se corrigió la fecha del lanzamiento: fue la noche del 1 de octubre de 2026 (hora de Ecuador).</li>
@@ -1890,7 +1891,7 @@
 </div>
 
 <footer class="pie">
-  <p>Actuaria Consultores · Área de Producto · Acta de Entrega de actuaria.com · v1.8 · 5 de octubre de 2026 · <a href="Acta-de-Entrega-actuaria.com.pdf" download>Descargar PDF</a></p>
+  <p>Actuaria Consultores · Área de Producto · Acta de Entrega de actuaria.com · v1.9 · 5 de octubre de 2026 · <a href="Acta-de-Entrega-actuaria.com.pdf" download>Descargar PDF</a></p>
 </footer>
 
 <script>
