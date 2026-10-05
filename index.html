@@ -485,7 +485,7 @@
     <div class="chipsx">
       <span class="chipx"><i class="fa-brands fa-figma" aria-hidden="true"></i>Figma</span><span class="chipx"><i class="fa-solid fa-cube" aria-hidden="true"></i>Webflow</span><span class="chipx"><i class="fa-solid fa-database" aria-hidden="true"></i>Webflow CMS</span><span class="chipx"><i class="fa-solid fa-tags" aria-hidden="true"></i>Google Tag Manager</span><span class="chipx"><i class="fa-solid fa-chart-pie" aria-hidden="true"></i>Google Analytics 4</span><span class="chipx"><i class="fa-solid fa-video" aria-hidden="true"></i>Microsoft Clarity</span><span class="chipx"><i class="fa-solid fa-cloud" aria-hidden="true"></i>Salesforce</span><span class="chipx"><i class="fa-brands fa-google" aria-hidden="true"></i>Apps Script</span><span class="chipx"><i class="fa-brands fa-github" aria-hidden="true"></i>GitHub Pages</span>
     </div>
-    <div class="cover_foot"><span>Versión del acta 1.12 · 5 de octubre de 2026</span><span>actuaria.com</span></div>
+    <div class="cover_foot"><span>Versión del acta 1.13 · 5 de octubre de 2026</span><span>actuaria.com</span></div>
   </div>
 </header>
 
@@ -672,7 +672,7 @@
         <li><strong>Plan de sitio pago, no Enterprise.</strong> Por eso las redirecciones, el robots.txt y el llms.txt se manejan desde el panel; sus API son solo para Enterprise.</li>
         <li><strong>Clases con Finsweet Client-First</strong> más variables de Webflow para colores y tamaños.</li>
         <li><strong>Lenguaje visual:</strong> neumorfismo sobre superficie clara (<code>#f3f6fc</code>), vidrio (glass) y bento. Navy <code>#151f47</code>, índigo <code>#4c64d9</code> y naranja <code>#df5e2d</code>. Tipografías de marca: Lemon Milk Pro en títulos, Nunito en subtítulos y Prompt en el texto.</li>
-        <li><strong>Iconos:</strong> Font Awesome 6 subido al sitio como fuente propia (4 familias, sin CDN). Se usa el glifo como texto con su <code>font-family</code>; nunca emojis.</li>
+        <li><strong>Iconos:</strong> Font Awesome 6 subido al sitio como fuente propia (4 familias, sin CDN). Se usa el glifo como texto con su <code>font-family</code>; nunca emojis. Todo botón de acción lleva ícono después del texto, en un span con <code>aria-hidden</code> (clases Text Span 3, Text Span 6 o <code>blog-hub_btn-icon</code>): asesoría, comentarios; enviar, avión de papel; agendar o reservar, calendario; descargar, archivo con flecha; inscribirse, usuario con más; volver al inicio, casa.</li>
         <li><strong>Referencia interna:</strong> <a href="https://actuaria.com/recursos/design-system" rel="noopener">/recursos/design-system</a> reúne los componentes del sistema visual.</li>
         <li><strong>Caché:</strong> Webflow sirve el sitio con Cloudflare. Después de publicar, verifica con <code class="nw">?nc=</code> al final de la URL.</li>
       </ul>
@@ -691,7 +691,7 @@
           </tbody>
         </table>
       </div>
-      <p>Las secciones de equipo, productos, proceso y preguntas frecuentes de las soluciones <strong>no</strong> son componentes: están copiadas en cada página y se editan una por una. Sus estilos sí son compartidos: el borde de vidrio del video del hero y de las tarjetas de productos, proceso, beneficios y puentes está en sus clases, así que un cambio de clase se ve en las 5 páginas.</p>
+      <p>Las secciones de equipo, productos, proceso y preguntas frecuentes de las soluciones <strong>no</strong> son componentes: están copiadas en cada página y se editan una por una. Sus estilos sí son compartidos: el borde de vidrio del video del hero y de las tarjetas de productos, proceso, beneficios y puentes está en sus clases, así que un cambio de clase se ve en las 5 páginas. En Beneficios Laborales y Estudio Actuarial, la tarjeta de actuaria+ muestra en el título el logo vectorial a color en lugar del texto: el enlace conserva su texto “actuaria+” para lectores de pantalla y la clase combinada <code>link is-aplus-logo</code> pone el logo como fondo.</p>
       <h3 id="paginas">Las 25 páginas</h3>
       <p>Las 25 páginas del sitio en Webflow. La columna “Código propio” indica si la página tiene CSS o JavaScript añadido por nosotros (detalle en <a href="#codigo">Código propio</a>).</p>
       <div class="tabla is-wide">
@@ -1486,6 +1486,8 @@
       <ul>
         <li><strong>Antispam:</strong> todos usan Turnstile, nativo de Webflow.</li>
         <li><strong>Mensajes de validación en español</strong>, aunque el navegador esté en otro idioma (4.º bloque del pie del sitio).</li>
+        <li><strong>Tipo de servicio preseleccionado:</strong> en las 5 páginas de soluciones, el formulario principal llega con la casilla de su servicio ya marcada, según la ruta de la página (7.º bloque del pie del sitio). La persona puede cambiarla; en Inicio, Contacto y los artículos no se marca ninguna.</li>
+        <li><strong>Botones de envío con ícono:</strong> el avión de papel va dentro del texto del botón, porque un <code>input</code> no admite un span, y cada botón lleva <code>aria-label</code> con su texto sin el ícono. No cambia los campos ni el envío.</li>
         <li><strong>Por qué Postulaciones no usa un webhook:</strong> el Google Workspace de Actuaria no permite publicar aplicaciones web abiertas, así que el script consulta la API en lugar de recibir avisos. El token que usa es de solo lectura de formularios y está guardado en las propiedades del script, nunca en el código.</li>
         <li><strong>Cambiar a quién llegan las postulaciones:</strong> en Apps Script, proyecto “Postulaciones actuaweb” → Configuración del proyecto → Propiedades del script → <code>RECIPIENT</code>. Hoy es <code>seleccion@actuaria.com</code>. No hace falta tocar el código, y el cambio aplica en el minuto siguiente.</li>
         <li><strong>Sin correos a quien llena un formulario:</strong> ni el formulario principal ni Postulaciones le escriben al visitante (los correos de Apps Script salían con la firma personal del dueño de la cuenta). En su lugar, cada uno lleva a su página de confirmación: <code>/gracias</code> y <code>/postulacion-recibida</code>.</li>
@@ -1514,27 +1516,27 @@
       <div class="chart">
         <p class="chart_title"><i class="fa-solid fa-chart-bar" aria-hidden="true"></i>Dónde se concentra el código propio (KB)</p>
         <div class="bars">
-          <div class="bar" style="--w:100%;--c:var(--navy)"><span class="bar_label">Pie del sitio</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">24,9</span></div>
-          <div class="bar" style="--w:72.3%"><span class="bar_label">Pie de Nosotros</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">18,0</span></div>
-          <div class="bar" style="--w:49.8%"><span class="bar_label">Pie de Inicio</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">12,4</span></div>
-          <div class="bar" style="--w:46.6%;--c:var(--navy)"><span class="bar_label">Head del sitio</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">11,6</span></div>
-          <div class="bar" style="--w:27.7%"><span class="bar_label">Pie del blog</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">6,9</span></div>
-          <div class="bar" style="--w:22.9%"><span class="bar_label">Head de Inicio</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">5,7</span></div>
-          <div class="bar" style="--w:21.3%"><span class="bar_label">Head de Nosotros</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">5,3</span></div>
-          <div class="bar" style="--w:19.3%"><span class="bar_label">Head de Calculadoras</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">4,8</span></div>
-          <div class="bar" style="--w:12.4%"><span class="bar_label">Head de Contacto</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">3,1</span></div>
-          <div class="bar" style="--w:6.0%"><span class="bar_label">Head de plantilla de post</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">1,5</span></div>
-          <div class="bar" style="--w:4.4%"><span class="bar_label">Pie de Design System</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">1,1</span></div>
-          <div class="bar" style="--w:2.8%"><span class="bar_label">Head del blog</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">0,7</span></div>
+          <div class="bar" style="--w:100%;--c:var(--navy)"><span class="bar_label">Pie del sitio</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">26,1</span></div>
+          <div class="bar" style="--w:69.0%"><span class="bar_label">Pie de Nosotros</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">18,0</span></div>
+          <div class="bar" style="--w:47.9%;--c:var(--navy)"><span class="bar_label">Head del sitio</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">12,5</span></div>
+          <div class="bar" style="--w:47.5%"><span class="bar_label">Pie de Inicio</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">12,4</span></div>
+          <div class="bar" style="--w:26.4%"><span class="bar_label">Pie del blog</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">6,9</span></div>
+          <div class="bar" style="--w:21.8%"><span class="bar_label">Head de Inicio</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">5,7</span></div>
+          <div class="bar" style="--w:20.3%"><span class="bar_label">Head de Nosotros</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">5,3</span></div>
+          <div class="bar" style="--w:18.4%"><span class="bar_label">Head de Calculadoras</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">4,8</span></div>
+          <div class="bar" style="--w:11.9%"><span class="bar_label">Head de Contacto</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">3,1</span></div>
+          <div class="bar" style="--w:5.7%"><span class="bar_label">Head de plantilla de post</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">1,5</span></div>
+          <div class="bar" style="--w:4.2%"><span class="bar_label">Pie de Design System</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">1,1</span></div>
+          <div class="bar" style="--w:2.7%"><span class="bar_label">Head del blog</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">0,7</span></div>
         </div>
         <ul class="legend">
-          <li><span class="sw" style="--c:var(--navy)"></span><span><b>Nivel sitio</b> · 36,5 KB, corre en todas las páginas</span></li>
+          <li><span class="sw" style="--c:var(--navy)"></span><span><b>Nivel sitio</b> · 38,6 KB, corre en todas las páginas</span></li>
           <li><span class="sw" style="--c:var(--indigo)"></span><span><b>Nivel página</b> · unos 61 KB repartidos en 11 páginas</span></li>
         </ul>
         <p class="chart_note">No incluye los scripts registrados ni los embeds. Bloques de menos de 0,5 KB (Coeficientes, CCPPE, Gracias, plantilla de equipo) omitidos.</p>
       </div>
 
-      <h3>Head del sitio · 11,6 KB · 7 bloques</h3>
+      <h3>Head del sitio · 12,5 KB · 8 bloques</h3>
       <div class="tabla">
         <table>
           <thead><tr><th>Bloque</th><th>Qué hace</th></tr></thead>
@@ -1546,11 +1548,12 @@
             <tr><td>Anclas del home</td><td>Margen para el menú fijo en <code>#soluciones</code> y <code>#form</code>.</td></tr>
             <tr><td>“Ver LinkedIn”</td><td>Oculta el botón cuando la persona no tiene LinkedIn cargado en el CMS (Webflow publica <code>href="#"</code>).</td></tr>
             <tr><td>Páginas de soluciones</td><td>Textura de puntos en las tarjetas de “Conoce nuestro proceso” y el enlace “Visitar perfil” del equipo, oculto hasta pasar el mouse (en celular se ve siempre).</td></tr>
+            <tr><td>Botones de envío con ícono</td><td>Pila de fuentes de los tres botones de envío (formulario principal, postulaciones y CCPPE): las letras salen en su fuente y el avión de papel, de Fa Solid 900.</td></tr>
           </tbody>
         </table>
       </div>
 
-      <h3>Pie del sitio · 24,9 KB · 6 bloques + 1 script registrado</h3>
+      <h3>Pie del sitio · 26,1 KB · 7 bloques + 1 script registrado</h3>
       <div class="tabla">
         <table>
           <thead><tr><th>Bloque</th><th>Qué hace</th></tr></thead>
@@ -1561,6 +1564,7 @@
             <tr><td>Validación en español</td><td>Los avisos de “campo obligatorio” o “correo inválido” salen en español aunque el navegador esté en otro idioma.</td></tr>
             <tr><td>Equipo holográfico</td><td>Tarjeta 3D con brillo al pasar el mouse en la sección de equipo de las 5 páginas de soluciones.</td></tr>
             <tr><td>Equipo: “Visitar perfil”</td><td>En las tarjetas con LinkedIn, el mismo efecto sube la foto y el nombre y baja el cargo para mostrar el enlace entre los dos. Le pone al enlace una etiqueta accesible con el nombre de la persona.</td></tr>
+            <tr><td>Servicio preseleccionado</td><td>En cada página de solución marca en el formulario la casilla de su servicio, según la ruta: Beneficios Laborales y Estudio Actuarial, Estudio Actuarial; Seguros y Medicina, Seguros y Salud; Riesgos y Finanzas, la suya; Análisis de Datos, Data Analytics.</td></tr>
             <tr><td>ActuariaFlipbook 1.0.1</td><td class="wrap">Script registrado desde GitHub Pages, con hash de integridad (SRI). Abre cualquier enlace a un <code>.pdf</code> en el visor propio con efecto de libro, en vez de descargarlo.</td></tr>
           </tbody>
         </table>
@@ -1752,6 +1756,8 @@
             <tr><td>Equipo holográfico</td><td>El efecto está en dos copias: pie del sitio (soluciones) y pie de Nosotros. Cada una tiene su bloque del enlace “Visitar perfil” (v5) y su CSS de reposo en la cabecera. Son el mismo código con distinto selector: si cambias el giro, la foto o el enlace en una, cambia la otra.</td></tr>
             <tr><td>Tarjeta holográfica del blog</td><td>Es el efecto de Nosotros adaptado, en el pie de la página Blog: el marco de vidrio (<code>.blog-hub_item</code>) queda quieto y gira la tarjeta de adentro. Para que la foto suba en el eje Z, la tarjeta no puede llevar <code>overflow: hidden</code> (aplana el 3D), así que la foto recorta sus propias esquinas. Si cambias el efecto de Nosotros, revisa también este.</td></tr>
             <tr><td>Vidrio y máscaras</td><td>Una <code>mask-image</code> en un elemento padre anula el <code>backdrop-filter</code> del vidrio.</td></tr>
+            <tr><td>Ícono en botones de envío</td><td>Un <code>input</code> de envío no admite un span: el ícono va dentro del texto del botón y la cabecera del sitio le da la pila de fuentes. Si cambias la fuente de ese botón en el Designer, cámbiala también en la cabecera, o el ícono sale como un cuadrado vacío.</td></tr>
+            <tr><td>Servicio preseleccionado</td><td>El script del pie marca la casilla según la ruta de la página. Si renombras una página de solución o agregas otra, actualiza la lista <code>SERVICIO</code> del 7.º bloque del pie.</td></tr>
             <tr><td>Clarity duplicado</td><td>Solo graba el primer proyecto que carga. Un segundo snippet no suma: anula.</td></tr>
             <tr><td>Caché</td><td>Cloudflare (Webflow), GitHub Pages (unos 10 min) y gtm.js (unos 15 min). Verifica siempre sin caché.</td></tr>
           </tbody>
@@ -1837,7 +1843,8 @@
       <div class="sec_head"><p class="eyebrow">17 · Registro de cambios</p><h2>Historial del acta</h2></div>
       <p>Cada cambio en el sitio o en sus conexiones se anota aquí y se refleja en la sección que corresponde.</p>
       <ol class="timeline">
-        <li class="is-key" style="--c: var(--orange)"><time datetime="2026-10-05">5 oct 2026 · v1.12</time><b>Páginas de soluciones con vidrio, puntos y LinkedIn del equipo.</b> En las 5 soluciones, el video del hero lleva un borde de vidrio de 12 px y las tarjetas de productos, proceso, beneficios y puentes uno de 8 px, puesto en sus clases. Las tarjetas de “Conoce nuestro proceso” llevan la textura de puntos arriba a la derecha. Las del equipo tienen el marco de vidrio y, al pasar el mouse, “Visitar perfil” entre el nombre y el cargo, como los Heads de área (en celular se ve siempre). Se cargaron del respaldo los LinkedIn de Esteban Vargas, José Luis Bedón, Rodrigo Ibarra y José Ibarra; así las 3 tarjetas de Liderazgo muestran “Ver LinkedIn”, que ahora abre en otra pestaña. Falta el de Martín Carrión. Se renovaron las capturas de Beneficios Laborales y de Liderazgo.</li>
+        <li class="is-key" style="--c: var(--orange)"><time datetime="2026-10-05">5 oct 2026 · v1.13</time><b>Logo de actuaria+, íconos en todos los botones y servicio preseleccionado.</b> En Beneficios Laborales y Estudio Actuarial, el título “Accede a todo desde actuaria+” muestra el logo vectorial a color. Todos los botones de acción del sitio llevan ícono de Font Awesome; se agregó en 32 botones, contando una sola vez el del formulario compartido: “Solicita asesoría especializada” en las 5 soluciones, el blog, Nosotros y los artículos; los botones de envío de los tres formularios; “Agendar sesión ejecutiva”; “Volver al inicio”, y los de CCPPE, ODS, brandbook y Design System. El formulario de cada solución llega con su tipo de servicio marcado. Se renovaron las capturas de Beneficios, los formularios del inicio y de postulaciones, y la confirmación de postulación.</li>
+        <li style="--c: var(--orange)"><time datetime="2026-10-05">5 oct 2026 · v1.12</time><b>Páginas de soluciones con vidrio, puntos y LinkedIn del equipo.</b> En las 5 soluciones, el video del hero lleva un borde de vidrio de 12 px y las tarjetas de productos, proceso, beneficios y puentes uno de 8 px, puesto en sus clases. Las tarjetas de “Conoce nuestro proceso” llevan la textura de puntos arriba a la derecha. Las del equipo tienen el marco de vidrio y, al pasar el mouse, “Visitar perfil” entre el nombre y el cargo, como los Heads de área (en celular se ve siempre). Se cargaron del respaldo los LinkedIn de Esteban Vargas, José Luis Bedón, Rodrigo Ibarra y José Ibarra; así las 3 tarjetas de Liderazgo muestran “Ver LinkedIn”, que ahora abre en otra pestaña. Falta el de Martín Carrión. Se renovaron las capturas de Beneficios Laborales y de Liderazgo.</li>
         <li style="--c: var(--orange)"><time datetime="2026-10-05">5 oct 2026 · v1.11</time><b>Frase final de “Nuestra historia”.</b> “Naveguemos juntos hacia nuevos objetivos” quedó 2 px más chica y más cerca del velero: a 40 px en escritorio (antes 64) y a 34 px en celular (antes 52).</li>
         <li style="--c: var(--orange)"><time datetime="2026-10-05">5 oct 2026 · v1.10</time><b>LinkedIn de María Beatriz Ibarra.</b> Se cargó su perfil en el CMS: los 12 Heads de área ya muestran “Visitar perfil”.</li>
         <li style="--c: var(--orange)"><time datetime="2026-10-05">5 oct 2026 · v1.9</time><b>Heads de área con marco de vidrio y enlace a LinkedIn.</b> Las tarjetas de los Heads en Nosotros llevan el marco de vidrio y, al pasar el mouse, un enlace naranja “Visitar perfil” entre el nombre y el cargo que abre el LinkedIn en otra pestaña (en celular se ve siempre). Se cargaron en el CMS 11 de los 12 perfiles, tomados de la web anterior; falta el de María Beatriz Ibarra.</li>
@@ -1896,7 +1903,7 @@
 </div>
 
 <footer class="pie">
-  <p>Actuaria Consultores · Área de Producto · Acta de Entrega de actuaria.com · v1.12 · 5 de octubre de 2026 · <a href="Acta-de-Entrega-actuaria.com.pdf" download>Descargar PDF</a></p>
+  <p>Actuaria Consultores · Área de Producto · Acta de Entrega de actuaria.com · v1.13 · 5 de octubre de 2026 · <a href="Acta-de-Entrega-actuaria.com.pdf" download>Descargar PDF</a></p>
 </footer>
 
 <script>
