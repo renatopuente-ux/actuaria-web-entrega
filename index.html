@@ -485,7 +485,7 @@
     <div class="chipsx">
       <span class="chipx"><i class="fa-brands fa-figma" aria-hidden="true"></i>Figma</span><span class="chipx"><i class="fa-solid fa-cube" aria-hidden="true"></i>Webflow</span><span class="chipx"><i class="fa-solid fa-database" aria-hidden="true"></i>Webflow CMS</span><span class="chipx"><i class="fa-solid fa-tags" aria-hidden="true"></i>Google Tag Manager</span><span class="chipx"><i class="fa-solid fa-chart-pie" aria-hidden="true"></i>Google Analytics 4</span><span class="chipx"><i class="fa-solid fa-video" aria-hidden="true"></i>Microsoft Clarity</span><span class="chipx"><i class="fa-solid fa-cloud" aria-hidden="true"></i>Salesforce</span><span class="chipx"><i class="fa-brands fa-google" aria-hidden="true"></i>Apps Script</span><span class="chipx"><i class="fa-brands fa-github" aria-hidden="true"></i>GitHub Pages</span>
     </div>
-    <div class="cover_foot"><span>Versión del acta 1.7 · 5 de octubre de 2026</span><span>actuaria.com</span></div>
+    <div class="cover_foot"><span>Versión del acta 1.8 · 5 de octubre de 2026</span><span>actuaria.com</span></div>
   </div>
 </header>
 
@@ -763,7 +763,7 @@
       </div>
       <h3 id="blog">El blog: Radar Actuarial</h3>
       <p>El hub <code>/blog</code> lista los artículos de la colección Blog Posts, y cada uno se abre en la plantilla <code>/post/&lt;slug&gt;</code>. Los dos se apoyan en scripts registrados (ver <a href="#codigo">Código propio</a>).</p>
-      <p>Cada tarjeta del hub lleva el marco de vidrio de los testimonios. Con mouse, se inclina siguiendo el puntero, proyecta su sombra y un brillo tornasol recorre la foto y el borde del vidrio; en celular y con “reducir movimiento” queda quieta. Los botones <strong>Buscar</strong> y <strong>Cargar más artículos</strong> son navy, como los demás llamados principales, con lupa y flecha.</p>
+      <p>Cada tarjeta del hub lleva el marco de vidrio de los testimonios. Con mouse, el marco queda quieto y la tarjeta se inclina siguiendo el puntero, como las de los Heads de área de Nosotros: la foto sube en el eje Z con un filo blanco y su sombra, el texto queda en capas más bajas y un brillo tornasol recorre la foto. En celular y con “reducir movimiento” queda quieta. Los botones <strong>Buscar</strong> y <strong>Cargar más artículos</strong> son navy, como los demás llamados principales, con lupa y flecha.</p>
       <h3>Cómo se migró</h3>
       <ul>
         <li><strong>Un primer intento por CSV</strong> desde la API de WordPress conservó el texto, pero perdió imágenes, tablas, listas y enlaces.</li>
@@ -1518,9 +1518,9 @@
           <div class="bar" style="--w:67.1%"><span class="bar_label">Pie de Nosotros</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">14,5</span></div>
           <div class="bar" style="--w:57.4%"><span class="bar_label">Pie de Inicio</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">12,4</span></div>
           <div class="bar" style="--w:43.1%;--c:var(--navy)"><span class="bar_label">Head del sitio</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">9,3</span></div>
-          <div class="bar" style="--w:24.1%"><span class="bar_label">Pie del blog</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">5,2</span></div>
+          <div class="bar" style="--w:31.9%"><span class="bar_label">Pie del blog</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">6,9</span></div>
+          <div class="bar" style="--w:26.4%"><span class="bar_label">Head de Inicio</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">5,7</span></div>
           <div class="bar" style="--w:22.2%"><span class="bar_label">Head de Calculadoras</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">4,8</span></div>
-          <div class="bar" style="--w:21.8%"><span class="bar_label">Head de Inicio</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">4,7</span></div>
           <div class="bar" style="--w:18.5%"><span class="bar_label">Head de Nosotros</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">4,0</span></div>
           <div class="bar" style="--w:14.4%"><span class="bar_label">Head de Contacto</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">3,1</span></div>
           <div class="bar" style="--w:6.9%"><span class="bar_label">Head de plantilla de post</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">1,5</span></div>
@@ -1529,7 +1529,7 @@
         </div>
         <ul class="legend">
           <li><span class="sw" style="--c:var(--navy)"></span><span><b>Nivel sitio</b> · 30,9 KB, corre en todas las páginas</span></li>
-          <li><span class="sw" style="--c:var(--indigo)"></span><span><b>Nivel página</b> · unos 53 KB repartidos en 11 páginas</span></li>
+          <li><span class="sw" style="--c:var(--indigo)"></span><span><b>Nivel página</b> · unos 56 KB repartidos en 11 páginas</span></li>
         </ul>
         <p class="chart_note">No incluye los scripts registrados ni los embeds. Bloques de menos de 0,5 KB (Coeficientes, CCPPE, Gracias, plantilla de equipo) omitidos.</p>
       </div>
@@ -1569,14 +1569,14 @@
         <table>
           <thead><tr><th>Página</th><th>Dónde</th><th>Qué hace</th></tr></thead>
           <tbody>
-            <tr><td>Inicio</td><td>head 4,7 KB</td><td>CSS de Swiper (desde GitHub Pages), carruseles de logos de clientes (48 s por vuelta), marquee de credenciales y alineación de las 4 tarjetas de soluciones.</td></tr>
+            <tr><td>Inicio</td><td>head 5,7 KB</td><td>CSS de Swiper (desde GitHub Pages), carruseles de logos de clientes (48 s por vuelta), marquee de credenciales, alineación de las 4 tarjetas de soluciones y textura de puntos en las tarjetas de cifras (+6.500 clientes y estudios actuariales), la misma de “Lo que nos mueve”.</td></tr>
             <tr><td>Inicio</td><td>pie 12,4 KB</td><td>Swiper y el slider de Weblocks (GitHub Pages) para los carruseles del blog; contador “en vivo” de estudios actuariales tipo odómetro; conteo hasta +6.500 clientes; H1 del hero con efecto de escritura en bucle.</td></tr>
             <tr><td>Nosotros</td><td>head 4,0 KB</td><td>Tarjetas que giran del equipo de Liderazgo (con la “Trayectoria” del CMS al reverso), tipografía del cierre, tarjetas de Propósito, Visión y Valores con vidrio y puntos, y vidrio en “Impulsa tu carrera”.</td></tr>
             <tr><td>Nosotros</td><td>pie 14,5 KB</td><td>Tarjeta holográfica de “Heads de área” y los íconos con entrada en escena de “Nuestra historia”.</td></tr>
             <tr><td>Contacto</td><td>head 3,1 KB</td><td>Ajustes de la instancia del componente de formulario y la textura de fondo (el body de esta página no tiene la clase que la pone).</td></tr>
             <tr><td>Calculadoras</td><td>head 4,8 KB</td><td>Textura de fondo y el menú de entrada con dos tarjetas que llevan con scroll suave a <code>#beneficios-post-empleo</code> y <code>#ahorros-impuestos</code>.</td></tr>
             <tr><td>Blog</td><td>head 0,7 KB + embed</td><td>Textura de fondo, ajuste del chip y el radar animado junto al título (HtmlEmbed, navy y naranja, quieto con “reducir movimiento”).</td></tr>
-            <tr><td>Blog</td><td>pie 5,2 KB</td><td>Tarjeta holográfica de los artículos: con mouse, cada tarjeta y su marco de vidrio se inclinan con el puntero, con sombra y brillo tornasol en la foto y el borde. Variante del efecto de Nosotros: gira menos y no acerca la foto.</td></tr>
+            <tr><td>Blog</td><td>pie 6,9 KB</td><td>Tarjeta holográfica de los artículos, con eje Z como los Heads de área de Nosotros: con mouse, la tarjeta se inclina dentro de su marco de vidrio, la foto sube con su sombra y el texto queda en capas más bajas.</td></tr>
             <tr><td>Plantilla de post</td><td>head 1,5 KB</td><td>Textura de fondo y estilos del texto enriquecido que el panel no expone.</td></tr>
             <tr><td>Coeficientes JP-AM99</td><td>head 0,3 KB + embed</td><td>Textura de fondo y el selector de año (HtmlEmbed) que abre cada tabla en el visor o la descarga. La lista de PDF está en el propio embed (<code>COEF_PDFS</code>).</td></tr>
             <tr><td>Nosotros</td><td>embed</td><td>Desplegable de “Área de interés” del formulario de postulaciones.</td></tr>
@@ -1748,7 +1748,7 @@
             <tr><td>Nivel de un encabezado</td><td>Cambiar un título de H1 a H6 cambia su interlineado. Fija tamaño, interlineado y márgenes en la clase antes de cambiar el nivel.</td></tr>
             <tr><td>Videos</td><td>Webflow quita <code>loop</code> y <code>muted</code> del video al publicar. El script <code>bridgevideos</code> los vuelve a poner.</td></tr>
             <tr><td>Equipo holográfico</td><td>El efecto está en dos copias: pie del sitio y pie de Nosotros. Si ajustas una, ajusta la otra.</td></tr>
-            <tr><td>Tarjeta holográfica del blog</td><td>Es una variante del mismo efecto, en el pie de la página Blog (sobre <code>.blog-hub_item</code>). Gira menos y no acerca la foto, porque muchas miniaturas traen texto pegado al borde. Si cambias el efecto de Nosotros, revisa también este.</td></tr>
+            <tr><td>Tarjeta holográfica del blog</td><td>Es el efecto de Nosotros adaptado, en el pie de la página Blog: el marco de vidrio (<code>.blog-hub_item</code>) queda quieto y gira la tarjeta de adentro. Para que la foto suba en el eje Z, la tarjeta no puede llevar <code>overflow: hidden</code> (aplana el 3D), así que la foto recorta sus propias esquinas. Si cambias el efecto de Nosotros, revisa también este.</td></tr>
             <tr><td>Vidrio y máscaras</td><td>Una <code>mask-image</code> en un elemento padre anula el <code>backdrop-filter</code> del vidrio.</td></tr>
             <tr><td>Clarity duplicado</td><td>Solo graba el primer proyecto que carga. Un segundo snippet no suma: anula.</td></tr>
             <tr><td>Caché</td><td>Cloudflare (Webflow), GitHub Pages (unos 10 min) y gtm.js (unos 15 min). Verifica siempre sin caché.</td></tr>
@@ -1835,7 +1835,8 @@
       <div class="sec_head"><p class="eyebrow">17 · Registro de cambios</p><h2>Historial del acta</h2></div>
       <p>Cada cambio en el sitio o en sus conexiones se anota aquí y se refleja en la sección que corresponde.</p>
       <ol class="timeline">
-        <li class="is-key" style="--c: var(--orange)"><time datetime="2026-10-05">5 oct 2026 · v1.7</time><b>Blog con tarjetas de vidrio y efecto holográfico.</b> Las tarjetas de <code>/blog</code> llevan el marco de vidrio de los testimonios y, con mouse, el efecto holográfico 3D. “Buscar” y “Cargar más artículos” pasaron de naranja a navy, como los demás llamados principales, con lupa y flecha. La caja del buscador creció de 360 a 384 px para que el ejemplo del campo se lea completo. Se renovaron las capturas del blog.</li>
+        <li class="is-key" style="--c: var(--orange)"><time datetime="2026-10-05">5 oct 2026 · v1.8</time><b>Efecto holográfico del blog con eje Z y puntos en las cifras del home.</b> A pedido, las tarjetas del blog usan ahora el mismo efecto de los Heads de área: el marco de vidrio queda quieto, la tarjeta se inclina y la foto sube en el eje Z con su sombra; se quitó el borde de colores del vidrio. Las tarjetas de cifras del inicio (+6.500 clientes y estudios actuariales) llevan la textura de puntos de “Lo que nos mueve”.</li>
+        <li style="--c: var(--orange)"><time datetime="2026-10-05">5 oct 2026 · v1.7</time><b>Blog con tarjetas de vidrio y efecto holográfico.</b> Las tarjetas de <code>/blog</code> llevan el marco de vidrio de los testimonios y, con mouse, el efecto holográfico 3D. “Buscar” y “Cargar más artículos” pasaron de naranja a navy, como los demás llamados principales, con lupa y flecha. La caja del buscador creció de 360 a 384 px para que el ejemplo del campo se lea completo. Se renovaron las capturas del blog.</li>
         <li style="--c: var(--orange)"><time datetime="2026-10-05">5 oct 2026 · v1.6</time><b>Recomendaciones generales en lugar de la conformidad de entrega.</b> La hoja de firmas se reemplazó por buenas prácticas para publicar, medir, cuidar el SEO, los accesos y los respaldos, y por el aviso de que cada cambio en el sitio o en sus conexiones se registra en esta acta.</li>
         <li style="--c: var(--orange)"><time datetime="2026-10-05">5 oct 2026 · v1.5</time><b>Nuevo formato de acta</b>, con el acta de scornik.com como referencia: portada, ficha del proyecto, alcance y cifras, proceso, sistema visual, 22 capturas reales del sitio en marcos de navegador y celular, antes y ahora, galería, conformidad con firmas y versión en PDF. Se corrigió la fecha del lanzamiento: fue la noche del 1 de octubre de 2026 (hora de Ecuador).</li>
         <li style="--c: var(--orange)"><time datetime="2026-10-03">3 oct 2026 · v1.4</time><b>El documento pasa a llamarse Acta de Entrega</b> (el enlace no cambia). Se agrega “Rescate SEO de la web anterior”: el criterio de las redirecciones, un gráfico por tipo y la lista completa de las 317 reglas, con buscador y descarga en CSV.</li>
@@ -1889,7 +1890,7 @@
 </div>
 
 <footer class="pie">
-  <p>Actuaria Consultores · Área de Producto · Acta de Entrega de actuaria.com · v1.7 · 5 de octubre de 2026 · <a href="Acta-de-Entrega-actuaria.com.pdf" download>Descargar PDF</a></p>
+  <p>Actuaria Consultores · Área de Producto · Acta de Entrega de actuaria.com · v1.8 · 5 de octubre de 2026 · <a href="Acta-de-Entrega-actuaria.com.pdf" download>Descargar PDF</a></p>
 </footer>
 
 <script>
