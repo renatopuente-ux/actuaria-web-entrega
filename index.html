@@ -41,6 +41,7 @@
   a { color: var(--blue); text-decoration-thickness: 1px; text-underline-offset: 3px; }
   a:hover { color: var(--indigo); }
   code { font-family: var(--mono); font-size: .84em; background: rgba(21, 31, 71, .06); border-radius: 6px; padding: .1em .4em; overflow-wrap: anywhere; }
+  code.nw { white-space: nowrap; overflow-wrap: normal; }
   h1, h2, h3, h4 { margin: 0; color: var(--navy); line-height: 1.2; font-family: var(--f-sub); }
   p { margin: 0 0 12px; }
   ul, ol { margin: 0 0 12px; padding-left: 22px; }
@@ -448,6 +449,7 @@
     .card, .kpi, .scope_card, .chart, .aa_card, .firma, .rules li, .ruta, .chain_node, .arq_node, .timeline li, .deps { border: 1px solid rgba(21, 31, 71, .1); }
     .browser { border: 1px solid rgba(21, 31, 71, .14); }
     figure, .card, .kpi, .scope_card, .chart, .check, .ficha_item, .proceso li, .rules li, .chain, .arq_row, .timeline li, tr, .firmas, .aa_card, .swatch, .type_spec { break-inside: avoid; }
+    .timeline li { padding: 9px 14px; margin-bottom: 9px; font-size: 13.5px; }
     h2, h3, .eyebrow { break-after: avoid; }
     .tabla { overflow: visible; }
     .tabla.is-wide table { min-width: 0; }
@@ -483,7 +485,7 @@
     <div class="chipsx">
       <span class="chipx"><i class="fa-brands fa-figma" aria-hidden="true"></i>Figma</span><span class="chipx"><i class="fa-solid fa-cube" aria-hidden="true"></i>Webflow</span><span class="chipx"><i class="fa-solid fa-database" aria-hidden="true"></i>Webflow CMS</span><span class="chipx"><i class="fa-solid fa-tags" aria-hidden="true"></i>Google Tag Manager</span><span class="chipx"><i class="fa-solid fa-chart-pie" aria-hidden="true"></i>Google Analytics 4</span><span class="chipx"><i class="fa-solid fa-video" aria-hidden="true"></i>Microsoft Clarity</span><span class="chipx"><i class="fa-solid fa-cloud" aria-hidden="true"></i>Salesforce</span><span class="chipx"><i class="fa-brands fa-google" aria-hidden="true"></i>Apps Script</span><span class="chipx"><i class="fa-brands fa-github" aria-hidden="true"></i>GitHub Pages</span>
     </div>
-    <div class="cover_foot"><span>Versión del acta 1.5 · 5 de octubre de 2026</span><span>actuaria.com</span></div>
+    <div class="cover_foot"><span>Versión del acta 1.6 · 5 de octubre de 2026</span><span>actuaria.com</span></div>
   </div>
 </header>
 
@@ -508,7 +510,7 @@
       <li><a href="#mantenimiento">Administración</a></li>
       <li><a href="#pendientes">Pendientes</a></li>
       <li><a href="#cambios">Registro de cambios</a></li>
-      <li><a href="#conformidad">Conformidad</a></li>
+      <li><a href="#recomendaciones">Recomendaciones</a></li>
     </ol>
   </nav>
 
@@ -539,7 +541,7 @@
       </div>
       <h3>Cinco reglas para no romper nada</h3>
       <ol class="rules">
-        <li><b class="n">1</b><div><strong>Publica siempre en los tres dominios</strong> (actuaria.com, www y staging) y comprueba el cambio en vivo abriendo la página con <code>?nc=1</code> al final, que salta la caché.</div></li>
+        <li><b class="n">1</b><div><strong>Publica siempre en los tres dominios</strong> (actuaria.com, www y staging) y comprueba el cambio en vivo abriendo la página con <code class="nw">?nc=1</code> al final, que salta la caché.</div></li>
         <li><b class="n">2</b><div><strong>No toques el webhook del formulario principal</strong>, ni los nombres de sus campos, ni los tokens de API de Webflow: de eso depende que los leads lleguen a Salesforce.</div></li>
         <li><b class="n">3</b><div><strong>No canceles SiteGround.</strong> Ahí están la zona DNS del dominio, unos 20 subdominios que siguen en uso y el WordPress de respaldo para volver atrás.</div></li>
         <li><b class="n">4</b><div><strong>Un solo contenedor de GTM y un solo proyecto de Clarity por página.</strong> Clarity graba solo el primer proyecto que carga; un segundo contenedor duplica las conversiones.</div></li>
@@ -564,7 +566,7 @@
         <a href="#mantenimiento"><b>15</b><span>Administración</span></a>
         <a href="#pendientes"><b>16</b><span>Pendientes</span></a>
         <a href="#cambios"><b>17</b><span>Registro de cambios</span></a>
-        <a href="#conformidad"><b>18</b><span>Conformidad</span></a>
+        <a href="#recomendaciones"><b>18</b><span>Recomendaciones</span></a>
       </nav>
       <div class="sheet_foot"><span>Área de Producto · Actuaria Consultores</span><span><b>01</b> / 18</span></div>
     </section>
@@ -672,7 +674,7 @@
         <li><strong>Lenguaje visual:</strong> neumorfismo sobre superficie clara (<code>#f3f6fc</code>), vidrio (glass) y bento. Navy <code>#151f47</code>, índigo <code>#4c64d9</code> y naranja <code>#df5e2d</code>. Tipografías de marca: Lemon Milk Pro en títulos, Nunito en subtítulos y Prompt en el texto.</li>
         <li><strong>Iconos:</strong> Font Awesome 6 subido al sitio como fuente propia (4 familias, sin CDN). Se usa el glifo como texto con su <code>font-family</code>; nunca emojis.</li>
         <li><strong>Referencia interna:</strong> <a href="https://actuaria.com/recursos/design-system" rel="noopener">/recursos/design-system</a> reúne los componentes del sistema visual.</li>
-        <li><strong>Caché:</strong> Webflow sirve el sitio con Cloudflare. Después de publicar, verifica con <code>?nc=</code> al final de la URL.</li>
+        <li><strong>Caché:</strong> Webflow sirve el sitio con Cloudflare. Después de publicar, verifica con <code class="nw">?nc=</code> al final de la URL.</li>
       </ul>
       <h3>Componentes compartidos</h3>
       <p>Si cambias un componente, cambia en todas las páginas que lo usan.</p>
@@ -1701,7 +1703,7 @@
         <div class="chain_arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
         <div class="chain_node is-core"><b><i class="fa-solid fa-rocket" aria-hidden="true"></i>3 · Publicar</b>En los tres dominios: actuaria.com, www y staging.</div>
         <div class="chain_arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
-        <div class="chain_node" style="--c:var(--blue)"><b><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>4 · Verificar</b>Abre la URL con <code>?nc=1</code> y revísala en escritorio y en celular.</div>
+        <div class="chain_node" style="--c:var(--blue)"><b><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>4 · Verificar</b>Abre la URL con <code class="nw">?nc=1</code> y revísala en escritorio y en celular.</div>
       </div>
       <p>Webflow publica el sitio entero, no solo la página que editaste: antes de publicar, revisa que no quede nada a medias en otras páginas.</p>
       <h3>Tareas frecuentes</h3>
@@ -1829,7 +1831,8 @@
       <div class="sec_head"><p class="eyebrow">17 · Registro de cambios</p><h2>Historial del acta</h2></div>
       <p>Cada cambio en el sitio o en sus conexiones se anota aquí y se refleja en la sección que corresponde.</p>
       <ol class="timeline">
-        <li class="is-key" style="--c: var(--orange)"><time datetime="2026-10-05">5 oct 2026 · v1.5</time><b>Nuevo formato de acta</b>, con el acta de scornik.com como referencia: portada, ficha del proyecto, alcance y cifras, proceso, sistema visual, 22 capturas reales del sitio en marcos de navegador y celular, antes y ahora, galería, conformidad con firmas y versión en PDF. Se corrigió la fecha del lanzamiento: fue la noche del 1 de octubre de 2026 (hora de Ecuador).</li>
+        <li class="is-key" style="--c: var(--orange)"><time datetime="2026-10-05">5 oct 2026 · v1.6</time><b>Recomendaciones generales en lugar de la conformidad de entrega.</b> La hoja de firmas se reemplazó por buenas prácticas para publicar, medir, cuidar el SEO, los accesos y los respaldos, y por el aviso de que cada cambio en el sitio o en sus conexiones se registra en esta acta.</li>
+        <li style="--c: var(--orange)"><time datetime="2026-10-05">5 oct 2026 · v1.5</time><b>Nuevo formato de acta</b>, con el acta de scornik.com como referencia: portada, ficha del proyecto, alcance y cifras, proceso, sistema visual, 22 capturas reales del sitio en marcos de navegador y celular, antes y ahora, galería, conformidad con firmas y versión en PDF. Se corrigió la fecha del lanzamiento: fue la noche del 1 de octubre de 2026 (hora de Ecuador).</li>
         <li style="--c: var(--orange)"><time datetime="2026-10-03">3 oct 2026 · v1.4</time><b>El documento pasa a llamarse Acta de Entrega</b> (el enlace no cambia). Se agrega “Rescate SEO de la web anterior”: el criterio de las redirecciones, un gráfico por tipo y la lista completa de las 317 reglas, con buscador y descarga en CSV.</li>
         <li style="--c: var(--orange)"><time datetime="2026-10-03">3 oct 2026 · v1.3</time><b>Postulaciones sin correo al postulante y con página de confirmación.</b> Se quitó la confirmación por correo (script v3.3); ahora el formulario lleva a la página nueva <code>/postulacion-recibida</code>, con botón para volver al inicio. Se reenvió a seleccion@ la única postulación real que había llegado a la casilla de pruebas; las dos pruebas internas no se reenviaron. Tipografía del documento alineada con el brandbook: Lemon Milk Pro en títulos, Nunito en subtítulos y Prompt en el texto.</li>
         <li style="--c: var(--orange)"><time datetime="2026-10-03">3 oct 2026 · v1.2</time><b>Postulaciones a seleccion@actuaria.com.</b> El aviso de cada postulación llegaba a la casilla de pruebas de una persona. Se cambió la propiedad <code>RECIPIENT</code> del script y se verificó: el valor quedó guardado y el activador sigue corriendo cada minuto sin errores.</li>
@@ -1840,26 +1843,38 @@
     </section>
 
     <!-- 18 -->
-    <section class="sec" id="conformidad">
+    <section class="sec" id="recomendaciones">
       <div class="sheet_head"><img src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a70bbec17f7fc765c2ea5d9_logo-actuaria.svg" alt="Actuaria" width="120" height="25"><span>Acta de Entrega · actuaria.com</span></div>
-      <div class="sec_head"><p class="eyebrow">18 · Conformidad</p><h2>Conformidad de entrega</h2></div>
-      <p class="sec_intro">Con la firma de esta acta, ambas partes dejan constancia de que el sitio web actuaria.com se entregó en producción con los elementos descritos en este documento.</p>
-      <h3>Elementos entregados</h3>
-      <div class="checks">
-        <div class="check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><div><b>Sistema visual y design system en Webflow</b></div></div>
-        <div class="check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><div><b>25 páginas responsive en Webflow</b></div></div>
-        <div class="check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><div><b>CMS del blog (274 artículos) y del equipo (37 personas)</b></div></div>
-        <div class="check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><div><b>Migración del blog desde el respaldo de WordPress</b></div></div>
-        <div class="check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><div><b>317 redirecciones 301 y rescate SEO</b></div></div>
-        <div class="check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><div><b>Dominio apuntado a Webflow, correo intacto</b></div></div>
-        <div class="check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><div><b>Medición propia: GTM, GA4, Clarity y Ads</b></div></div>
-        <div class="check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><div><b>Leads a Salesforce y postulaciones a Selección</b></div></div>
-        <div class="check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><div><b>Funcionalidades propias documentadas</b></div></div>
-        <div class="check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><div><b>Esta acta con evidencias y guía de mantenimiento</b></div></div>
+      <div class="sec_head"><p class="eyebrow">18 · Recomendaciones</p><h2>Recomendaciones generales</h2></div>
+      <p class="sec_intro">Para que el sitio siga ordenado, medible y seguro después de la entrega, estas son las prácticas que conviene mantener en el día a día.</p>
+      <div class="note is-ok"><i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i><div><p><strong>Esta acta se mantiene al día con cada cambio.</strong> Cada cambio que se haga en el sitio o en sus conexiones se registra aquí de forma automática, como parte del mismo trabajo: se actualiza la sección que corresponda, se anota en el <a href="#cambios">Registro de cambios</a> con su fecha y versión, y se vuelven a publicar esta página y su PDF.</p></div></div>
+      <div class="chain" role="img" aria-label="Flujo: cambio en el sitio, sección del acta actualizada, registro de cambios con fecha y versión, web y PDF republicados.">
+        <div class="chain_node"><b><i class="fa-solid fa-pen-ruler" aria-hidden="true"></i>Cambio en el sitio</b>En Webflow, la medición, los formularios o el dominio.</div>
+        <div class="chain_arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+        <div class="chain_node"><b><i class="fa-solid fa-file-pen" aria-hidden="true"></i>Acta actualizada</b>La sección que corresponda refleja el estado nuevo.</div>
+        <div class="chain_arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+        <div class="chain_node"><b><i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i>Registro de cambios</b>Una entrada con fecha, versión y qué cambió.</div>
+        <div class="chain_arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+        <div class="chain_node is-core"><b><i class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i>Web y PDF publicados</b>El mismo enlace, siempre con la versión vigente.</div>
       </div>
-      <div class="firmas">
-        <div class="firma"><span class="ficha_label">Entregado por</span><div class="firma_linea"></div><b>Renato Puente</b><span>Área de Producto · Actuaria Consultores</span></div>
-        <div class="firma"><span class="ficha_label">Recibido por · Actuaria Consultores</span><div class="firma_linea"></div><span>Nombre</span><span>Cargo</span><span>Fecha</span></div>
+      <h3>Buenas prácticas</h3>
+      <div class="scope">
+        <div class="scope_card"><h4><span class="ico"><i class="fa-solid fa-route" aria-hidden="true"></i></span>Un solo canal de cambios</h4><p>Los cambios de la agencia, de TI o de cualquier área pasan por el Área de Producto. Así quedan registrados en esta acta y nadie pisa el trabajo de otro.</p></div>
+        <div class="scope_card"><h4><span class="ico"><i class="fa-solid fa-rocket" aria-hidden="true"></i></span>Publicación</h4><p>Publica siempre en actuaria.com, www y staging, y revisa el cambio en vivo con <code class="nw">?nc=1</code> en escritorio y celular. Lo que toque código, formularios o redirecciones se prueba antes en el staging.</p></div>
+        <div class="scope_card"><h4><span class="ico"><i class="fa-solid fa-user-shield" aria-hidden="true"></i></span>Accesos y seguridad</h4><p>Cada persona entra con su propio usuario y el rol mínimo que necesita. Revisa los accesos cada trimestre, quita los de quienes ya no participan y nunca compartas contraseñas ni tokens.</p></div>
+        <div class="scope_card"><h4><span class="ico"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></span>Medición</h4><p>Toda etiqueta nueva va dentro de Tag Manager, con un nombre claro y publicada como versión. Revisa cada semana que lleguen las conversiones de formulario, WhatsApp y llamada.</p></div>
+        <div class="scope_card"><h4><span class="ico"><i class="fa-solid fa-magnifying-glass-chart" aria-hidden="true"></i></span>SEO</h4><p>No cambies la ruta de una página o un artículo publicado sin crear su redirección 301. Mantén las 317 reglas al menos un año y revisa Search Console cada mes: cobertura, errores 404 y búsquedas.</p></div>
+        <div class="scope_card"><h4><span class="ico"><i class="fa-solid fa-newspaper" aria-hidden="true"></i></span>Contenido</h4><p>Cada artículo nuevo va con categoría, gancho, imagen principal y fecha. Mantén el equipo al día en el CMS: fotos, cargos y LinkedIn reales.</p></div>
+        <div class="scope_card"><h4><span class="ico"><i class="fa-solid fa-universal-access" aria-hidden="true"></i></span>Imágenes y accesibilidad</h4><p>Sube imágenes livianas (WebP) con texto alternativo, cuida el contraste del texto y evita animaciones que no se puedan pausar.</p></div>
+        <div class="scope_card"><h4><span class="ico"><i class="fa-solid fa-box-archive" aria-hidden="true"></i></span>Respaldos</h4><p>Antes de importar redirecciones, exporta las vigentes. Guarda el respaldo de WordPress fuera de la PC y una copia de cada bloque de código propio en su carpeta.</p></div>
+        <div class="scope_card"><h4><span class="ico"><i class="fa-solid fa-plug" aria-hidden="true"></i></span>Servicios y renovaciones</h4><p>Renueva a tiempo el plan de Webflow y el dominio, y no canceles SiteGround. Si GitHub Pages o shinyapps.io cambian de cuenta o de dirección, actualiza sus enlaces en Webflow.</p></div>
+      </div>
+      <h3>Antes de cada cambio grande</h3>
+      <div class="checks">
+        <div class="check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><div><b>Revisa los pendientes</b><span>La sección <a href="#pendientes">Pendientes</a> puede tener algo relacionado.</span></div></div>
+        <div class="check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><div><b>Lee las trampas conocidas</b><span>Están en <a href="#mantenimiento">Cómo administrar y mantener</a>.</span></div></div>
+        <div class="check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><div><b>Avisa a la agencia</b><span>Si el cambio afecta campañas, formularios o conversiones.</span></div></div>
+        <div class="check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><div><b>Confirma el registro</b><span>Que el cambio aparezca en el <a href="#cambios">Registro de cambios</a> de esta acta.</span></div></div>
       </div>
       <p class="chart_note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Las cifras, registros DNS y capturas de esta acta se tomaron del sitio en producción entre el 2 y el 5 de octubre de 2026 y se pueden comprobar en actuaria.com.</p>
       <div class="sheet_foot"><span>Área de Producto · Actuaria Consultores</span><span><b>18</b> / 18</span></div>
@@ -1869,7 +1884,7 @@
 </div>
 
 <footer class="pie">
-  <p>Actuaria Consultores · Área de Producto · Acta de Entrega de actuaria.com · v1.5 · 5 de octubre de 2026 · <a href="Acta-de-Entrega-actuaria.com.pdf" download>Descargar PDF</a></p>
+  <p>Actuaria Consultores · Área de Producto · Acta de Entrega de actuaria.com · v1.6 · 5 de octubre de 2026 · <a href="Acta-de-Entrega-actuaria.com.pdf" download>Descargar PDF</a></p>
 </footer>
 
 <script>
