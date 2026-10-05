@@ -1,6 +1,6 @@
 # Acta de Entrega de actuaria.com
 
-Acta de Entrega de la web de Actuaria Consultores en Webflow: infraestructura, dominio, cuentas, medición, formularios, código propio, scripts y pendientes. Se lanzó la noche del 1 de octubre de 2026 y se actualiza con cada cambio del sitio (ver "Registro de cambios").
+Acta de Entrega de la web de Actuaria Consultores en Webflow: infraestructura, dominio, cuentas, medición, formularios, código propio, scripts y pendientes. Se lanzó la noche del 1 de octubre de 2026. El acta se actualiza una vez al día, a las 5 de la tarde, con los cambios del día. El historial detallado de cambios lo lleva internamente el Área de Producto.
 
 **Léelo aquí:** https://renatopuente-ux.github.io/actuaria-web-entrega/
 
