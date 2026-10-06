@@ -858,6 +858,32 @@
           <ul class="aa_list"><li><i class="fa-solid fa-cube" aria-hidden="true"></i><span>Diseño, CMS y hosting en una sola plataforma</span></li><li><i class="fa-solid fa-link" aria-hidden="true"></i><span>Artículos en <code>/post/slug</code>, con 301 desde la ruta vieja</span></li><li><i class="fa-solid fa-chart-line" aria-hidden="true"></i><span>Medición en cuentas propias de Actuaria</span></li><li><i class="fa-solid fa-file-pdf" aria-hidden="true"></i><span>Visor de PDF propio en todo el sitio</span></li></ul></div>
       </div>
       <p class="chart_note">«Antes»: captura de actuaria.com en Internet Archive (agosto de 2026). «Ahora»: sitio en producción el 5 de octubre de 2026.</p>
+      <h3 id="por-que-webflow">Por qué dejamos WordPress</h3>
+      <p>Estos eran los problemas del día a día con el sitio en WordPress, y así quedan en Webflow.</p>
+      <div class="tabla is-wide">
+        <table>
+          <thead><tr><th>Tema</th><th>Con WordPress</th><th>Con Webflow</th></tr></thead>
+          <tbody>
+            <tr><td>Estabilidad</td><td>Bugs constantes y páginas que se rompían con frecuencia. Varias veces el equipo de SEO encontró el sitio roto, con el costo que eso tiene en posicionamiento.</td><td>No hay plugins, temas ni actualizaciones que instalar: la plataforma la mantiene Webflow. Cada cambio se revisa primero en staging (<code>actuaweb.webflow.io</code>) y, después de publicarlo, se verifica en vivo.</td></tr>
+            <tr><td>Plugins y licencias</td><td>Una pieza para cada función: Elementor para el diseño, DearFlip para los PDF, All-in-One WP Migration para los respaldos. Cada plugin tenía su licencia, sus actualizaciones y sus límites, y las opciones avanzadas se pagaban aparte. Por ejemplo, restaurar el respaldo completo exige la extensión de pago Unlimited.</td><td>Diseño, CMS, formularios, hosting y HTTPS en una sola plataforma y un solo plan. Lo que faltaba se hizo como código propio, documentado en esta acta; por ejemplo, el visor de PDF que reemplazó a DearFlip.</td></tr>
+            <tr><td>Código y caché</td><td>Bloques de código que chocaban entre sí. Para que la página volviera a verse bien había que vaciar la caché desde el panel del hosting.</td><td>Cada bloque de código tiene nombre, un comentario que explica qué hace y su fuente guardada en el workspace del Área de Producto. Los scripts llevan versión. Al publicar, Webflow renueva su caché sin intervención manual.</td></tr>
+            <tr><td>Velocidad de los cambios</td><td>Cada cambio pasaba por la agencia y tardaba en subirse.</td><td>El Área de Producto edita y publica: artículos y textos desde el CMS, diseño desde el Designer. Un cambio llega a actuaria.com en minutos.</td></tr>
+            <tr><td>Diseño consistente</td><td>Cada página de soluciones tenía su propio estilo.</td><td>Las soluciones comparten una estructura y un mismo sistema de clases (Client-First), con los colores y la tipografía de la marca como variables. El menú, el pie y el formulario son componentes: se cambian una vez y se actualizan en todas las páginas.</td></tr>
+            <tr><td>SEO</td><td>Dependía de otro plugin, RankMath. Al migrar apareció un artículo que mostraba en Google la descripción de otro. Y cuando una página se rompía, el posicionamiento lo pagaba.</td><td>Título, descripción y vista previa para redes de cada página se editan desde el panel. En los artículos, la descripción sale del propio resumen del CMS. El sitemap se genera solo y las 317 redirecciones 301 son nativas (ver <a href="#seo">SEO</a>).</td></tr>
+            <tr><td>Mantenimiento y seguridad</td><td>Núcleo, tema y plugins por actualizar, cada actualización con riesgo de romper algo, y un panel de administración expuesto en internet.</td><td>Hosting gestionado, con HTTPS y CDN incluidos. No hay panel de WordPress ni plugins que parchar, y Webflow guarda respaldos automáticos del sitio.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note is-info">
+        <i class="fa-solid fa-scale-balanced" aria-hidden="true"></i>
+        <div><p><strong>Lo que Webflow pide a cambio:</strong></p>
+          <ul>
+            <li>un plan de pago anual;</li>
+            <li>algunos límites conocidos: una lista del CMS muestra hasta 100 artículos y el código personalizado tiene un tope de caracteres;</li>
+            <li>alguien que maneje el Designer para los cambios de estructura.</li>
+          </ul>
+          <p>Los detalles están en <a href="#mantenimiento">Cómo administrar y mantener</a> y en <a href="#pendientes">Pendientes</a>.</p></div>
+      </div>
       <h3>Cómo quedó conectado el dominio</h3>
       <div class="chain"><div class="chain_node"><b><i class="fa-solid fa-user" aria-hidden="true"></i>Visitante</b>Escribe actuaria.com</div><div class="chain_arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div><div class="chain_node"><b><i class="fa-solid fa-globe" aria-hidden="true"></i>DNS en SiteGround</b>A 198.202.211.1 · www → cdn.webflow.com</div><div class="chain_arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div><div class="chain_node is-core"><b><i class="fa-solid fa-cube" aria-hidden="true"></i>Webflow</b>CDN, HTTPS y sitio publicado</div></div>
       <div class="chain"><div class="chain_node"><b><i class="fa-solid fa-envelope" aria-hidden="true"></i>Correo entrante</b>@actuaria.com</div><div class="chain_arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div><div class="chain_node"><b><i class="fa-solid fa-server" aria-hidden="true"></i>Registro MX</b>aspmx.l.google.com</div><div class="chain_arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div><div class="chain_node is-core"><b><i class="fa-brands fa-google" aria-hidden="true"></i>Google Workspace</b>Sin cambios con la migración</div></div>
