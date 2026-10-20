@@ -546,6 +546,16 @@
         <li><b class="n">4</b><div><strong>Un solo contenedor de GTM y un solo proyecto de Clarity por página.</strong> Clarity graba solo el primer proyecto que carga; un segundo contenedor duplica las conversiones.</div></li>
         <li><b class="n">5</b><div><strong>Antes de agregar un script a todo el sitio</strong>, prueba las páginas con piezas nativas de Webflow: pestañas de las calculadoras, sliders, formularios y menús. Un script global ya rompió una vez las pestañas.</div></li>
       </ol>
+      <h3>Qué cambió desde el 7 de octubre (v1.18)</h3>
+      <ul class="lista">
+        <li><strong>8 de octubre.</strong> Textos de Seguros y Medicina, Contacto, Calculadoras y Nosotros; certificado ISO/IEC 27001:2022 renovado en todo el sitio; dos páginas de términos y condiciones recreadas; íconos y textura en las tarjetas de pasos, Holo 3D en las tarjetas puente, aro en todos los botones azules, logo y enlace de Ankla, la política de privacidad abierta en el visor de PDF.</li>
+        <li><strong>12 de octubre.</strong> Sitio bilingüe: /en en producción con selector de banderas en el menú, 296 URL en inglés en el sitemap con hreflang, frases del hero en inglés y dos artículos traducidos. Vidrio «liquid glass» en la CTA y los marcos del inicio.</li>
+        <li><strong>13 y 14 de octubre.</strong> Vidrio con transparencia real y canto en degradado; logos de clientes en los testimonios; isotipo 3D en el hero de Nosotros; primera revisión de Clarity y ajustes de la plantilla de artículo; marca «actuaria+» unificada.</li>
+        <li><strong>15 y 16 de octubre.</strong> Optimización de carga: preloader del inicio, imágenes GIF a WebP, videos bajo demanda, Nunito y Prompt autohospedadas con precarga y textura de fondo en SVG (de 281 KB a 19 KB). Lighthouse de escritorio: de 12,4 MB a 4,1 MB y LCP de 8,8 s a 5,1 s.</li>
+        <li><strong>19 de octubre.</strong> Familia de bordes de vidrio unificada (Glass Base, Glass Tornasol y Glass CTA) en el inicio, las soluciones y Nosotros; análisis de Clarity del fin de semana.</li>
+        <li><strong>20 de octubre.</strong> El Área de Producto pasa a propietaria verificada de Search Console; 39 redirecciones nuevas para las 404 que Google y Clarity aún pedían (356 en total, verificadas 356 de 356); sitemap antiguo de WordPress retirado de Search Console; tres eventos clave marcados en el GA4 de Actuaria.</li>
+      </ul>
+      <p class="chart_note">Las cifras de código de la sección 12 reflejan el estado del 7 de octubre; al 20 de octubre la cabecera del sitio pesa 31,3 KB (13 bloques) y el pie 46,2 KB (12 bloques). El detalle por cambio vive en el registro interno del Área de Producto.</p>
       <h3>Contenido</h3>
       <nav class="indice" aria-label="Contenido del acta">
         <a href="#resumen"><b>01</b><span>Resumen</span></a>
@@ -576,10 +586,10 @@
       <p class="sec_intro">Cubrí el proyecto de punta a punta: desde el sistema visual hasta que el dominio quedó apuntando al sitio nuevo, los leads llegando a Salesforce y la medición en cuentas propias.</p>
       <div class="scope">
         <div class="scope_card"><h4><span class="ico"><i class="fa-solid fa-palette" aria-hidden="true"></i></span>Sistema visual</h4><p>Llevé la marca a un sistema web: neumorfismo sobre superficie clara, vidrio y bento, con colores y tipografías como variables.</p></div>
-        <div class="scope_card"><h4><span class="ico"><i class="fa-solid fa-cube" aria-hidden="true"></i></span>Desarrollo en Webflow</h4><p>25 páginas responsive con Client-First, componentes compartidos y código propio documentado.</p></div>
+        <div class="scope_card"><h4><span class="ico"><i class="fa-solid fa-cube" aria-hidden="true"></i></span>Desarrollo en Webflow</h4><p>27 páginas responsive con Client-First, componentes compartidos y código propio documentado; desde el 12 de octubre también en inglés (/en).</p></div>
         <div class="scope_card"><h4><span class="ico"><i class="fa-solid fa-database" aria-hidden="true"></i></span>CMS: blog y equipo</h4><p>Colecciones Blog Posts (275 artículos) y Equipos (37 personas), administrables sin tocar el diseño.</p></div>
         <div class="scope_card"><h4><span class="ico"><i class="fa-solid fa-file-import" aria-hidden="true"></i></span>Migración del blog</h4><p>Los artículos salieron del respaldo de WordPress con su texto, formato y categorías.</p></div>
-        <div class="scope_card"><h4><span class="ico"><i class="fa-solid fa-magnifying-glass-chart" aria-hidden="true"></i></span>Rescate SEO</h4><p>317 redirecciones 301, sitemap, robots y llms.txt para conservar el posicionamiento ganado.</p></div>
+        <div class="scope_card"><h4><span class="ico"><i class="fa-solid fa-magnifying-glass-chart" aria-hidden="true"></i></span>Rescate SEO</h4><p>356 redirecciones 301 (317 al lanzar y 39 el 20 de octubre), sitemap bilingüe con hreflang, robots y llms.txt para conservar el posicionamiento ganado.</p></div>
         <div class="scope_card"><h4><span class="ico"><i class="fa-solid fa-globe" aria-hidden="true"></i></span>Dominio y DNS</h4><p>Apunté actuaria.com a Webflow en SiteGround sin tocar el correo ni los subdominios.</p></div>
         <div class="scope_card"><h4><span class="ico"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></span>Medición propia</h4><p>Tag Manager, GA4, Clarity y conversiones de Google Ads en cuentas de Actuaria.</p></div>
         <div class="scope_card"><h4><span class="ico"><i class="fa-solid fa-envelope-open-text" aria-hidden="true"></i></span>Formularios</h4><p>Leads a Salesforce por webhook; postulaciones a Selección con Apps Script y página de confirmación.</p></div>
@@ -587,16 +597,16 @@
       </div>
       <h3>El sitio en cifras</h3>
       <div class="kpis">
-        <div class="kpi"><i class="fa-solid fa-file-lines" aria-hidden="true"></i><b>25</b><span>páginas en Webflow</span></div>
+        <div class="kpi"><i class="fa-solid fa-file-lines" aria-hidden="true"></i><b>27</b><span>páginas en Webflow, en español e inglés</span></div>
         <div class="kpi"><i class="fa-solid fa-newspaper" aria-hidden="true"></i><b>275</b><span>artículos del blog</span></div>
         <div class="kpi"><i class="fa-solid fa-people-group" aria-hidden="true"></i><b>37</b><span>personas en el CMS</span></div>
-        <div class="kpi"><i class="fa-solid fa-route" aria-hidden="true"></i><b>317</b><span>redirecciones 301</span></div>
-        <div class="kpi"><i class="fa-solid fa-sitemap" aria-hidden="true"></i><b>292</b><span>URLs en el sitemap</span></div>
+        <div class="kpi"><i class="fa-solid fa-route" aria-hidden="true"></i><b>356</b><span>redirecciones 301</span></div>
+        <div class="kpi"><i class="fa-solid fa-sitemap" aria-hidden="true"></i><b>592</b><span>URLs en el sitemap (296 por idioma)</span></div>
         <div class="kpi"><i class="fa-solid fa-calculator" aria-hidden="true"></i><b>12</b><span>calculadoras en línea</span></div>
         <div class="kpi"><i class="fa-solid fa-puzzle-piece" aria-hidden="true"></i><b>6</b><span>componentes compartidos</span></div>
         <div class="kpi"><i class="fa-solid fa-code-branch" aria-hidden="true"></i><b>4</b><span>repos de GitHub Pages en uso</span></div>
       </div>
-      <p class="chart_note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Datos tomados del sitio en producción, su sitemap.xml y la API de Webflow entre el 2 y el 7 de octubre de 2026.</p>
+      <p class="chart_note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Datos tomados del sitio en producción, su sitemap.xml y la API de Webflow entre el 2 y el 20 de octubre de 2026.</p>
       <div class="sheet_foot"><span>Área de Producto · Actuaria Consultores</span><span><b>02</b> / 17</span></div>
     </section>
 
@@ -870,7 +880,7 @@
             <tr><td>Código y caché</td><td>Bloques de código que chocaban entre sí. Para que la página volviera a verse bien había que vaciar la caché desde el panel del hosting.</td><td>Cada bloque de código tiene nombre, un comentario que explica qué hace y su fuente guardada en el workspace del Área de Producto. Los scripts llevan versión. Al publicar, Webflow renueva su caché sin intervención manual.</td></tr>
             <tr><td>Velocidad de los cambios</td><td>Cada cambio pasaba por la agencia y tardaba en subirse.</td><td>El Área de Producto edita y publica: artículos y textos desde el CMS, diseño desde el Designer. Un cambio llega a actuaria.com en minutos.</td></tr>
             <tr><td>Diseño consistente</td><td>Cada página de soluciones tenía su propio estilo.</td><td>Las soluciones comparten una estructura y un mismo sistema de clases (Client-First), con los colores y la tipografía de la marca como variables. El menú, el pie y el formulario son componentes: se cambian una vez y se actualizan en todas las páginas.</td></tr>
-            <tr><td>SEO</td><td>Dependía de otro plugin, RankMath. Al migrar apareció un artículo que mostraba en Google la descripción de otro. Y cuando una página se rompía, el posicionamiento lo pagaba.</td><td>Título, descripción y vista previa para redes de cada página se editan desde el panel. En los artículos, la descripción sale del propio resumen del CMS. El sitemap se genera solo y las 317 redirecciones 301 son nativas (ver <a href="#seo">SEO</a>).</td></tr>
+            <tr><td>SEO</td><td>Dependía de otro plugin, RankMath. Al migrar apareció un artículo que mostraba en Google la descripción de otro. Y cuando una página se rompía, el posicionamiento lo pagaba.</td><td>Título, descripción y vista previa para redes de cada página se editan desde el panel. En los artículos, la descripción sale del propio resumen del CMS. El sitemap se genera solo y las 356 redirecciones 301 son nativas (ver <a href="#seo">SEO</a>).</td></tr>
             <tr><td>Mantenimiento y seguridad</td><td>Núcleo, tema y plugins por actualizar, cada actualización con riesgo de romper algo, y un panel de administración expuesto en internet.</td><td>Hosting gestionado, con HTTPS y CDN incluidos. No hay panel de WordPress ni plugins que parchar, y Webflow guarda respaldos automáticos del sitio.</td></tr>
           </tbody>
         </table>
@@ -923,7 +933,7 @@
       <p class="sec_intro">Cambiar de plataforma es el momento en que más se arriesga el posicionamiento. Por eso cada URL vieja tiene su destino y el sitio nuevo arrancó con una base técnica más completa que la del WordPress anterior.</p>
       <h3>Base técnica verificada en producción</h3>
       <div class="checks">
-        <div class="check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><div><b>293 URLs en el sitemap</b><span>275 artículos y 18 páginas, generado por Webflow</span></div></div>
+        <div class="check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><div><b>592 URLs en el sitemap</b><span>296 en español y 296 en inglés (276 artículos y 20 páginas por idioma), con hreflang; generado por Webflow</span></div></div>
         <div class="check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><div><b>robots.txt abierto</b><span>Declara el sitemap y no bloquea nada</span></div></div>
         <div class="check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><div><b>Idioma declarado</b><span>lang="es-EC" en el sitio</span></div></div>
         <div class="check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><div><b>Canónica en cada página</b><span>La portada apunta a https://actuaria.com</span></div></div>
@@ -931,12 +941,14 @@
         <div class="check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><div><b>HSTS activo</b><span>max-age de un año</span></div></div>
         <div class="check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><div><b>Certificado SSL</b><span>Google Trust Services; Webflow lo renueva solo</span></div></div>
         <div class="check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><div><b>www a la raíz</b><span>www.actuaria.com redirige con 301</span></div></div>
-        <div class="check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><div><b>317 redirecciones 301</b><span>Verificadas: llegan al destino exacto</span></div></div>
+        <div class="check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><div><b>356 redirecciones 301</b><span>Verificadas una por una: 317 el 1 de octubre y 39 más el 20</span></div></div>
         <div class="check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><div><b>llms.txt</b><span>Guía para asistentes de IA con 21 enlaces</span></div></div>
         <div class="check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><div><b>Datos estructurados</b><span>Organization, LocalBusiness, Blog y Article</span></div></div>
-        <div class="check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><div><b>Search Console</b><span>Propiedad verificada y sitemap enviado</span></div></div>
+        <div class="check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><div><b>Search Console</b><span>Sitemap enviado el 2 de octubre; propietario verificado desde el 20</span></div></div>
       </div>
-      <p class="chart_note">Revisión directa de actuaria.com el 5 de octubre de 2026.</p>
+      <p class="chart_note">Revisión directa de actuaria.com el 5 de octubre de 2026; redirecciones, sitemap y Search Console revisados de nuevo el 20 de octubre.</p>
+      <h3>Qué pasó con el orgánico tras el cambio (Search Console, 20 de octubre)</h3>
+      <p>La primera semana en Webflow (2 al 8 de octubre) tuvo 59,0 clics por día en la Búsqueda de Google, el mismo nivel que septiembre (59,4). Entre el 9 y el 18 hubo un bache (22,9 clics por día) concentrado en un solo artículo, «Cálculo de pensiones del IESS», que trae el 47 % de los clics del sitio: Google retiró su URL vieja al procesar la redirección y tardó nueve días en mostrar la nueva, que está indexada y conserva todo su contenido. El 19 de octubre el artículo volvía a tener 1.406 impresiones con su posición media anterior (5,8). La página del Estudio Actuarial conserva su posición (6,0 a 6,7) con 1,7 clics orgánicos por día en septiembre y 1,1 en octubre. El tráfico orgánico venía bajando desde junio (−23 %, −9 % y −10 % mensual), antes del cambio de plataforma; la base técnica está en orden y el frente es el contenido.</p>
       <h3>Antes y ahora</h3>
       <div class="tabla is-wide">
         <table>
@@ -954,32 +966,34 @@
         <div class="chart">
           <p class="chart_title"><i class="fa-solid fa-sitemap" aria-hidden="true"></i>Qué hay en el sitemap</p>
           <div class="donut_wrap">
-            <svg class="donut" viewBox="0 0 120 120" role="img" aria-label="293 URLs: 275 artículos del blog y 18 páginas">
+            <svg class="donut" viewBox="0 0 120 120" role="img" aria-label="592 URLs: 552 artículos del blog y 40 páginas, en español e inglés">
               <circle cx="60" cy="60" r="46" fill="none" stroke="#df5e2d" stroke-width="16"/>
-              <circle cx="60" cy="60" r="46" fill="none" stroke="#151f47" stroke-width="16" stroke-dasharray="271.27 289.03" transform="rotate(-90 60 60)"/>
-              <text class="donut_num" x="60" y="58" text-anchor="middle" font-size="19" fill="#151f47">293</text>
+              <circle cx="60" cy="60" r="46" fill="none" stroke="#151f47" stroke-width="16" stroke-dasharray="269.50 289.03" transform="rotate(-90 60 60)"/>
+              <text class="donut_num" x="60" y="58" text-anchor="middle" font-size="19" fill="#151f47">592</text>
               <text x="60" y="74" text-anchor="middle" font-size="9.5" font-weight="700" fill="rgba(21,31,71,.6)">URLs</text>
             </svg>
             <ul class="legend">
-              <li><span class="sw" style="--c:var(--navy)"></span><span><b>275</b> artículos del blog (94 %)</span></li>
-              <li><span class="sw" style="--c:var(--orange)"></span><span><b>18</b> páginas (6 %)</span></li>
+              <li><span class="sw" style="--c:var(--navy)"></span><span><b>552</b> artículos del blog, 276 por idioma (93 %)</span></li>
+              <li><span class="sw" style="--c:var(--orange)"></span><span><b>40</b> páginas, 20 por idioma (7 %)</span></li>
               <li><span class="sw" style="--c:rgba(21,31,71,.15)"></span><span>Fuera a propósito: <code>/gracias</code>, <code>/404</code> y las fichas de equipo. <code>/postulacion-recibida</code> tiene <code>noindex</code> pero todavía figura (ver pendientes)</span></li>
             </ul>
           </div>
         </div>
         <div class="chart">
-          <p class="chart_title"><i class="fa-solid fa-route" aria-hidden="true"></i>Cómo se llegó a 317 redirecciones</p>
-          <div class="stack" role="img" aria-label="317 redirecciones: 287 del 17 de septiembre, 2 del portal, 1 de un post nuevo y 27 del lanzamiento">
-            <span class="stack_seg" style="--w:90.5%;--c:var(--navy)">287</span>
+          <p class="chart_title"><i class="fa-solid fa-route" aria-hidden="true"></i>Cómo se llegó a 356 redirecciones</p>
+          <div class="stack" role="img" aria-label="356 redirecciones: 287 del 17 de septiembre, 2 del portal, 1 de un post nuevo, 27 del lanzamiento y 39 del 20 de octubre">
+            <span class="stack_seg" style="--w:80.6%;--c:var(--navy)">287</span>
             <span class="stack_seg" style="--w:0.6%;--c:var(--blue)"></span>
             <span class="stack_seg" style="--w:0.3%;--c:var(--indigo)"></span>
-            <span class="stack_seg" style="--w:8.5%;--c:var(--orange)"></span>
+            <span class="stack_seg" style="--w:7.6%;--c:var(--orange)"></span>
+            <span class="stack_seg" style="--w:11%;--c:#7ec0e5">39</span>
           </div>
           <ul class="legend">
             <li><span class="sw" style="--c:var(--navy)"></span><span><b>287</b> base (17 sep)</span></li>
             <li><span class="sw" style="--c:var(--blue)"></span><span><b>2</b> logins del portal</span></li>
             <li><span class="sw" style="--c:var(--indigo)"></span><span><b>1</b> post nuevo (30 sep)</span></li>
             <li><span class="sw" style="--c:var(--orange)"></span><span><b>27</b> del lanzamiento (1 oct)</span></li>
+            <li><span class="sw" style="--c:#7ec0e5"></span><span><b>39</b> del 20 de octubre: 404 que Google y Clarity aún pedían</span></li>
           </ul>
           <p class="chart_note">Las 27 del lanzamiento: 12 páginas de documentos del pie, 9 PDF de <code>/wp-content/</code>, 3 páginas del menú de WordPress, 2 accesos a dashboards y el comodín de paginación del blog.</p>
         </div>
@@ -991,7 +1005,7 @@
             <tr><td><a href="https://actuaria.com/sitemap.xml" rel="noopener">sitemap.xml</a></td><td>Lo genera Webflow solo: 293 URLs, de las cuales 275 son artículos <code>/post/…</code>. Enviado a Search Console.</td></tr>
             <tr><td><a href="https://actuaria.com/robots.txt" rel="noopener">robots.txt</a></td><td>Solo declara el sitemap; no bloquea nada.</td></tr>
             <tr><td><a href="https://actuaria.com/llms.txt" rel="noopener">llms.txt</a></td><td>Guía del sitio para asistentes de IA con 21 enlaces, todos verificados con respuesta 200. Se sube en Webflow → SEO → LLMs.txt; la fuente está en <code>lanzamiento-dominio/llms.txt</code>.</td></tr>
-            <tr><td>Redirecciones 301</td><td>317 reglas de las URLs de WordPress a las nuevas, cargadas en Webflow (ajustes → Publicación → redirecciones 301). La lista completa está en <a href="#rescate-seo">Rescate SEO de la web anterior</a>.</td></tr>
+            <tr><td>Redirecciones 301</td><td>356 reglas de las URLs de WordPress a las nuevas, cargadas en Webflow (ajustes → Publicación → redirecciones 301). La lista completa está en <a href="#rescate-seo">Rescate SEO de la web anterior</a>.</td></tr>
             <tr><td>Fuera de Google</td><td><code>/gracias</code>, <code>/postulacion-recibida</code> y las fichas <code>/equipo/&lt;slug&gt;</code> llevan <code>noindex</code>.</td></tr>
             <tr><td>Títulos y descripciones</td><td>Cada página tiene su título y meta descripción en Webflow. Los posts los toman del CMS (nombre y gancho).</td></tr>
           </tbody>
@@ -1000,7 +1014,7 @@
       <h3>Redirecciones 301</h3>
       <ul>
         <li><strong>Solo <code>/</code> y <code>/nosotros</code> conservaron su ruta.</strong> Los artículos pasaron de <code>/slug</code> a <code>/post/slug</code>, con dos saltos porque Webflow primero quita la barra final.</li>
-        <li><strong>Las 317 reglas</strong> cubren los posts, las páginas de WordPress, los PDF de <code>/wp-content/</code> (ahora en el CDN de Webflow) y los accesos viejos a dashboards, que van a plus.actuaria.com.</li>
+        <li><strong>Las 356 reglas</strong> cubren los posts, las páginas de WordPress, los PDF de <code>/wp-content/</code> (ahora en el CDN de Webflow) y los accesos viejos a dashboards, que van a plus.actuaria.com.</li>
         <li><strong>Al final van los comodines:</strong> <code>/category</code>, <code>/tag</code>, <code>/author</code>, <code>/page</code> y <code>/feed</code> llevan a <code>/blog</code>.</li>
         <li><strong>Las rutas distinguen mayúsculas y minúsculas.</strong> En el origen, los caracteres especiales se escapan con <code>%</code>.</li>
         <li><strong>Se generan</strong> con <code>seo-redirecciones/generar-csv-webflow.ps1</code>, que produce un CSV de 2 columnas sin cabecera ni BOM, y <strong>se validan</strong> con <code>validar-import.mjs</code> antes de importar.</li>
@@ -1020,22 +1034,22 @@
         <li><strong>Prioridad por nivel:</strong> antes del lanzamiento, una auditoría SEO marcó las URLs con más clics y conversiones (niveles A y B). Esas se verificaron una por una: que redirijan, a qué destino, en cuántos saltos y con qué H1 y contenido.</li>
       </ul>
       <div class="chart">
-        <p class="chart_title"><i class="fa-solid fa-route" aria-hidden="true"></i>Las 317 redirecciones por tipo</p>
+        <p class="chart_title"><i class="fa-solid fa-route" aria-hidden="true"></i>Las 356 redirecciones por tipo</p>
         <div class="bars">
-          <div class="bar" style="--w:100%;--c:var(--navy)"><span class="bar_label">Artículos del blog</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">274</span></div>
-          <div class="bar" style="--w:8.4%;--c:var(--orange)"><span class="bar_label">Documentos y PDF</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">23</span></div>
-          <div class="bar" style="--w:2.6%;--c:var(--indigo)"><span class="bar_label">Páginas</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">7</span></div>
-          <div class="bar" style="--w:2.6%;--c:var(--blue)"><span class="bar_label">Comodines (categorías, etiquetas, feeds)</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">7</span></div>
-          <div class="bar" style="--w:1.8%;--c:#6b7bbf"><span class="bar_label">Accesos y funciones de WordPress</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">5</span></div>
-          <div class="bar" style="--w:0.4%;--c:#e0a43a"><span class="bar_label">Excepción a la portada</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">1</span></div>
+          <div class="bar" style="--w:100%;--c:var(--navy)"><span class="bar_label">Artículos del blog</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">294</span></div>
+          <div class="bar" style="--w:7.8%;--c:var(--orange)"><span class="bar_label">Documentos y PDF</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">23</span></div>
+          <div class="bar" style="--w:8.5%;--c:var(--indigo)"><span class="bar_label">Páginas</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">25</span></div>
+          <div class="bar" style="--w:2.7%;--c:var(--blue)"><span class="bar_label">Comodines (categorías, etiquetas, feeds y /es/)</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">8</span></div>
+          <div class="bar" style="--w:1.7%;--c:#6b7bbf"><span class="bar_label">Accesos y funciones de WordPress</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">5</span></div>
+          <div class="bar" style="--w:0.3%;--c:#e0a43a"><span class="bar_label">Excepción a la portada</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">1</span></div>
         </div>
-        <p class="chart_note">Nivel de prioridad: 9 reglas de nivel A, 26 de nivel B y 282 de nivel C. Verificadas el 2 oct 2026 contra el servidor de Webflow: 317 de 317 llegan al destino exacto.</p>
+        <p class="chart_note">Nivel de prioridad: 9 reglas de nivel A, 26 de nivel B y 321 de nivel C (las 39 del 20 de octubre entran como C). Verificadas el 2 de octubre de 2026 contra el servidor de Webflow (317 de 317) y de nuevo el 20 de octubre en producción, ya con las 39 nuevas (356 de 356 llegan al destino exacto).</p>
       </div>
       <details class="redir">
-        <summary><span><i class="fa-solid fa-list" aria-hidden="true"></i> Ver las 317 reglas, una por una</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+        <summary><span><i class="fa-solid fa-list" aria-hidden="true"></i> Ver las 356 reglas, una por una</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
         <div class="redir_tools">
           <label class="redir_search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><input id="redir-buscar" type="search" placeholder="Buscar por ruta, destino o tipo" aria-label="Buscar en las redirecciones"></label>
-          <span id="redir-cuenta" class="redir_count">317 reglas</span>
+          <span id="redir-cuenta" class="redir_count">356 reglas</span>
           <a class="redir_csv" href="redirecciones-301.csv" download><i class="fa-solid fa-file-csv" aria-hidden="true"></i> Descargar CSV</a>
         </div>
         <div class="tabla is-wide redir_tabla">
@@ -1330,13 +1344,13 @@
             <tr><td class="wrap"><code>/riesgos-y-servicios-financieros</code></td><td class="wrap"><code>/riesgos-y-finanzas</code></td><td>Página</td><td>B</td></tr>
             <tr><td class="wrap"><code>/salud-y-medicina-prepagada</code></td><td class="wrap"><code>/seguros-y-medicina</code></td><td>Página</td><td>B</td></tr>
             <tr><td class="wrap"><code>/blog-actuaria</code></td><td class="wrap"><code>/blog</code></td><td>Página</td><td>B</td></tr>
-            <tr><td class="wrap"><code>/politica-de-privacidad-y-proteccion-de-datos-personales</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6aa18df6459360730d2f79e4_politica-privacidad-proteccion-datos.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/politica-de-privacidad-y-proteccion-de-datos-personales</code></td><td class="wrap"><code>/?documento=6aa18df6459360730d2f79e4_politica-privacidad-proteccion-datos.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
             <tr><td class="wrap"><code>/politica-de-prevencion-de-lavado-de-activos-y-antisoborno</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6aa18df799ec7f9fe8ef9d73_politica-prevencion-lavado-activos-antisoborno.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
             <tr><td class="wrap"><code>/solicitud-tratamiento-proteccion-datos-personales</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6aa18df880e66d64b3d5f97d_solicitud-ejercicio-derechos-datos-personales.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
             <tr><td class="wrap"><code>/solicitud-para-el-ejercicio-de-derechos-en-el-tratamiento-de-proteccion-de-datos-personales-2</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6aa18df880e66d64b3d5f97d_solicitud-ejercicio-derechos-datos-personales.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
             <tr><td class="wrap"><code>/certificacion-iso-90012015-gestion-de-la-calidad</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6aa18df8abae1f93dd1f54ed_certificacion-iso-9001-2015.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
-            <tr><td class="wrap"><code>/certificacion-iso-iec-270012013-seguridad-de-la-informacion</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6aa18df880e66d64b3d5f9bb_certificacion-iso-iec-27001-2022.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
-            <tr><td class="wrap"><code>/iso-iec-27001-2022</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6aa18df880e66d64b3d5f9bb_certificacion-iso-iec-27001-2022.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/certificacion-iso-iec-270012013-seguridad-de-la-informacion</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6ac7cff3be23c6396ed1219a_certificacion-iso-iec-27001-2022.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/iso-iec-27001-2022</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6ac7cff3be23c6396ed1219a_certificacion-iso-iec-27001-2022.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
             <tr><td class="wrap"><code>/codigo-de-conducta-empresarial</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6abbe9ef7715a35b07817866_codigo-conducta-empresarial.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
             <tr><td class="wrap"><code>/codigo-de-buen-gobierno-corporativo</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6abbe9eff0ec45724fcbcbd6_codigo-buen-gobierno-corporativo.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
             <tr><td class="wrap"><code>/reglamento-interno-del-directorio</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6abbe9f0af836287a2bbdcda_reglamento-interno-directorio.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
@@ -1349,7 +1363,7 @@
             <tr><td class="wrap"><code>/wp-content/uploads/2024/05/ACTUARIA_Codigo_de_Buen_Gobierno_Corporativo.pdf</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6abbe9eff0ec45724fcbcbd6_codigo-buen-gobierno-corporativo.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
             <tr><td class="wrap"><code>/wp-content/uploads/2024/05/ACTUARIA_Reglamento_Interno_de_la_Junta-General_de_Accionistas.pdf</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6abbe9f00e971ce644d3c423_reglamento-interno-junta-accionistas.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
             <tr><td class="wrap"><code>/wp-content/uploads/2024/05/ACTUARIA_Reglamento_Interno_Directorio.pdf</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6abbe9f0af836287a2bbdcda_reglamento-interno-directorio.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
-            <tr><td class="wrap"><code>/wp-content/uploads/2024/05/Certificado-27001-Seguridad-de-la-Informacion-1.pdf</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6aa18df880e66d64b3d5f9bb_certificacion-iso-iec-27001-2022.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/wp-content/uploads/2024/05/Certificado-27001-Seguridad-de-la-Informacion-1.pdf</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6ac7cff3be23c6396ed1219a_certificacion-iso-iec-27001-2022.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
             <tr><td class="wrap"><code>/wp-content/uploads/2024/05/Politica-Prevencion-de-Lavado-de-Activos-y-Antisoborno.pdf</code></td><td class="wrap"><code>https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6aa18df799ec7f9fe8ef9d73_politica-prevencion-lavado-activos-antisoborno.pdf</code></td><td>Documento o PDF</td><td>C</td></tr>
             <tr><td class="wrap"><code>/iniciar-sesion-dashboard-mp</code></td><td class="wrap"><code>https://plus.actuaria.com/</code></td><td>Acceso o función de WordPress</td><td>C</td></tr>
             <tr><td class="wrap"><code>/login-dashboard-proyeccion</code></td><td class="wrap"><code>https://plus.actuaria.com/</code></td><td>Acceso o función de WordPress</td><td>C</td></tr>
@@ -1360,13 +1374,52 @@
             <tr><td class="wrap"><code>/feed</code></td><td class="wrap"><code>/blog</code></td><td>Comodín</td><td>C</td></tr>
             <tr><td class="wrap"><code>/comments/feed</code></td><td class="wrap"><code>/blog</code></td><td>Comodín</td><td>C</td></tr>
             <tr><td class="wrap"><code>/blog-actuaria/(.*)</code></td><td class="wrap"><code>/blog</code></td><td>Comodín</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/es/importancia-de-realizar-un-diagnostico-financiero-de-una-empresa</code></td><td class="wrap"><code>/post/importancia-de-realizar-un-diagnostico-financiero-de-una-empresa</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/es/ley-de-medicina-prepagada-y-asistencia-medica-preexistencia-embarazo-y-adulto-mayor</code></td><td class="wrap"><code>/post/ley-de-medicina-prepagada-y-asistencia-medica-preexistencia-embarazo-y-adulto-mayor</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/es/ranking-de-companias-de-seguros-por-primas-netas-emitidas-ecuador</code></td><td class="wrap"><code>/post/ranking-de-companias-de-seguros-por-primas-netas-emitidas-ecuador</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/es/implicaciones-ley-organica-de-simplificacio-y-progresividad-tributaria</code></td><td class="wrap"><code>/post/implicaciones-ley-organica-de-simplificacio-y-progresividad-tributaria</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/es/importancia-del-estudio-actuarial-en-las-pymes</code></td><td class="wrap"><code>/post/importancia-del-estudio-actuarial-en-las-pymes</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/es/analisis-del-mercado-asegurador-ecuatoriano-ecuatoriano</code></td><td class="wrap"><code>/post/analisis-del-mercado-asegurador-ecuatoriano-ecuatoriano</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/es/nueva-resolucion-reservas-tecnicas</code></td><td class="wrap"><code>/post/nueva-resolucion-reservas-tecnicas</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/es/fondos-complementarios-previsionales-cerrados</code></td><td class="wrap"><code>/post/fondos-complementarios-previsionales-cerrados</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/es/importancia-de-estudios-de-impuestos-diferidos-por-las-provisiones-de-jubilacion-patronal</code></td><td class="wrap"><code>/post/importancia-de-estudios-de-impuestos-diferidos-por-las-provisiones-de-jubilacion-patronal</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/es/dia-del-contador-ecuatoriano</code></td><td class="wrap"><code>/post/dia-del-contador-ecuatoriano</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/es/principio-de-plena-competencia-y-los-precios-de-transferencia</code></td><td class="wrap"><code>/post/principio-de-plena-competencia-y-los-precios-de-transferencia</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/es/dia-del-jubilado-ecuatoriano-la-realidad-actual-y-retos-para-el-pais</code></td><td class="wrap"><code>/post/dia-del-jubilado-ecuatoriano-la-realidad-actual-y-retos-para-el-pais</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/es/situacion-laboral-ecuador-2020</code></td><td class="wrap"><code>/post/situacion-laboral-ecuador-2020</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/es/business-intelligence-y-sus-beneficios</code></td><td class="wrap"><code>/post/business-intelligence-y-sus-beneficios</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/es/que-hay-despues-de-la-jubilacion-del-seguro-social-en-el-ecuador</code></td><td class="wrap"><code>/post/que-hay-despues-de-la-jubilacion-del-seguro-social-en-el-ecuador</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/es/iess-sistema-de-gestion-inviable</code></td><td class="wrap"><code>/post/iess-sistema-de-gestion-inviable</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/es/que-es-la-bonificacion-por-desahucio</code></td><td class="wrap"><code>/post/que-es-la-bonificacion-por-desahucio</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/es/calculo-de-pensiones-de-iess</code></td><td class="wrap"><code>/post/calculo-de-pensiones-de-iess</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/es/impacto-de-la-inseguridad-en-ecuador-en-el-ambito-laboral-desafios-y-perspectivas</code></td><td class="wrap"><code>/post/impacto-de-la-inseguridad-en-ecuador-en-el-ambito-laboral-desafios-y-perspectivas</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/es/la-gestion-de-riesgos-en-las-empresas-del-mercado-asegurador</code></td><td class="wrap"><code>/post/la-gestion-de-riesgos-en-las-empresas-del-mercado-asegurador</code></td><td>Artículo del blog</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/politica-datos</code></td><td class="wrap"><code>/?documento=6aa18df6459360730d2f79e4_politica-privacidad-proteccion-datos.pdf</code></td><td>Página</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/estudiosactuariales</code></td><td class="wrap"><code>/estudio-actuarial-jubilacion-patronal</code></td><td>Página</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/gracias-pd</code></td><td class="wrap"><code>/gracias</code></td><td>Página</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/equidad</code></td><td class="wrap"><code>/ods5-appporlaequidad</code></td><td>Página</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/es/calculadora-jubilacion-patronal</code></td><td class="wrap"><code>/12-calculadoras-especializadas</code></td><td>Página</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/es/calculadoras</code></td><td class="wrap"><code>/12-calculadoras-especializadas</code></td><td>Página</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/es/calculadora-jubilacion-ordinaria</code></td><td class="wrap"><code>/12-calculadoras-especializadas</code></td><td>Página</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/es/calculadora-despido-intempestivo</code></td><td class="wrap"><code>/12-calculadoras-especializadas</code></td><td>Página</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/es/calculadora-impuesto-renta</code></td><td class="wrap"><code>/12-calculadoras-especializadas</code></td><td>Página</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/es/calculadoras-automatizadas-a-su-servicio</code></td><td class="wrap"><code>/post/calculadoras-automatizadas-a-su-servicio</code></td><td>Página</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/es/nosotros</code></td><td class="wrap"><code>/nosotros</code></td><td>Página</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/ods15</code></td><td class="wrap"><code>/ods15-nftree</code></td><td>Página</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/landing-ods4-capacitacionesfinancieras</code></td><td class="wrap"><code>/landing-ods4-capacitacionesfinancieraspersonales</code></td><td>Página</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/calculadora-vacaciones</code></td><td class="wrap"><code>/12-calculadoras-especializadas</code></td><td>Página</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/es/(.*)</code></td><td class="wrap"><code>/%1</code></td><td>Comodín</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/calculadora-jubilacion-patronal</code></td><td class="wrap"><code>/12-calculadoras-especializadas</code></td><td>Página</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/calculadora-jubilacion-ordinaria</code></td><td class="wrap"><code>/12-calculadoras-especializadas</code></td><td>Página</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/calculadora-despido-intempestivo</code></td><td class="wrap"><code>/12-calculadoras-especializadas</code></td><td>Página</td><td>C</td></tr>
+            <tr><td class="wrap"><code>/calculadora-impuesto-renta</code></td><td class="wrap"><code>/12-calculadoras-especializadas</code></td><td>Página</td><td>C</td></tr>
             <!--REDIRECCIONES:fin-->
             </tbody>
           </table>
         </div>
         <p class="chart_note">Fuente: <code>seo-redirecciones/datos/</code> (artículos, especiales y comodines), la misma que generó el CSV importado en Webflow. Se regenera con <code>node generar-redirecciones.mjs</code>.</p>
       </details>
-      <p class="print_only chart_note">La lista completa de las 317 reglas está en la versión web del acta (sección «Rescate SEO») y en el archivo <code>redirecciones-301.csv</code>.</p>
+      <p class="print_only chart_note">La lista completa de las 356 reglas está en la versión web del acta (sección «Rescate SEO») y en el archivo <code>redirecciones-301.csv</code>.</p>
       <h3>Otros detalles</h3>
       <ul>
         <li>Canónica global, <code>lang="es-EC"</code>, y www redirige con 301 a la raíz.</li>
@@ -1399,11 +1452,11 @@
           <thead><tr><th>Herramienta</th><th>ID</th><th>Cuenta</th><th>Estado</th></tr></thead>
           <tbody>
             <tr><td>Google Tag Manager</td><td><code>GTM-WVB8ND3W</code></td><td>Cuenta “Actuaria”</td><td><span class="tag ok">Propio · en uso</span></td></tr>
-            <tr><td>Google Analytics 4</td><td><code>G-PG79TRGV7Z</code></td><td>ACTUARIA CONSULTORES → propiedad “Actuaria” → flujo www.actuaria.com</td><td><span class="tag ok">Propio · en uso</span></td></tr>
+            <tr><td>Google Analytics 4</td><td><code>G-PG79TRGV7Z</code></td><td>ACTUARIA CONSULTORES → propiedad “Actuaria” → flujo www.actuaria.com. Eventos clave <code>generate_lead</code>, <code>click_whatsapp</code> y <code>click_phone</code> marcados el 20 de octubre</td><td><span class="tag ok">Propio · en uso</span></td></tr>
             <tr><td>Microsoft Clarity</td><td><code>o0nej6oe00</code></td><td>Proyecto “Actuaria Webflow”, vinculado a GA4 y a Google Ads</td><td><span class="tag ok">Propio · grabando</span></td></tr>
             <tr><td>Google Ads (conversiones)</td><td><code>AW-16714364489</code></td><td>Cuenta de Ads de la campaña (la administra PMV)</td><td><span class="tag ok">En uso</span></td></tr>
             <tr><td>Google Ads (Google tag)</td><td><code>AW-18328490443</code></td><td>Google tag aparte de Ads</td><td><span class="tag ok">En uso</span></td></tr>
-            <tr><td>Search Console</td><td><code>https://actuaria.com/</code></td><td>Propiedad con el historial de WordPress</td><td><span class="tag ok">Sitemap enviado</span></td></tr>
+            <tr><td>Search Console</td><td><code>https://actuaria.com/</code></td><td>Propiedad con el historial de WordPress; el Área de Producto es propietaria verificada desde el 20 de octubre y puede compartirla</td><td><span class="tag ok">Sitemap enviado · propietario</span></td></tr>
             <tr><td>GA4 heredado</td><td><code>G-0KW3C82GY3</code></td><td>Cuenta de terceros con todo el historial anterior; Actuaria no la ve</td><td><span class="tag warn">Se sigue enviando en paralelo</span></td></tr>
             <tr><td>GTM heredado</td><td><code>GTM-WHVP5PDX</code></td><td>Cuenta de terceros</td><td><span class="tag mute">Ya no se carga</span></td></tr>
             <tr><td>Clarity heredado</td><td><code>o0mpb4cw3z</code></td><td>Cuenta de terceros</td><td><span class="tag mute">Ya no se carga</span></td></tr>
@@ -1796,7 +1849,7 @@
           <thead><tr><th>Carpeta</th><th>Para qué</th><th>Scripts principales</th></tr></thead>
           <tbody>
             <tr><td><code>lanzamiento-dominio/</code></td><td>Corte del dominio, auditoría de enlaces, llms.txt y medición</td><td class="wrap"><code>vigia-dns.mjs</code>, <code>verificar-dns-post.mjs</code>, <code>verificar-borde.mjs</code>, <code>verificar-llms.mjs</code>, <code>auditar-enlaces.sh</code>, <code>gtm/probar-conversiones.js</code></td></tr>
-            <tr><td><code>seo-redirecciones/</code></td><td>Generar, validar y probar las 317 redirecciones; auditorías de SEO y del blog</td><td class="wrap"><code>generar-csv-webflow.ps1</code>, <code>validar-csv-import.ps1</code>, <code>verificar-redirects.ps1</code>, <code>verificar-canonicas.ps1</code>, <code>auditar-h1.ps1</code></td></tr>
+            <tr><td><code>seo-redirecciones/</code></td><td>Generar, validar y probar las 356 redirecciones; auditorías de SEO y del blog</td><td class="wrap"><code>generar-csv-webflow.ps1</code>, <code>validar-csv-import.ps1</code>, <code>verificar-redirects.ps1</code>, <code>verificar-canonicas.ps1</code>, <code>auditar-h1.ps1</code></td></tr>
             <tr><td><code>respaldo-wp/</code></td><td>Leer el <code>.wpress</code> y migrar los cuerpos de los artículos</td><td class="wrap"><code>wpress-extract.ps1</code>, <code>wp-posts-from-sql.ps1</code>, <code>limpiar-html-webflow.ps1</code>, <code>verificar-fidelidad.ps1</code></td></tr>
             <tr><td><code>landings-ods/</code></td><td>Reconstruir páginas de Elementor desde el respaldo, sin descomprimirlo</td><td class="wrap"><code>indexar-wpress.ps1</code>, <code>extraer-elementor.ps1</code>, <code>mapear-elementor.ps1</code></td></tr>
             <tr><td><code>blog-sincronizacion/</code></td><td>Traer posts nuevos de WordPress. Quedó obsoleto con el corte.</td><td class="wrap"><code>listar.mjs</code>, <code>bajar.mjs</code>, <code>preparar.mjs</code></td></tr>
@@ -1815,14 +1868,14 @@
       <div class="sec_head"><p class="eyebrow">16 · Pendientes</p><h2>Lo que queda por hacer</h2></div>
       <p>Nada de esto bloquea el sitio en producción. Está agrupado por tema, con el responsable sugerido.</p>
       <div class="chart">
-        <p class="chart_title"><i class="fa-solid fa-list-check" aria-hidden="true"></i>21 pendientes por tema</p>
+        <p class="chart_title"><i class="fa-solid fa-list-check" aria-hidden="true"></i>26 pendientes por tema</p>
         <div class="bars">
-          <div class="bar" style="--w:100%;--c:var(--orange)"><span class="bar_label">Medición</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">5</span></div>
-          <div class="bar" style="--w:100%;--c:#6b7bbf"><span class="bar_label">CMS, SEO, contenido, accesibilidad y negocio</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">5</span></div>
-          <div class="bar" style="--w:80%;--c:#e0a43a"><span class="bar_label">Decisiones y diseño</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">4</span></div>
-          <div class="bar" style="--w:60%;--c:var(--indigo)"><span class="bar_label">Blog</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">3</span></div>
-          <div class="bar" style="--w:40%;--c:var(--navy)"><span class="bar_label">Infraestructura</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">2</span></div>
-          <div class="bar" style="--w:40%;--c:var(--blue)"><span class="bar_label">Formularios</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">2</span></div>
+          <div class="bar" style="--w:75%;--c:var(--orange)"><span class="bar_label">Medición</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">6</span></div>
+          <div class="bar" style="--w:100%;--c:#6b7bbf"><span class="bar_label">CMS, SEO, contenido, accesibilidad y negocio</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">8</span></div>
+          <div class="bar" style="--w:62.5%;--c:#e0a43a"><span class="bar_label">Decisiones y diseño</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">5</span></div>
+          <div class="bar" style="--w:37.5%;--c:var(--indigo)"><span class="bar_label">Blog</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">3</span></div>
+          <div class="bar" style="--w:25%;--c:var(--navy)"><span class="bar_label">Infraestructura</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">2</span></div>
+          <div class="bar" style="--w:25%;--c:var(--blue)"><span class="bar_label">Formularios</span><span class="bar_track"><span class="bar_fill"></span></span><span class="bar_value">2</span></div>
         </div>
         <p class="chart_note">Las 4 decisiones esperan definición de negocio. El resto ya tiene responsable sugerido.</p>
       </div>
@@ -1830,18 +1883,19 @@
         <table>
           <thead><tr><th>Tema</th><th>Pendiente</th><th>Responsable</th></tr></thead>
           <tbody>
-            <tr><td>Medición</td><td>Marcar <code>generate_lead</code>, <code>click_whatsapp</code> y <code>click_phone</code> como eventos clave en GA4 cuando aparezcan (hasta 24 h).</td><td><span class="tag info">Área de Producto</span></td></tr>
-            <tr><td>Medición</td><td>Cambiar la conversión de Ads por URL de “igual a” a “contiene”, porque Webflow quita la barra final. El pedido ya está redactado.</td><td><span class="tag info">PMV / dueño de Ads</span></td></tr>
+            <tr><td>Medición</td><td>Compartir Search Console con Marketing y PMV: desde el 20 de octubre el Área de Producto es propietaria verificada; faltan las cuentas de Google a las que dar acceso.</td><td><span class="tag info">Área de Producto + Marketing</span></td></tr>
+            <tr><td>Medición</td><td>Apuntar las URL finales de los anuncios de Google Ads y Meta a las URL nuevas, sin barra final: las reglas 301 del panel descartan <code>gclid</code> y <code>utm</code>; el 301 que quita la barra los conserva. Y etiquetar con UTM los correos y la pauta social.</td><td><span class="tag info">PMV + Marketing</span></td></tr>
+            <tr><td>Medición</td><td>Cambiar la conversión de Ads por URL de “igual a” a “contiene”, porque Webflow quita la barra final. Pendiente desde el 2 de octubre; sin confirmación al 20 de octubre.</td><td><span class="tag info">PMV / dueño de Ads</span></td></tr>
             <tr><td>Medición</td><td>Aceptar las invitaciones de Tag Manager y Clarity.</td><td><span class="tag info">PMV</span></td></tr>
             <tr><td>Medición</td><td>Identificar al dueño del GA4, GTM y Clarity heredados y de las cuentas de Ads, y pedir acceso de administrador, sobre todo al historial de GA4.</td><td><span class="tag info">Área de Producto + PMV</span></td></tr>
-            <tr><td>Medición</td><td>Revisar el estado del sitemap en Search Console y agregar un segundo método de verificación.</td><td><span class="tag info">Área de Producto</span></td></tr>
+            <tr><td>Medición</td><td>Filtro de tráfico interno en GA4 (regla de IP y filtro de datos), en la propiedad de Actuaria y en la heredada. Hace falta la lista de IP públicas de las oficinas.</td><td><span class="tag info">Área de Producto + TI</span></td></tr>
             <tr><td>Infraestructura</td><td>Subir el TTL de los registros a 1 h, pasadas 24 a 48 h del corte.</td><td><span class="tag info">Titular de SiteGround</span></td></tr>
             <tr><td>Infraestructura</td><td>Guardar una copia del respaldo <code>.wpress</code> fuera de la PC.</td><td><span class="tag info">TI</span></td></tr>
             <tr><td>Formularios</td><td>Sacar <code>/postulacion-recibida</code> del sitemap: en el Designer, configuración de la página → SEO → interruptor del sitemap, como en <code>/gracias</code>. Ya tiene <code>noindex</code>; es un solo clic.</td><td><span class="tag info">Área de Producto</span></td></tr>
             <tr><td>Formularios</td><td>Definir quién recibe los avisos de Registro Actuacont, y retirar el aviso “Nuevo Lead” de la casilla personal.</td><td><span class="tag info">Área de Producto</span></td></tr>
             <tr><td>Decisión</td><td>Banner de cookies y Consent Mode v2. El enlace “Configuración de cookies” del pie todavía no hace nada.</td><td><span class="tag warn">Por decidir</span></td></tr>
             <tr><td>Decisión</td><td>Botones de inscripción por Zoom vencidos en las dos landings de ODS 4 (cursos de 2025).</td><td><span class="tag warn">Por decidir</span></td></tr>
-            <tr><td>Decisión</td><td>Páginas de WordPress sin regla (estatutos, políticas, términos, webinars, entre otras) y si <code>/login</code> debe llevar a plus.actuaria.com.</td><td><span class="tag warn">Por decidir</span></td></tr>
+            <tr><td>Decisión</td><td>31 páginas de WordPress sin regla (accesos a dashboards, pruebas, webinars 2025, documentos; dos de las 33 inventariadas el 8 de octubre recibieron regla el 20) y si <code>/login</code> debe llevar a plus.actuaria.com.</td><td><span class="tag warn">Por decidir</span></td></tr>
             <tr><td>Diseño</td><td>Textura de fondo en las páginas cuyo body no tiene clase (ODS, brandbook, seguridad, gracias, 404).</td><td><span class="tag warn">Por decidir</span></td></tr>
             <tr><td>Blog</td><td>Subir las 26 imágenes y PDF que faltan en 13 artículos y agregar sus redirecciones.</td><td><span class="tag info">Equipo web</span></td></tr>
             <tr><td>Blog</td><td>El hub muestra hasta 100 artículos, el límite de una lista de Webflow. Falta paginación para llegar a los 275.</td><td><span class="tag info">Equipo web</span></td></tr>
@@ -1849,6 +1903,10 @@
             <tr><td>CMS</td><td>Equipos: corregir errores de tipeo en nombres y cargos y completar las fotos de las fichas en borrador.</td><td><span class="tag info">Área de Producto + Talento Humano</span></td></tr>
             <tr><td>SEO</td><td>Imagen para compartir (<code>og:image</code>) en todas las páginas, título y descripción propios en las 4 soluciones (hoy solo tienen el nombre) y bajar a uno los H1 del home.</td><td><span class="tag info">Equipo web</span></td></tr>
             <tr><td>Contenido</td><td>Revisar la cifra de CO₂ de NFTree (aparecen dos valores), el hito de 2007 con “ISO 9001:2015” y el enlace “Ver la noticia” de NFTree, que apunta a WordPress.</td><td><span class="tag info">Marketing</span></td></tr>
+            <tr><td>SEO</td><td>Core Web Vitals en móvil: Search Console marca 235 URL pobres y 102 por mejorar (datos de Chrome al 17 de octubre; en ordenador, 0 pobres). Seguir la optimización de carga iniciada el 15 de octubre (preloader, WebP, videos bajo demanda, fuentes propias).</td><td><span class="tag info">Equipo web</span></td></tr>
+            <tr><td>SEO</td><td>Vigilar en Search Console la recuperación del artículo «Cálculo de pensiones del IESS» (47 % de los clics del sitio): Google retiró la URL vieja el 9 de octubre al procesar la 301 y mostró la nueva desde el 18.</td><td><span class="tag info">Equipo web</span></td></tr>
+            <tr><td>SEO</td><td>Títulos y descripciones en inglés de las 20 páginas de /en (hoy salen en español) y decidir si los artículos sin traducir se excluyen de la indexación en inglés.</td><td><span class="tag info">Equipo web + Marketing</span></td></tr>
+            <tr><td>Diseño</td><td>Actualizar el runtime de Spline del isotipo 3D de Nosotros y del inicio (la consola avisa que el archivo es de una versión más nueva).</td><td><span class="tag info">Equipo web</span></td></tr>
             <tr><td>Accesibilidad</td><td>Botón visible de pausa para el título animado del hero (WCAG 2.2.2).</td><td><span class="tag info">Equipo web</span></td></tr>
             <tr><td>Negocio</td><td>Avisar a los usuarios del antiguo “Dashboard Seguros”: sus credenciales vivían en WordPress.</td><td><span class="tag info">Comercial</span></td></tr>
           </tbody>
@@ -1878,7 +1936,7 @@
         <div class="scope_card"><h4><span class="ico"><i class="fa-solid fa-rocket" aria-hidden="true"></i></span>Publicación</h4><p>Publica siempre en actuaria.com, www y staging, y revisa el cambio en vivo con <code class="nw">?nc=1</code> en escritorio y celular. Lo que toque código, formularios o redirecciones se prueba antes en el staging.</p></div>
         <div class="scope_card"><h4><span class="ico"><i class="fa-solid fa-user-shield" aria-hidden="true"></i></span>Accesos y seguridad</h4><p>Cada persona entra con su propio usuario y el rol mínimo que necesita. Revisa los accesos cada trimestre, quita los de quienes ya no participan y nunca compartas contraseñas ni tokens.</p></div>
         <div class="scope_card"><h4><span class="ico"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></span>Medición</h4><p>Toda etiqueta nueva va dentro de Tag Manager, con un nombre claro y publicada como versión. Revisa cada semana que lleguen las conversiones de formulario, WhatsApp y llamada.</p></div>
-        <div class="scope_card"><h4><span class="ico"><i class="fa-solid fa-magnifying-glass-chart" aria-hidden="true"></i></span>SEO</h4><p>No cambies la ruta de una página o un artículo publicado sin crear su redirección 301. Mantén las 317 reglas al menos un año y revisa Search Console cada mes: cobertura, errores 404 y búsquedas.</p></div>
+        <div class="scope_card"><h4><span class="ico"><i class="fa-solid fa-magnifying-glass-chart" aria-hidden="true"></i></span>SEO</h4><p>No cambies la ruta de una página o un artículo publicado sin crear su redirección 301. Mantén las 356 reglas al menos un año y revisa Search Console cada mes: cobertura, errores 404 y búsquedas.</p></div>
         <div class="scope_card"><h4><span class="ico"><i class="fa-solid fa-newspaper" aria-hidden="true"></i></span>Contenido</h4><p>Cada artículo nuevo va con categoría, gancho, imagen principal y fecha. Mantén el equipo al día en el CMS: fotos, cargos y LinkedIn reales.</p></div>
         <div class="scope_card"><h4><span class="ico"><i class="fa-solid fa-universal-access" aria-hidden="true"></i></span>Imágenes y accesibilidad</h4><p>Sube imágenes livianas (WebP) con texto alternativo, cuida el contraste del texto y evita animaciones que no se puedan pausar.</p></div>
         <div class="scope_card"><h4><span class="ico"><i class="fa-solid fa-box-archive" aria-hidden="true"></i></span>Respaldos</h4><p>Antes de importar redirecciones, exporta las vigentes. Guarda el respaldo de WordPress fuera de la PC y una copia de cada bloque de código propio en su carpeta.</p></div>
@@ -1891,7 +1949,7 @@
         <div class="check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><div><b>Avisa a la agencia</b><span>Si el cambio afecta campañas, formularios o conversiones.</span></div></div>
         <div class="check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><div><b>Avisa al Área de Producto</b><span>Para que el cambio quede en el historial interno y, al cierre del día, en esta acta.</span></div></div>
       </div>
-      <p class="chart_note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Las cifras, registros DNS y capturas de esta acta se tomaron del sitio en producción entre el 2 y el 7 de octubre de 2026 y se pueden comprobar en actuaria.com.</p>
+      <p class="chart_note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Las cifras, registros DNS y capturas de esta acta se tomaron del sitio en producción entre el 2 y el 20 de octubre de 2026 y se pueden comprobar en actuaria.com.</p>
       <div class="sheet_foot"><span>Área de Producto · Actuaria Consultores</span><span><b>17</b> / 17</span></div>
     </section>
 
@@ -1899,7 +1957,7 @@
 </div>
 
 <footer class="pie">
-  <p>Actuaria Consultores · Área de Producto · Acta de Entrega de actuaria.com · v1.17 · 7 de octubre de 2026 · <a href="Acta-de-Entrega-actuaria.com.pdf" download>Descargar PDF</a></p>
+  <p>Actuaria Consultores · Área de Producto · Acta de Entrega de actuaria.com · v1.18 · 20 de octubre de 2026 · <a href="Acta-de-Entrega-actuaria.com.pdf" download>Descargar PDF</a></p>
 </footer>
 
 <script>
