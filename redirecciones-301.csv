@@ -286,13 +286,13 @@
 /riesgos-y-servicios-financieros,/riesgos-y-finanzas,Página,B
 /salud-y-medicina-prepagada,/seguros-y-medicina,Página,B
 /blog-actuaria,/blog,Página,B
-/politica-de-privacidad-y-proteccion-de-datos-personales,https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6aa18df6459360730d2f79e4_politica-privacidad-proteccion-datos.pdf,Documento o PDF,C
+/politica-de-privacidad-y-proteccion-de-datos-personales,/?documento=6aa18df6459360730d2f79e4_politica-privacidad-proteccion-datos.pdf,Documento o PDF,C
 /politica-de-prevencion-de-lavado-de-activos-y-antisoborno,https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6aa18df799ec7f9fe8ef9d73_politica-prevencion-lavado-activos-antisoborno.pdf,Documento o PDF,C
 /solicitud-tratamiento-proteccion-datos-personales,https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6aa18df880e66d64b3d5f97d_solicitud-ejercicio-derechos-datos-personales.pdf,Documento o PDF,C
 /solicitud-para-el-ejercicio-de-derechos-en-el-tratamiento-de-proteccion-de-datos-personales-2,https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6aa18df880e66d64b3d5f97d_solicitud-ejercicio-derechos-datos-personales.pdf,Documento o PDF,C
 /certificacion-iso-90012015-gestion-de-la-calidad,https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6aa18df8abae1f93dd1f54ed_certificacion-iso-9001-2015.pdf,Documento o PDF,C
-/certificacion-iso-iec-270012013-seguridad-de-la-informacion,https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6aa18df880e66d64b3d5f9bb_certificacion-iso-iec-27001-2022.pdf,Documento o PDF,C
-/iso-iec-27001-2022,https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6aa18df880e66d64b3d5f9bb_certificacion-iso-iec-27001-2022.pdf,Documento o PDF,C
+/certificacion-iso-iec-270012013-seguridad-de-la-informacion,https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6ac7cff3be23c6396ed1219a_certificacion-iso-iec-27001-2022.pdf,Documento o PDF,C
+/iso-iec-27001-2022,https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6ac7cff3be23c6396ed1219a_certificacion-iso-iec-27001-2022.pdf,Documento o PDF,C
 /codigo-de-conducta-empresarial,https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6abbe9ef7715a35b07817866_codigo-conducta-empresarial.pdf,Documento o PDF,C
 /codigo-de-buen-gobierno-corporativo,https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6abbe9eff0ec45724fcbcbd6_codigo-buen-gobierno-corporativo.pdf,Documento o PDF,C
 /reglamento-interno-del-directorio,https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6abbe9f0af836287a2bbdcda_reglamento-interno-directorio.pdf,Documento o PDF,C
@@ -305,7 +305,7 @@
 /wp-content/uploads/2024/05/ACTUARIA_Codigo_de_Buen_Gobierno_Corporativo.pdf,https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6abbe9eff0ec45724fcbcbd6_codigo-buen-gobierno-corporativo.pdf,Documento o PDF,C
 /wp-content/uploads/2024/05/ACTUARIA_Reglamento_Interno_de_la_Junta-General_de_Accionistas.pdf,https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6abbe9f00e971ce644d3c423_reglamento-interno-junta-accionistas.pdf,Documento o PDF,C
 /wp-content/uploads/2024/05/ACTUARIA_Reglamento_Interno_Directorio.pdf,https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6abbe9f0af836287a2bbdcda_reglamento-interno-directorio.pdf,Documento o PDF,C
-/wp-content/uploads/2024/05/Certificado-27001-Seguridad-de-la-Informacion-1.pdf,https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6aa18df880e66d64b3d5f9bb_certificacion-iso-iec-27001-2022.pdf,Documento o PDF,C
+/wp-content/uploads/2024/05/Certificado-27001-Seguridad-de-la-Informacion-1.pdf,https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6ac7cff3be23c6396ed1219a_certificacion-iso-iec-27001-2022.pdf,Documento o PDF,C
 /wp-content/uploads/2024/05/Politica-Prevencion-de-Lavado-de-Activos-y-Antisoborno.pdf,https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6aa18df799ec7f9fe8ef9d73_politica-prevencion-lavado-activos-antisoborno.pdf,Documento o PDF,C
 /iniciar-sesion-dashboard-mp,https://plus.actuaria.com/,Acceso o función de WordPress,C
 /login-dashboard-proyeccion,https://plus.actuaria.com/,Acceso o función de WordPress,C
@@ -316,3 +316,42 @@
 /feed,/blog,Comodín,C
 /comments/feed,/blog,Comodín,C
 /blog-actuaria/(.*),/blog,Comodín,C
+/es/importancia-de-realizar-un-diagnostico-financiero-de-una-empresa,/post/importancia-de-realizar-un-diagnostico-financiero-de-una-empresa,Artículo del blog,C
+/es/ley-de-medicina-prepagada-y-asistencia-medica-preexistencia-embarazo-y-adulto-mayor,/post/ley-de-medicina-prepagada-y-asistencia-medica-preexistencia-embarazo-y-adulto-mayor,Artículo del blog,C
+/es/ranking-de-companias-de-seguros-por-primas-netas-emitidas-ecuador,/post/ranking-de-companias-de-seguros-por-primas-netas-emitidas-ecuador,Artículo del blog,C
+/es/implicaciones-ley-organica-de-simplificacio-y-progresividad-tributaria,/post/implicaciones-ley-organica-de-simplificacio-y-progresividad-tributaria,Artículo del blog,C
+/es/importancia-del-estudio-actuarial-en-las-pymes,/post/importancia-del-estudio-actuarial-en-las-pymes,Artículo del blog,C
+/es/analisis-del-mercado-asegurador-ecuatoriano-ecuatoriano,/post/analisis-del-mercado-asegurador-ecuatoriano-ecuatoriano,Artículo del blog,C
+/es/nueva-resolucion-reservas-tecnicas,/post/nueva-resolucion-reservas-tecnicas,Artículo del blog,C
+/es/fondos-complementarios-previsionales-cerrados,/post/fondos-complementarios-previsionales-cerrados,Artículo del blog,C
+/es/importancia-de-estudios-de-impuestos-diferidos-por-las-provisiones-de-jubilacion-patronal,/post/importancia-de-estudios-de-impuestos-diferidos-por-las-provisiones-de-jubilacion-patronal,Artículo del blog,C
+/es/dia-del-contador-ecuatoriano,/post/dia-del-contador-ecuatoriano,Artículo del blog,C
+/es/principio-de-plena-competencia-y-los-precios-de-transferencia,/post/principio-de-plena-competencia-y-los-precios-de-transferencia,Artículo del blog,C
+/es/dia-del-jubilado-ecuatoriano-la-realidad-actual-y-retos-para-el-pais,/post/dia-del-jubilado-ecuatoriano-la-realidad-actual-y-retos-para-el-pais,Artículo del blog,C
+/es/situacion-laboral-ecuador-2020,/post/situacion-laboral-ecuador-2020,Artículo del blog,C
+/es/business-intelligence-y-sus-beneficios,/post/business-intelligence-y-sus-beneficios,Artículo del blog,C
+/es/que-hay-despues-de-la-jubilacion-del-seguro-social-en-el-ecuador,/post/que-hay-despues-de-la-jubilacion-del-seguro-social-en-el-ecuador,Artículo del blog,C
+/es/iess-sistema-de-gestion-inviable,/post/iess-sistema-de-gestion-inviable,Artículo del blog,C
+/es/que-es-la-bonificacion-por-desahucio,/post/que-es-la-bonificacion-por-desahucio,Artículo del blog,C
+/es/calculo-de-pensiones-de-iess,/post/calculo-de-pensiones-de-iess,Artículo del blog,C
+/es/impacto-de-la-inseguridad-en-ecuador-en-el-ambito-laboral-desafios-y-perspectivas,/post/impacto-de-la-inseguridad-en-ecuador-en-el-ambito-laboral-desafios-y-perspectivas,Artículo del blog,C
+/es/la-gestion-de-riesgos-en-las-empresas-del-mercado-asegurador,/post/la-gestion-de-riesgos-en-las-empresas-del-mercado-asegurador,Artículo del blog,C
+/politica-datos,/?documento=6aa18df6459360730d2f79e4_politica-privacidad-proteccion-datos.pdf,Página,C
+/estudiosactuariales,/estudio-actuarial-jubilacion-patronal,Página,C
+/gracias-pd,/gracias,Página,C
+/equidad,/ods5-appporlaequidad,Página,C
+/es/calculadora-jubilacion-patronal,/12-calculadoras-especializadas,Página,C
+/es/calculadoras,/12-calculadoras-especializadas,Página,C
+/es/calculadora-jubilacion-ordinaria,/12-calculadoras-especializadas,Página,C
+/es/calculadora-despido-intempestivo,/12-calculadoras-especializadas,Página,C
+/es/calculadora-impuesto-renta,/12-calculadoras-especializadas,Página,C
+/es/calculadoras-automatizadas-a-su-servicio,/post/calculadoras-automatizadas-a-su-servicio,Página,C
+/es/nosotros,/nosotros,Página,C
+/ods15,/ods15-nftree,Página,C
+/landing-ods4-capacitacionesfinancieras,/landing-ods4-capacitacionesfinancieraspersonales,Página,C
+/calculadora-vacaciones,/12-calculadoras-especializadas,Página,C
+/es/(.*),/%1,Comodín,C
+/calculadora-jubilacion-patronal,/12-calculadoras-especializadas,Página,C
+/calculadora-jubilacion-ordinaria,/12-calculadoras-especializadas,Página,C
+/calculadora-despido-intempestivo,/12-calculadoras-especializadas,Página,C
+/calculadora-impuesto-renta,/12-calculadoras-especializadas,Página,C
