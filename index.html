@@ -244,6 +244,17 @@
   .tag.bad { background: var(--bad-bg); color: var(--bad); } .tag.info { background: var(--info-bg); color: var(--info); }
   .tag.mute { background: rgba(21, 31, 71, .07); color: var(--ink-2); }
 
+/* Chips por equipo (sección 16): un color por responsable */
+.tag.t-web { background: rgba(76, 100, 217, .12); color: #2f5fcc; }
+.tag.t-mkt { background: rgba(223, 94, 45, .14); color: #8f3a17; }
+.tag.t-pmv { background: rgba(0, 137, 123, .14); color: #00564d; }
+.tag.t-ti { background: rgba(123, 31, 162, .12); color: #5b1b7a; }
+.tag.t-th { background: rgba(216, 27, 96, .12); color: #8a1244; }
+.tag.t-com { background: rgba(141, 110, 99, .16); color: #4e342e; }
+.tag.t-ext { background: rgba(21, 31, 71, .07); color: var(--ink-2); }
+td .tag + .tag { margin-left: 4px; }
+.tag_legend { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; margin: 8px 0 0; font: 600 12px var(--f-sub); color: var(--ink-2); }
+
   .arq { display: grid; gap: 14px; margin: 18px 0 8px; }
   .arq_row { display: flex; align-items: stretch; gap: 10px; }
   .arq_node { flex: 1 1 0; min-width: 0; background: var(--box); border-radius: 14px; box-shadow: var(--neu-sm); padding: 14px 16px; }
@@ -1883,34 +1894,35 @@
         <table>
           <thead><tr><th>Tema</th><th>Pendiente</th><th>Responsable</th></tr></thead>
           <tbody>
-            <tr><td>Medición</td><td>Apuntar las URL finales de los anuncios de Google Ads y Meta a las URL nuevas, sin barra final: las reglas 301 del panel descartan <code>gclid</code> y <code>utm</code>; el 301 que quita la barra los conserva. Y etiquetar con UTM los correos y la pauta social.</td><td><span class="tag info">PMV + Marketing</span></td></tr>
-            <tr><td>Medición</td><td>Cambiar la conversión de Ads por URL de “igual a” a “contiene”, porque Webflow quita la barra final. Pendiente desde el 2 de octubre; sin confirmación al 20 de octubre.</td><td><span class="tag info">PMV / dueño de Ads</span></td></tr>
-            <tr><td>Medición</td><td>Aceptar las invitaciones de Tag Manager y Clarity.</td><td><span class="tag info">PMV</span></td></tr>
-            <tr><td>Medición</td><td>Identificar al dueño del GA4, GTM y Clarity heredados y de las cuentas de Ads, y pedir acceso de administrador, sobre todo al historial de GA4.</td><td><span class="tag info">Área de Producto + PMV</span></td></tr>
-            <tr><td>Medición</td><td>Filtro de tráfico interno en GA4 (regla de IP y filtro de datos), en la propiedad de Actuaria y en la heredada. Hace falta la lista de IP públicas de las oficinas.</td><td><span class="tag info">Área de Producto + TI</span></td></tr>
-            <tr><td>Infraestructura</td><td>Subir el TTL de los registros a 1 h, pasadas 24 a 48 h del corte.</td><td><span class="tag info">Titular de SiteGround</span></td></tr>
-            <tr><td>Infraestructura</td><td>Guardar una copia del respaldo <code>.wpress</code> fuera de la PC.</td><td><span class="tag info">TI</span></td></tr>
-            <tr><td>Formularios</td><td>Sacar <code>/postulacion-recibida</code> del sitemap: en el Designer, configuración de la página → SEO → interruptor del sitemap, como en <code>/gracias</code>. Ya tiene <code>noindex</code>; es un solo clic.</td><td><span class="tag info">Área de Producto</span></td></tr>
-            <tr><td>Formularios</td><td>Definir quién recibe los avisos de Registro Actuacont, y retirar el aviso “Nuevo Lead” de la casilla personal.</td><td><span class="tag info">Área de Producto</span></td></tr>
+            <tr><td>Medición</td><td>Apuntar las URL finales de los anuncios de Google Ads y Meta a las URL nuevas, sin barra final: las reglas 301 del panel descartan <code>gclid</code> y <code>utm</code>; el 301 que quita la barra los conserva. Y etiquetar con UTM los correos y la pauta social.</td><td><span class="tag t-pmv">PMV</span><span class="tag t-mkt">Marketing</span></td></tr>
+            <tr><td>Medición</td><td>Cambiar la conversión de Ads por URL de “igual a” a “contiene”, porque Webflow quita la barra final. Pendiente desde el 2 de octubre; sin confirmación al 20 de octubre.</td><td><span class="tag t-pmv">PMV / dueño de Ads</span></td></tr>
+            <tr><td>Medición</td><td>Aceptar las invitaciones de Tag Manager y Clarity.</td><td><span class="tag t-pmv">PMV</span></td></tr>
+            <tr><td>Medición</td><td>Identificar al dueño del GA4, GTM y Clarity heredados y de las cuentas de Ads, y pedir acceso de administrador, sobre todo al historial de GA4.</td><td><span class="tag t-web">Área de Producto</span><span class="tag t-pmv">PMV</span></td></tr>
+            <tr><td>Medición</td><td>Filtro de tráfico interno en GA4 (regla de IP y filtro de datos), en la propiedad de Actuaria y en la heredada. Hace falta la lista de IP públicas de las oficinas.</td><td><span class="tag t-web">Área de Producto</span><span class="tag t-ti">TI</span></td></tr>
+            <tr><td>Infraestructura</td><td>Subir el TTL de los registros a 1 h, pasadas 24 a 48 h del corte.</td><td><span class="tag t-ext">Titular de SiteGround</span></td></tr>
+            <tr><td>Infraestructura</td><td>Guardar una copia del respaldo <code>.wpress</code> fuera de la PC.</td><td><span class="tag t-ti">TI</span></td></tr>
+            <tr><td>Formularios</td><td>Sacar <code>/postulacion-recibida</code> del sitemap: en el Designer, configuración de la página → SEO → interruptor del sitemap, como en <code>/gracias</code>. Ya tiene <code>noindex</code>; es un solo clic.</td><td><span class="tag t-web">Área de Producto</span></td></tr>
+            <tr><td>Formularios</td><td>Definir quién recibe los avisos de Registro Actuacont, y retirar el aviso “Nuevo Lead” de la casilla personal.</td><td><span class="tag t-web">Área de Producto</span></td></tr>
             <tr><td>Decisión</td><td>Banner de cookies y Consent Mode v2. El enlace “Configuración de cookies” del pie todavía no hace nada.</td><td><span class="tag warn">Por decidir</span></td></tr>
             <tr><td>Decisión</td><td>Botones de inscripción por Zoom vencidos en las dos landings de ODS 4 (cursos de 2025).</td><td><span class="tag warn">Por decidir</span></td></tr>
             <tr><td>Decisión</td><td>31 páginas de WordPress sin regla (accesos a dashboards, pruebas, webinars 2025, documentos; dos de las 33 inventariadas el 8 de octubre recibieron regla el 20) y si <code>/login</code> debe llevar a plus.actuaria.com.</td><td><span class="tag warn">Por decidir</span></td></tr>
             <tr><td>Diseño</td><td>Textura de fondo en las páginas cuyo body no tiene clase (ODS, brandbook, seguridad, gracias, 404).</td><td><span class="tag warn">Por decidir</span></td></tr>
-            <tr><td>Blog</td><td>Subir las 26 imágenes y PDF que faltan en 13 artículos y agregar sus redirecciones.</td><td><span class="tag info">Equipo web</span></td></tr>
-            <tr><td>Blog</td><td>El hub muestra hasta 100 artículos, el límite de una lista de Webflow. Falta paginación para llegar a los 275.</td><td><span class="tag info">Equipo web</span></td></tr>
-            <tr><td>Blog</td><td>Poner el enlace “Current Blog Post” en 2 elementos de la plantilla (solo se puede desde el Designer).</td><td><span class="tag info">Equipo web</span></td></tr>
-            <tr><td>CMS</td><td>Equipos: corregir errores de tipeo en nombres y cargos y completar las fotos de las fichas en borrador.</td><td><span class="tag info">Área de Producto + Talento Humano</span></td></tr>
-            <tr><td>SEO</td><td>Imagen para compartir (<code>og:image</code>) en todas las páginas, título y descripción propios en las 4 soluciones (hoy solo tienen el nombre) y bajar a uno los H1 del home.</td><td><span class="tag info">Equipo web</span></td></tr>
-            <tr><td>Contenido</td><td>Revisar la cifra de CO₂ de NFTree (aparecen dos valores), el hito de 2007 con “ISO 9001:2015” y el enlace “Ver la noticia” de NFTree, que apunta a WordPress.</td><td><span class="tag info">Marketing</span></td></tr>
-            <tr><td>SEO</td><td>Core Web Vitals en móvil: Search Console marca 235 URL pobres y 102 por mejorar (datos de Chrome al 17 de octubre; en ordenador, 0 pobres). Seguir la optimización de carga iniciada el 15 de octubre (preloader, WebP, videos bajo demanda, fuentes propias).</td><td><span class="tag info">Equipo web</span></td></tr>
-            <tr><td>SEO</td><td>Vigilar en Search Console la recuperación del artículo «Cálculo de pensiones del IESS» (47 % de los clics del sitio): Google retiró la URL vieja el 9 de octubre al procesar la 301 y mostró la nueva desde el 18.</td><td><span class="tag info">Equipo web</span></td></tr>
-            <tr><td>SEO</td><td>Títulos y descripciones en inglés de las 20 páginas de /en (hoy salen en español) y decidir si los artículos sin traducir se excluyen de la indexación en inglés. La traducción usa la cuota de traducción automática del plan Localization Essential de Webflow (un idioma, 10.000 palabras al mes), que marca el ritmo.</td><td><span class="tag info">Equipo web + Marketing</span></td></tr>
-            <tr><td>Diseño</td><td>Actualizar el runtime de Spline del isotipo 3D de Nosotros y del inicio (la consola avisa que el archivo es de una versión más nueva).</td><td><span class="tag info">Equipo web</span></td></tr>
-            <tr><td>Accesibilidad</td><td>Botón visible de pausa para el título animado del hero (WCAG 2.2.2).</td><td><span class="tag info">Equipo web</span></td></tr>
-            <tr><td>Negocio</td><td>Avisar a los usuarios del antiguo “Dashboard Seguros”: sus credenciales vivían en WordPress.</td><td><span class="tag info">Comercial</span></td></tr>
+            <tr><td>Blog</td><td>Subir las 26 imágenes y PDF que faltan en 13 artículos y agregar sus redirecciones.</td><td><span class="tag t-web">Equipo web</span></td></tr>
+            <tr><td>Blog</td><td>El hub muestra hasta 100 artículos, el límite de una lista de Webflow. Falta paginación para llegar a los 275.</td><td><span class="tag t-web">Equipo web</span></td></tr>
+            <tr><td>Blog</td><td>Poner el enlace “Current Blog Post” en 2 elementos de la plantilla (solo se puede desde el Designer).</td><td><span class="tag t-web">Equipo web</span></td></tr>
+            <tr><td>CMS</td><td>Equipos: corregir errores de tipeo en nombres y cargos y completar las fotos de las fichas en borrador.</td><td><span class="tag t-web">Área de Producto</span><span class="tag t-th">Talento Humano</span></td></tr>
+            <tr><td>SEO</td><td>Imagen para compartir (<code>og:image</code>) en todas las páginas, título y descripción propios en las 4 soluciones (hoy solo tienen el nombre) y bajar a uno los H1 del home.</td><td><span class="tag t-web">Equipo web</span></td></tr>
+            <tr><td>Contenido</td><td>Revisar la cifra de CO₂ de NFTree (aparecen dos valores), el hito de 2007 con “ISO 9001:2015” y el enlace “Ver la noticia” de NFTree, que apunta a WordPress.</td><td><span class="tag t-mkt">Marketing</span></td></tr>
+            <tr><td>SEO</td><td>Core Web Vitals en móvil: Search Console marca 235 URL pobres y 102 por mejorar (datos de Chrome al 17 de octubre; en ordenador, 0 pobres). Seguir la optimización de carga iniciada el 15 de octubre (preloader, WebP, videos bajo demanda, fuentes propias).</td><td><span class="tag t-web">Equipo web</span></td></tr>
+            <tr><td>SEO</td><td>Vigilar en Search Console la recuperación del artículo «Cálculo de pensiones del IESS» (47 % de los clics del sitio): Google retiró la URL vieja el 9 de octubre al procesar la 301 y mostró la nueva desde el 18.</td><td><span class="tag t-web">Equipo web</span></td></tr>
+            <tr><td>SEO</td><td>Títulos y descripciones en inglés de las 20 páginas de /en (hoy salen en español) y decidir si los artículos sin traducir se excluyen de la indexación en inglés. La traducción usa la cuota de traducción automática del plan Localization Essential de Webflow (un idioma, 10.000 palabras al mes), que marca el ritmo.</td><td><span class="tag t-web">Equipo web</span><span class="tag t-mkt">Marketing</span></td></tr>
+            <tr><td>Diseño</td><td>Actualizar el runtime de Spline del isotipo 3D de Nosotros y del inicio (la consola avisa que el archivo es de una versión más nueva).</td><td><span class="tag t-web">Equipo web</span></td></tr>
+            <tr><td>Accesibilidad</td><td>Botón visible de pausa para el título animado del hero (WCAG 2.2.2).</td><td><span class="tag t-web">Equipo web</span></td></tr>
+            <tr><td>Negocio</td><td>Avisar a los usuarios del antiguo “Dashboard Seguros”: sus credenciales vivían en WordPress.</td><td><span class="tag t-com">Comercial</span></td></tr>
           </tbody>
         </table>
       </div>
+      <p class="tag_legend">Equipos: <span class="tag t-web">Equipo web</span><span class="tag t-mkt">Marketing</span><span class="tag t-pmv">PMV</span><span class="tag t-ti">TI</span><span class="tag t-th">Talento Humano</span><span class="tag t-com">Comercial</span><span class="tag t-ext">Externos</span><span class="tag warn">Por decidir</span></p>
       <div class="sheet_foot"><span>Área de Producto · Actuaria Consultores</span><span><b>16</b> / 17</span></div>
     </section>
 
